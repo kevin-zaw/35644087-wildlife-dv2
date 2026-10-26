@@ -1,0 +1,355 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Wilkinson dot plot (unit chart). Each dot is one of the 186 frog species FrogID recorded in 2023, stacked in columns by its number of records on a logarithmic scale (each step to the right is ten times more records). Dots are coloured by frog group; click a group in the legend to isolate it.",
+  "width": 1000,
+  "height": 380,
+  "data": {
+    "url": "data/species_summary.csv",
+    "format": {
+      "parse": {
+        "records": "number",
+        "people": "number",
+        "share": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "floor(log(datum.records) / LN10 * 5) / 5",
+      "as": "bin"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "stackPos"
+        }
+      ],
+      "groupby": [
+        "bin"
+      ],
+      "sort": [
+        {
+          "field": "group"
+        },
+        {
+          "field": "records",
+          "order": "descending"
+        }
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "fill": "#eef1ec"
+      },
+      "data": {
+        "values": [
+          {
+            "x": -0.3,
+            "x2": 0.9
+          }
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 380
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 84,
+        "stroke": "#ffffff",
+        "strokeWidth": 0.8,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "bin",
+          "type": "quantitative",
+          "title": "Number of records in 2023 (logarithmic scale)",
+          "scale": {
+            "domain": [
+              -0.3,
+              4.7
+            ],
+            "nice": false
+          },
+          "axis": {
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "labelExpr": "datum.value == 0 ? '1 record' : format(pow(10, datum.value), ',') + ' records'",
+            "grid": false,
+            "tickCount": 5,
+            "labelFontSize": 12
+          }
+        },
+        "y": {
+          "field": "stackPos",
+          "type": "quantitative",
+          "title": "Number of species",
+          "scale": {
+            "domain": [
+              0,
+              30
+            ]
+          },
+          "axis": {
+            "values": [
+              5,
+              10,
+              15,
+              20
+            ],
+            "grid": true,
+            "gridDash": [
+              2,
+              3
+            ],
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "Frog group (click to isolate)",
+          "scale": {
+            "domain": [
+              "Tree frogs",
+              "Froglets and toadlets",
+              "Ground frogs",
+              "Narrow-mouthed frogs",
+              "Wood frog",
+              "Cane toad (introduced)"
+            ],
+            "range": [
+              "#5a9e3a",
+              "#4a78a8",
+              "#8b5a2b",
+              "#c45a8a",
+              "#8c8c8c",
+              "#c0262d"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "circle",
+            "symbolSize": 110,
+            "labelLimit": 200,
+            "titleOrient": "top",
+            "columnPadding": 18
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "grpPick",
+            "value": 1
+          },
+          "value": 0.12
+        },
+        "tooltip": [
+          {
+            "field": "commonName",
+            "title": "Species"
+          },
+          {
+            "field": "scientificName",
+            "title": "Scientific name"
+          },
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "records",
+            "title": "Records",
+            "format": ","
+          },
+          {
+            "field": "people",
+            "title": "People who recorded it",
+            "format": ","
+          },
+          {
+            "field": "states",
+            "title": "Where"
+          }
+        ]
+      },
+      "params": [
+        {
+          "name": "grpPick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "group"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0.9
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#1b2b26",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": 380
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0.02,
+            "y": 29.6,
+            "t": [
+              "50 species were recorded",
+              "fewer than 10 times. 13 were",
+              "recorded just once in 2023."
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "lineHeight": 15,
+        "fontStyle": "italic",
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0.02,
+            "y": 25.0,
+            "t": [
+              "Among them: the Waterfall Frog,",
+              "a rainforest stream frog from",
+              "north Queensland. FrogID’s",
+              "first ever record of it."
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 11.5,
+        "lineHeight": 14,
+        "fontStyle": "italic",
+        "color": "#5b6b65"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 4.62,
+            "y": 2.4,
+            "t": [
+              "Common Eastern Froglet:",
+              "33,630 records"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "fontSize": 11.5,
+        "lineHeight": 14,
+        "fontStyle": "italic",
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

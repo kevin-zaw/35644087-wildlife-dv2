@@ -1,0 +1,377 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap. Rows are 2-degree bands of latitude from north (top) to south (bottom); columns are months of 2023. Each cell shows what share of that band's yearly frog records was made in that month, so every row adds up to 100% and northern and southern bands can be compared fairly. The bar on the right shows how many records each band holds. December is empty because the published dataset ends on 10 November.",
+  "data": {
+    "url": "data/lat_month.csv",
+    "format": {
+      "parse": {
+        "band": "number",
+        "month": "number",
+        "records": "number",
+        "share": "number",
+        "band_total": "number"
+      }
+    }
+  },
+  "hconcat": [
+    {
+      "width": 560,
+      "height": 380,
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "month": 12
+              }
+            ]
+          },
+          "mark": {
+            "type": "rect",
+            "fill": "#e4e9e5"
+          },
+          "encoding": {
+            "x": {
+              "field": "month",
+              "type": "ordinal"
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 380
+            }
+          }
+        },
+        {
+          "params": [
+            {
+              "name": "cellPick",
+              "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ],
+          "mark": {
+            "type": "rect",
+            "stroke": "#f3f5f0",
+            "strokeWidth": 1.2,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "x": {
+              "field": "month",
+              "type": "ordinal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12
+                ]
+              },
+              "axis": {
+                "orient": "top",
+                "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+                "domain": false,
+                "ticks": false,
+                "labelFontSize": 12,
+                "labelAngle": 0
+              }
+            },
+            "y": {
+              "field": "label",
+              "type": "ordinal",
+              "title": "Latitude band",
+              "sort": {
+                "field": "band",
+                "order": "descending"
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labelFontSize": 11.5
+              }
+            },
+            "color": {
+              "field": "cls",
+              "type": "ordinal",
+              "title": "Share of the band’s yearly records",
+              "scale": {
+                "domain": [
+                  "Under 5%",
+                  "5–9%",
+                  "10–14%",
+                  "15–24%",
+                  "25–39%",
+                  "40% or more"
+                ],
+                "range": [
+                  "#eef7f4",
+                  "#c3e6dd",
+                  "#86cbbd",
+                  "#3fa294",
+                  "#127a74",
+                  "#0a4643"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "symbolType": "square",
+                "symbolSize": 150,
+                "titleOrient": "left",
+                "titleLimit": 240
+              }
+            },
+            "strokeWidth": {
+              "condition": {
+                "param": "cellPick",
+                "empty": false,
+                "value": 2.5
+              },
+              "value": 1.2
+            },
+            "stroke": {
+              "condition": {
+                "param": "cellPick",
+                "empty": false,
+                "value": "#1b2b26"
+              },
+              "value": "#f3f5f0"
+            },
+            "tooltip": [
+              {
+                "field": "label",
+                "title": "Latitude band"
+              },
+              {
+                "field": "month",
+                "title": "Month",
+                "type": "ordinal"
+              },
+              {
+                "field": "records",
+                "title": "Frog records",
+                "format": ","
+              },
+              {
+                "field": "share",
+                "title": "Share of the band’s year (%)",
+                "format": ".1f"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "calculate": "datum.share < 5 ? 'Under 5%' : datum.share < 10 ? '5–9%' : datum.share < 15 ? '10–14%' : datum.share < 25 ? '15–24%' : datum.share < 40 ? '25–39%' : '40% or more'",
+              "as": "cls"
+            }
+          ]
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "month": 12
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 11,
+            "fontStyle": "italic",
+            "color": "#5b6b65",
+            "lineHeight": 13
+          },
+          "encoding": {
+            "x": {
+              "field": "month",
+              "type": "ordinal"
+            },
+            "y": {
+              "value": 190
+            },
+            "text": {
+              "value": [
+                "No",
+                "data:",
+                "dataset",
+                "ends",
+                "10 Nov"
+              ]
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Tropical north: most calls come",
+                  "in the wet season, January–February"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "fontStyle": "italic",
+            "color": "#0a4643",
+            "lineHeight": 15
+          },
+          "encoding": {
+            "x": {
+              "value": 238
+            },
+            "y": {
+              "value": 70
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Temperate south: calls build through",
+                  "late winter and spring, August–October"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "fontStyle": "italic",
+            "color": "#0a4643",
+            "lineHeight": 15
+          },
+          "encoding": {
+            "x": {
+              "value": 8
+            },
+            "y": {
+              "value": 338
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": "Nov includes FrogID Week"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "top",
+            "fontSize": 11,
+            "fontStyle": "italic",
+            "color": "#5b6b65"
+          },
+          "encoding": {
+            "x": {
+              "value": 514
+            },
+            "y": {
+              "value": 386
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ],
+      "title": {
+        "text": "Share of each latitude band’s frog records, by month",
+        "subtitle": "North at the top. Each row adds up to 100%."
+      }
+    },
+    {
+      "width": 130,
+      "height": 380,
+      "mark": {
+        "type": "bar",
+        "color": "#127a74",
+        "height": 14
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": {
+            "field": "band",
+            "order": "descending"
+          },
+          "axis": null
+        },
+        "x": {
+          "field": "records",
+          "aggregate": "sum",
+          "type": "quantitative",
+          "title": "Records in the band",
+          "axis": {
+            "values": [
+              0,
+              15000,
+              30000
+            ],
+            "format": "~s",
+            "grid": true
+          }
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Latitude band"
+          },
+          {
+            "field": "records",
+            "aggregate": "sum",
+            "title": "Frog records",
+            "format": ","
+          }
+        ]
+      },
+      "title": {
+        "text": "Records per band",
+        "subtitle": "How much each row is based on"
+      }
+    }
+  ],
+  "spacing": 14,
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Paired waffle (unit) charts. Each square is 1% of all FrogID contributors in 2023 (left) or 1% of all recordings they submitted (right), shaded by how many recordings each person made. Hovering a group highlights it in both waffles.",
+  "data": {
+    "url": "data/contributors_units.csv",
+    "format": {
+      "parse": {
+        "unit": "number",
+        "col": "number",
+        "row": "number",
+        "order": "number",
+        "count": "number",
+        "pct": "number"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "grp",
+      "select": {
+        "type": "point",
+        "fields": [
+          "class"
+        ],
+        "on": "mouseover",
+        "clear": "mouseout"
+      },
+      "views": [
+        "peopleWaffle",
+        "recWaffle"
+      ]
+    }
+  ],
+  "spacing": 56,
+  "hconcat": [
+    {
+      "name": "peopleWaffle",
+      "width": 250,
+      "height": 250,
+      "title": {
+        "text": "12,434 people",
+        "subtitle": [
+          "Each square is 1% of everyone who recorded"
+        ],
+        "subtitleColor": "#5b6b65"
+      },
+      "transform": [
+        {
+          "filter": "datum.panel == 'Share of people'"
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "size": 370,
+        "cornerRadius": 2,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "class",
+          "type": "ordinal",
+          "title": "Recordings sent by each person",
+          "sort": [
+            "1 recording",
+            "2–5",
+            "6–20",
+            "21–100",
+            "More than 100"
+          ],
+          "scale": {
+            "domain": [
+              "1 recording",
+              "2–5",
+              "6–20",
+              "21–100",
+              "More than 100"
+            ],
+            "range": [
+              "#fbe2c0",
+              "#f4b46a",
+              "#e08a2e",
+              "#b8610f",
+              "#6f3906"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 160,
+            "titleOrient": "left",
+            "titleLimit": 220,
+            "labelFontSize": 12,
+            "title": "Recordings sent by each person"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "grp",
+            "value": 1
+          },
+          "value": 0.25
+        },
+        "tooltip": [
+          {
+            "field": "class",
+            "title": "Recordings per person"
+          },
+          {
+            "field": "count",
+            "title": "People in this group",
+            "format": ","
+          },
+          {
+            "field": "pct",
+            "title": "Share of people (%)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "recWaffle",
+      "width": 250,
+      "height": 250,
+      "title": {
+        "text": "84,321 recordings",
+        "subtitle": [
+          "Each square is 1% of all recordings"
+        ],
+        "subtitleColor": "#5b6b65"
+      },
+      "transform": [
+        {
+          "filter": "datum.panel == 'Share of recordings'"
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "size": 370,
+        "cornerRadius": 2,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "class",
+          "type": "ordinal",
+          "sort": [
+            "1 recording",
+            "2–5",
+            "6–20",
+            "21–100",
+            "More than 100"
+          ]
+        },
+        "opacity": {
+          "condition": {
+            "param": "grp",
+            "value": 1
+          },
+          "value": 0.25
+        },
+        "tooltip": [
+          {
+            "field": "class",
+            "title": "Recordings per person"
+          },
+          {
+            "field": "count",
+            "title": "Recordings from this group",
+            "format": ","
+          },
+          {
+            "field": "pct",
+            "title": "Share of recordings (%)"
+          }
+        ]
+      }
+    },
+    {
+      "width": 200,
+      "height": 250,
+      "data": {
+        "values": [
+          {
+            "y": 10,
+            "t": [
+              "36% of people sent a",
+              "single recording. Together",
+              "they made 5% of the data."
+            ],
+            "c": "#9a5a12"
+          },
+          {
+            "y": 120,
+            "t": [
+              "90 people (0.7%) sent more",
+              "than 100 each: 22,166",
+              "recordings, 26% of the total."
+            ],
+            "c": "#6f3906"
+          },
+          {
+            "y": 215,
+            "t": [
+              "The busiest person sent",
+              "1,306 recordings in 2023."
+            ],
+            "c": "#33443e"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12.5,
+        "lineHeight": 16,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              250
+            ],
+            "range": [
+              0,
+              250
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "field": "c",
+          "type": "nominal",
+          "scale": null
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "shared"
+    }
+  }
+}

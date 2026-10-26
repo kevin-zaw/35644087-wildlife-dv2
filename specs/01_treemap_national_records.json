@@ -1,0 +1,285 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap of the 154.4 million occurrence records of animals, plants and fungi available for Australia through GBIF (activity report generated January 2026). Records are nested by kingdom and then by group; rectangle area is proportional to the number of records. A treemap suits this data because groups nest inside kingdoms, a true hierarchy.",
+  "width": 1060,
+  "height": 430,
+  "padding": 2,
+  "autosize": "none",
+  "background": null,
+  "data": [
+    {
+      "name": "leaves",
+      "url": "data/national_treemap.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "records": "number",
+          "share": "number"
+        }
+      }
+    },
+    {
+      "name": "kingdoms",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "kingdom"
+          ],
+          "fields": [
+            "records"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tree",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "nest",
+          "keys": [
+            "kingdom"
+          ],
+          "generate": true
+        },
+        {
+          "type": "treemap",
+          "field": "records",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.5,
+          "paddingInner": 2,
+          "paddingOuter": 0,
+          "paddingTop": 24,
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "kNodes",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1"
+        },
+        {
+          "type": "lookup",
+          "from": "kingdoms",
+          "key": "kingdom",
+          "fields": [
+            "key"
+          ],
+          "values": [
+            "total"
+          ],
+          "as": [
+            "ktotal"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "gNodes",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 2"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "kColor",
+      "type": "ordinal",
+      "domain": [
+        "Animals",
+        "Plants",
+        "Fungi"
+      ],
+      "range": [
+        "#1f8a80",
+        "#3fa294",
+        "#6fc3b4"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "from": {
+        "data": "kNodes"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x0 + 2"
+          },
+          "y": {
+            "signal": "datum.y0 + 16"
+          },
+          "text": {
+            "signal": "datum.key + ': ' + format(datum.ktotal / 1e6, '.1f') + ' million records'"
+          },
+          "fill": {
+            "value": "#e4eee9"
+          },
+          "font": {
+            "value": "\"Source Sans 3\", Arial, sans-serif"
+          },
+          "fontSize": {
+            "value": 14
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 4"
+          }
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {
+        "data": "gNodes"
+      },
+      "encode": {
+        "enter": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "scale": "kColor",
+            "field": "kingdom"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "signal": "{'Group': datum.group, 'Kingdom': datum.kingdom, 'Records': format(datum.records, ','), 'Share of all records': format(datum.share, '.1f') + '%'}"
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "signal": "indexof(datum.group, 'Other') === 0 ? 0.55 : 1"
+          },
+          "stroke": {
+            "value": "#0f221e"
+          },
+          "strokeWidth": {
+            "value": 1
+          }
+        },
+        "hover": {
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 2.5
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "gNodes"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x0 + 8"
+          },
+          "y": {
+            "signal": "datum.y0 + (datum.share > 30 ? 30 : 19)"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 26 ? datum.group : ''"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "font": {
+            "value": "\"Source Sans 3\", Arial, sans-serif"
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fontSize": {
+            "signal": "datum.share > 30 ? 26 : datum.share > 3 ? 14 : 12"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 12"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "gNodes"
+      },
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x0 + 8"
+          },
+          "y": {
+            "signal": "datum.y0 + (datum.share > 30 ? 52 : 35)"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 44 ? (datum.share > 30 ? format(datum.records / 1e6, '.1f') + ' million records, ' + format(datum.share, '.0f') + '% of everything' : format(datum.share, '.1f') + '%') : ''"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "fillOpacity": {
+            "value": 0.9
+          },
+          "font": {
+            "value": "\"Source Sans 3\", Arial, sans-serif"
+          },
+          "fontSize": {
+            "signal": "datum.share > 30 ? 16 : 12"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 12"
+          }
+        }
+      }
+    }
+  ]
+}

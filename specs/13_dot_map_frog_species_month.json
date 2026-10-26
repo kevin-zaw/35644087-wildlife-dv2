@@ -1,0 +1,312 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot map with focus and context. Grey dots show every place the chosen species was recorded in 2023 (each dot is a 0.1-degree square, about 10 km across); coloured dots show the places it was recorded in the chosen month. Pick a species from the list (or click a ridge in the chart above) and drag the month slider, or press Play to animate the year.",
+  "width": 600,
+  "height": 500,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "params": [
+    {
+      "name": "sp",
+      "value": 0,
+      "bind": {
+        "input": "select",
+        "name": "Species  ",
+        "options": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "labels": [
+          "Green Tree Frog",
+          "Graceful Tree Frog",
+          "Tusked Frog",
+          "Striped Marsh Frog",
+          "Whistling Tree Frog",
+          "Rattling Froglet",
+          "Brown Tree Frog",
+          "Common Eastern Froglet",
+          "Eastern Sign-bearing Froglet",
+          "Spotted Marsh Frog",
+          "Eastern Banjo Frog",
+          "Slender Tree Frog",
+          "Eastern Dwarf Tree Frog",
+          "Peron’s Tree Frog"
+        ]
+      }
+    },
+    {
+      "name": "mon",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "name": "Month (Jan = 1, Nov = 11)  "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e2e7e3",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/species_points.csv",
+        "format": {
+          "parse": {
+            "sp": "number",
+            "lon": "number",
+            "lat": "number",
+            "month": "number",
+            "n": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.sp == sp"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "n",
+              "as": "n"
+            }
+          ],
+          "groupby": [
+            "lon",
+            "lat"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 9,
+        "color": "#a9b5b0",
+        "opacity": 0.55
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/species_points.csv",
+        "format": {
+          "parse": {
+            "sp": "number",
+            "lon": "number",
+            "lat": "number",
+            "month": "number",
+            "n": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.sp == sp && datum.month == mon"
+        },
+        {
+          "lookup": "sp",
+          "from": {
+            "data": {
+              "url": "data/species_codes.json"
+            },
+            "key": "sp",
+            "fields": [
+              "commonName",
+              "group"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "n",
+          "type": "quantitative",
+          "title": "Records that month",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              1,
+              40
+            ],
+            "range": [
+              18,
+              220
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 0,
+            "legendY": 380,
+            "values": [
+              1,
+              10,
+              40
+            ],
+            "symbolFillColor": "#5b6b65",
+            "symbolStrokeColor": "#ffffff"
+          }
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "Frog group",
+          "scale": {
+            "domain": [
+              "Tree frogs",
+              "Froglets and toadlets",
+              "Ground frogs"
+            ],
+            "range": [
+              "#5a9e3a",
+              "#4a78a8",
+              "#8b5a2b"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "commonName",
+            "title": "Species"
+          },
+          {
+            "field": "n",
+            "title": "Records in this 10 km square"
+          },
+          {
+            "field": "lon",
+            "title": "Longitude",
+            "format": ".1f"
+          },
+          {
+            "field": "lat",
+            "title": "Latitude",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/species_month.csv",
+        "format": {
+          "parse": {
+            "month": "number",
+            "records": "number",
+            "share": "number",
+            "all_share": "number",
+            "lift": "number",
+            "peak_month": "number",
+            "code": "number",
+            "order": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.code == sp"
+        },
+        {
+          "joinaggregate": [
+            {
+              "op": "sum",
+              "field": "records",
+              "as": "yearTotal"
+            }
+          ]
+        },
+        {
+          "filter": "datum.month == mon"
+        },
+        {
+          "calculate": "['January','February','March','April','May','June','July','August','September','October','November'][mon - 1]",
+          "as": "mname"
+        },
+        {
+          "calculate": "[datum.commonName + ', ' + datum.mname + ' 2023', format(datum.records, ',') + ' of its ' + format(datum.yearTotal, ',') + ' records this year (' + format(datum.records / datum.yearTotal, '.0%') + ')']",
+          "as": "lines"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 14,
+        "fontWeight": 700,
+        "lineHeight": 20,
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "lines"
+        }
+      }
+    }
+  ]
+}

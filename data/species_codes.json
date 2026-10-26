@@ -1,0 +1,86 @@
+[
+ {
+  "sp": 0,
+  "scientificName": "Litoria caerulea",
+  "commonName": "Green Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 1,
+  "scientificName": "Litoria gracilenta",
+  "commonName": "Graceful Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 2,
+  "scientificName": "Adelotus brevis",
+  "commonName": "Tusked Frog",
+  "group": "Ground frogs"
+ },
+ {
+  "sp": 3,
+  "scientificName": "Limnodynastes peronii",
+  "commonName": "Striped Marsh Frog",
+  "group": "Ground frogs"
+ },
+ {
+  "sp": 4,
+  "scientificName": "Litoria verreauxii",
+  "commonName": "Whistling Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 5,
+  "scientificName": "Crinia glauerti",
+  "commonName": "Rattling Froglet",
+  "group": "Froglets and toadlets"
+ },
+ {
+  "sp": 6,
+  "scientificName": "Litoria ewingii",
+  "commonName": "Brown Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 7,
+  "scientificName": "Crinia signifera",
+  "commonName": "Common Eastern Froglet",
+  "group": "Froglets and toadlets"
+ },
+ {
+  "sp": 8,
+  "scientificName": "Crinia parinsignifera",
+  "commonName": "Eastern Sign-bearing Froglet",
+  "group": "Froglets and toadlets"
+ },
+ {
+  "sp": 9,
+  "scientificName": "Limnodynastes tasmaniensis",
+  "commonName": "Spotted Marsh Frog",
+  "group": "Ground frogs"
+ },
+ {
+  "sp": 10,
+  "scientificName": "Limnodynastes dumerilii",
+  "commonName": "Eastern Banjo Frog",
+  "group": "Ground frogs"
+ },
+ {
+  "sp": 11,
+  "scientificName": "Litoria adelaidensis",
+  "commonName": "Slender Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 12,
+  "scientificName": "Litoria fallax",
+  "commonName": "Eastern Dwarf Tree Frog",
+  "group": "Tree frogs"
+ },
+ {
+  "sp": 13,
+  "scientificName": "Litoria peronii",
+  "commonName": "Peron’s Tree Frog",
+  "group": "Tree frogs"
+ }
+]

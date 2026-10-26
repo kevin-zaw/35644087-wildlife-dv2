@@ -1,0 +1,101 @@
+unit,col,row,source,category,records,pct,order
+0,0,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+1,1,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+2,2,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+3,3,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+4,4,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+5,5,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+6,6,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+7,7,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+8,8,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+9,9,0,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+10,0,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+11,1,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+12,2,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+13,3,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+14,4,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+15,5,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+16,6,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+17,7,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+18,8,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+19,9,1,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+20,0,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+21,1,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+22,2,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+23,3,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+24,4,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+25,5,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+26,6,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+27,7,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+28,8,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+29,9,2,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+30,0,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+31,1,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+32,2,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+33,3,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+34,4,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+35,5,3,"eBird (Cornell Lab, volunteer birdwatchers)",Volunteer bird surveys,56373935,36.5,0
+36,6,3,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+37,7,3,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+38,8,3,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+39,9,3,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+40,0,4,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+41,1,4,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+42,2,4,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+43,3,4,BirdLife Australia Birdata (volunteer birdwatchers),Volunteer bird surveys,11631570,7.5,1
+44,4,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+45,5,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+46,6,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+47,7,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+48,8,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+49,9,4,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+50,0,5,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+51,1,5,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+52,2,5,NSW BioNet Atlas (state government),State wildlife atlases,14672900,9.5,2
+53,3,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+54,4,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+55,5,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+56,6,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+57,7,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+58,8,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+59,9,5,Victorian Biodiversity Atlas (state government),State wildlife atlases,10079568,6.5,3
+60,0,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+61,1,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+62,2,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+63,3,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+64,4,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+65,5,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+66,6,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+67,7,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+68,8,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+69,9,6,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+70,0,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+71,1,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+72,2,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+73,3,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+74,4,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+75,5,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+76,6,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+77,7,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+78,8,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+79,9,7,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+80,0,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+81,1,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+82,2,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+83,3,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+84,4,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+85,5,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+86,6,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+87,7,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+88,8,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+89,9,8,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+90,0,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+91,1,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+92,2,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+93,3,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+94,4,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+95,5,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+96,6,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+97,7,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+98,8,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4
+99,9,9,"Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)",All other sources,61611754,39.9,4

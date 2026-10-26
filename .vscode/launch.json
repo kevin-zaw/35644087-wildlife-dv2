@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "1. Quick connection test",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/download_wildlife_data.py",
+      "args": ["--test"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "2. Download all wildlife data",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/download_wildlife_data.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

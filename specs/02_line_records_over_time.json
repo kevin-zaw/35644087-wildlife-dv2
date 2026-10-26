@@ -1,0 +1,329 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Annotated line chart. Total occurrence records about Australia available through GBIF at each quarterly snapshot, December 2007 to October 2026 (all organisms, including microbes). Source: GBIF analytics, country/AU/about/csv/occ.csv, generated 8 October 2026.",
+  "width": 620,
+  "height": 340,
+  "data": {
+    "url": "data/gbif_records_over_time.csv",
+    "format": {
+      "parse": {
+        "snapshot": "date:'%Y-%m-%d'",
+        "records": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.records / 1e6",
+      "as": "millions"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#127a74",
+        "opacity": 0.12,
+        "interpolate": "step-after"
+      },
+      "encoding": {
+        "x": {
+          "field": "snapshot",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "millions",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#127a74",
+        "strokeWidth": 2.5,
+        "interpolate": "step-after",
+        "point": {
+          "filled": true,
+          "size": 22,
+          "color": "#127a74"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "snapshot",
+          "type": "temporal",
+          "title": null,
+          "axis": {
+            "format": "%Y",
+            "tickCount": 10,
+            "grid": false,
+            "labelFontSize": 12
+          }
+        },
+        "y": {
+          "field": "millions",
+          "type": "quantitative",
+          "title": "Records about Australia (millions)",
+          "axis": {
+            "values": [
+              0,
+              50,
+              100,
+              150,
+              200,
+              250
+            ],
+            "grid": true,
+            "titlePadding": 10
+          }
+        },
+        "tooltip": [
+          {
+            "field": "snapshot",
+            "type": "temporal",
+            "title": "GBIF snapshot",
+            "format": "%B %Y"
+          },
+          {
+            "field": "records",
+            "title": "Records",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "snapHover",
+          "select": {
+            "type": "point",
+            "encodings": [
+              "x"
+            ],
+            "nearest": true,
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "opacity": 0,
+        "size": 400
+      },
+      "encoding": {
+        "x": {
+          "field": "snapshot",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "millions",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "snapshot",
+            "type": "temporal",
+            "title": "GBIF snapshot",
+            "format": "%B %Y"
+          },
+          {
+            "field": "records",
+            "title": "Records",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "param": "snapHover",
+            "empty": false
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#1b2b26",
+        "strokeDash": [
+          2,
+          2
+        ]
+      },
+      "encoding": {
+        "x": {
+          "field": "snapshot",
+          "type": "temporal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2010-10-01",
+            "t": "Atlas of Living Australia launches (Oct 2010)",
+            "y": 120
+          },
+          {
+            "d": "2017-11-01",
+            "t": "FrogID app launches (Nov 2017)",
+            "y": 175
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#8c9a96",
+            "strokeDash": [
+              4,
+              3
+            ]
+          },
+          "encoding": {
+            "x": {
+              "field": "d",
+              "type": "temporal",
+              "timeUnit": "yearmonthdate"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 4,
+            "fontSize": 11.5,
+            "fontStyle": "italic",
+            "color": "#4a5a54"
+          },
+          "encoding": {
+            "x": {
+              "field": "d",
+              "type": "temporal",
+              "timeUnit": "yearmonthdate"
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2007-12-19",
+            "v": 2.6,
+            "t": "Dec 2007: 2.6 million"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b4f4c",
+        "align": "left",
+        "dy": -12,
+        "dx": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate"
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2026-10-01",
+            "v": 259.5,
+            "t": "Oct 2026: 259.5 million"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#0b4f4c",
+        "align": "right",
+        "dy": -12,
+        "dx": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate"
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "d": "2025-08-01",
+            "v": 222,
+            "t": [
+              "Recent steps up include",
+              "large microbial DNA datasets"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#4a5a54",
+        "lineHeight": 13
+      },
+      "encoding": {
+        "x": {
+          "field": "d",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate"
+        },
+        "y": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

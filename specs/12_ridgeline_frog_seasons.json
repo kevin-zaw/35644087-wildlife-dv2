@@ -1,0 +1,241 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ridgeline plot. One ridge per species for the 14 most-recorded native frogs in 2023. The coloured ridge shows the share of that species' yearly records made in each month; the grey outline repeats the same measure for all frogs combined, which reflects how much people were listening. Where a colour rises above the grey line, that frog was calling more than usual. Ridges are sorted by the month in which each species stands out most. Click a ridge to map that species below.",
+  "data": {
+    "url": "data/species_month.csv",
+    "format": {
+      "parse": {
+        "month": "number",
+        "records": "number",
+        "share": "number",
+        "all_share": "number",
+        "lift": "number",
+        "peak_month": "number",
+        "code": "number",
+        "order": "number"
+      }
+    }
+  },
+  "facet": {
+    "row": {
+      "field": "commonName",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "order",
+        "op": "min"
+      },
+      "header": {
+        "labels": false,
+        "title": null
+      }
+    }
+  },
+  "spacing": 0,
+  "spec": {
+    "width": 600,
+    "height": 30,
+    "view": {
+      "stroke": null,
+      "fill": null
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "fillOpacity": 0.85,
+          "stroke": "#ffffff",
+          "strokeWidth": 1.2,
+          "cursor": "pointer"
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative",
+            "title": null,
+            "scale": {
+              "domain": [
+                1,
+                11
+              ],
+              "nice": false
+            },
+            "axis": {
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+              "grid": true,
+              "gridColor": "#e3e8e4",
+              "domain": false,
+              "ticks": false,
+              "labelFontSize": 12
+            }
+          },
+          "y": {
+            "field": "share",
+            "type": "quantitative",
+            "title": null,
+            "axis": null,
+            "scale": {
+              "domain": [
+                0,
+                30
+              ],
+              "range": [
+                30,
+                -22
+              ],
+              "clamp": false
+            }
+          },
+          "color": {
+            "field": "group",
+            "type": "nominal",
+            "title": "Frog group",
+            "scale": {
+              "domain": [
+                "Tree frogs",
+                "Froglets and toadlets",
+                "Ground frogs"
+              ],
+              "range": [
+                "#5a9e3a",
+                "#4a78a8",
+                "#8b5a2b"
+              ]
+            },
+            "legend": {
+              "orient": "top",
+              "direction": "horizontal",
+              "symbolType": "square",
+              "symbolSize": 140,
+              "titleOrient": "left"
+            }
+          },
+          "opacity": {
+            "condition": {
+              "param": "ridgePick",
+              "value": 1
+            },
+            "value": 0.3
+          },
+          "tooltip": [
+            {
+              "field": "commonName",
+              "title": "Species"
+            },
+            {
+              "field": "month",
+              "title": "Month"
+            },
+            {
+              "field": "records",
+              "title": "Records that month",
+              "format": ","
+            },
+            {
+              "field": "share",
+              "title": "Share of its year (%)",
+              "format": ".1f"
+            },
+            {
+              "field": "all_share",
+              "title": "All frogs, same month (%)",
+              "format": ".1f"
+            }
+          ]
+        },
+        "params": [
+          {
+            "name": "ridgePick",
+            "select": {
+              "type": "point",
+              "fields": [
+                "code"
+              ],
+              "on": "click",
+              "clear": "dblclick"
+            }
+          }
+        ]
+      },
+      {
+        "mark": {
+          "type": "line",
+          "interpolate": "monotone",
+          "color": "#1b2b26",
+          "strokeWidth": 1,
+          "strokeDash": [
+            3,
+            2
+          ],
+          "opacity": 0.75
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "all_share",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                30
+              ],
+              "range": [
+                30,
+                -22
+              ]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.month == 1"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "bottom",
+          "dx": -12,
+          "fontSize": 12.5,
+          "fontWeight": 600,
+          "color": "#1b2b26"
+        },
+        "encoding": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 30
+          },
+          "text": {
+            "field": "commonName"
+          }
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  }
+}

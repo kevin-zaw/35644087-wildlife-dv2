@@ -1,0 +1,15 @@
+group,kingdom,records,species,per_species,record_share,species_share,note
+Birds,Animals,93127017,828,112472,63.01,0.71,
+Insects,Animals,6568729,62000,106,4.44,53.5,Approximate
+Mammals,Animals,5242278,386,13581,3.55,0.33,
+Bony fish,Animals,4574722,5000,915,3.1,4.31,"All fishes, approximate"
+Reptiles,Animals,1890892,917,2062,1.28,0.79,
+Amphibians,Animals,1833663,227,8078,1.24,0.2,
+Molluscs,Animals,1548137,8700,178,1.05,7.51,Approximate
+Spiders and kin,Animals,725109,6615,110,0.49,5.71,Arachnids
+Flowering plants,Plants,25871851,18706,1383,17.5,16.14,
+Ferns,Plants,653200,498,1312,0.44,0.43,Ferns and allies
+Mosses,Plants,280442,976,287,0.19,0.84,
+Conifers and cycads,Plants,145045,120,1209,0.1,0.1,Gymnosperms
+Sac fungi,Fungi,3325673,7187,463,2.25,6.2,"Ascomycota, incl. most lichens"
+Mushrooms and kin,Fungi,2015785,3730,540,1.36,3.22,Basidiomycota

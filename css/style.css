@@ -1,0 +1,174 @@
+/* Who's calling? FIT3179 DV2. Fonts are self-hosted (SIL Open Font Licence). */
+@font-face { font-family: "Young Serif"; src: url("../fonts/young-serif-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Literata"; src: url("../fonts/literata-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Literata"; src: url("../fonts/literata-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Literata"; src: url("../fonts/literata-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("../fonts/source-sans-3-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  /* surfaces */
+  --paper: #f3f5f0;      /* pale reed: page background */
+  --panel: #ffffff;
+  --night: #0f221e;      /* the hero: a pond after dark */
+  --ink: #1b2b26;        /* eucalypt-dark text */
+  --ink-soft: #4a5a54;
+  --rule: #cdd6d1;
+  /* one colour per measure, used in charts and in the text */
+  --records: #127a74;    /* teal: frog records */
+  --people: #b8610f;     /* orange: people and their recordings */
+  --species: #5a3d91;    /* purple: species */
+  --toad: #c0262d;       /* red: the introduced cane toad */
+  /* type */
+  --display: "Young Serif", "Georgia", serif;
+  --body: "Literata", "Georgia", "Times New Roman", serif;
+  --sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --wrap: 1140px;
+  --gutter: 32px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18.5px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- colour-keyed terms in the narrative ---------- */
+.k { font-weight: 600; white-space: nowrap; }
+.k-rec { color: var(--records); }
+.k-ppl { color: var(--people); }
+.k-sp { color: var(--species); }
+.k-toad { color: var(--toad); }
+.hero .k-rec { color: #7fdccb; }
+.hero .k-ppl { color: #f7b46c; }
+.hero .k-sp { color: #c3aef0; }
+
+/* ---------- hero ---------- */
+.hero { background: var(--night); color: #e4eee9; padding: 56px 0 40px; }
+.hero-grid { display: grid; grid-template-columns: minmax(300px, 360px) 1fr; gap: 40px; align-items: start; }
+.hero h1 {
+  font-family: var(--display); font-weight: 400; font-size: 64px; line-height: 1.02;
+  letter-spacing: -0.01em; margin: 0 0 18px; color: #ffffff;
+}
+.hero .dek { font-size: 21px; line-height: 1.5; margin: 0 0 22px; color: #f2f7f4; }
+.hero p { margin: 0 0 16px; max-width: 34em; }
+.byline { font-family: var(--sans); font-size: 14.5px; color: #a9c0b8; margin-top: 26px; border-top: 1px solid #2c4740; padding-top: 14px; }
+.byline strong { color: #e4eee9; font-weight: 600; }
+.hero figure { margin: 0; }
+.hero figcaption { color: #a9c0b8; }
+
+.hero-head { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 56px; align-items: end; margin-bottom: 28px; }
+.hero-intro p { max-width: 31em; }
+.hero .chart { overflow: hidden; }
+
+/* spotlight panel introducing the FrogID case study */
+.spotlight {
+  display: grid; grid-template-columns: minmax(0, 34em) minmax(260px, 1fr); gap: 48px; align-items: start;
+  background: #e6ede9; border-left: 6px solid var(--people); border-radius: 6px;
+  padding: 28px 32px; margin: 0 0 64px;
+}
+
+/* ---------- sections and type scale ---------- */
+.part { padding: 64px 0 24px; border-top: 1px solid var(--rule); }
+.part-head { display: grid; grid-template-columns: 120px 1fr; gap: 28px; align-items: baseline; margin-bottom: 28px; }
+.part-no { font-family: var(--display); font-size: 64px; line-height: 1; color: var(--rule); }
+.part h2 { font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1.1; margin: 0 0 10px; }
+.part-head p { margin: 0; max-width: 36em; color: var(--ink-soft); font-size: 19.5px; }
+
+h3 { font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.2; margin: 0 0 14px; color: var(--ink); }
+p { margin: 0 0 16px; }
+.prose { max-width: 34em; }       /* about 10–11 words per line */
+
+/* a chart block: text beside chart */
+.side { display: grid; grid-template-columns: minmax(280px, 1fr) auto; gap: 48px; align-items: start; margin: 0 0 64px; }
+.side.flip { grid-template-columns: auto minmax(280px, 1fr); }
+/* a chart block: text above a wide chart */
+.wide { margin: 0 0 64px; }
+.wide-head { display: grid; grid-template-columns: minmax(0, 34em) minmax(240px, 300px); gap: 56px; align-items: start; margin-bottom: 18px; }
+
+/* "how to read" notes */
+.read {
+  font-family: var(--sans); font-size: 15px; line-height: 1.5; color: var(--ink-soft);
+  border-left: 3px solid var(--rule); padding: 2px 0 2px 14px;
+}
+.read b { color: var(--ink); font-weight: 600; }
+
+figure { margin: 0; }
+.chart { min-height: 120px; }
+figcaption {
+  font-family: var(--sans); font-size: 13.5px; line-height: 1.45; color: var(--ink-soft);
+  margin-top: 8px; max-width: 62em;
+}
+
+/* intro */
+.intro { padding: 56px 0 40px; }
+.intro-grid { display: grid; grid-template-columns: minmax(0, 34em) 1fr; gap: 56px; align-items: start; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.steps li {
+  display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start;
+  font-family: var(--sans); font-size: 16px; line-height: 1.45;
+  background: var(--panel); border: 1px solid #dfe5e1; border-radius: 6px; padding: 14px 16px;
+}
+.steps .n { font-family: var(--display); font-size: 26px; color: var(--records); line-height: 1; padding-top: 4px; text-align: center; }
+.steps b { display: block; font-weight: 700; font-size: 16.5px; color: var(--ink); }
+.key { font-family: var(--sans); font-size: 15px; line-height: 1.5; margin-top: 22px; }
+.key h4 { font-family: var(--sans); font-size: 15px; font-weight: 700; margin: 0 0 8px; }
+.key ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.key li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: center; }
+.sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+/* controls */
+.controls { font-family: var(--sans); font-size: 15px; display: flex; gap: 12px; align-items: center; margin: 4px 0 10px; }
+button.play {
+  font-family: var(--sans); font-size: 15px; font-weight: 600; color: #fff; background: var(--ink);
+  border: 0; border-radius: 5px; padding: 8px 16px; cursor: pointer;
+}
+button.play:hover { background: #2f4740; }
+button.play:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid var(--records); outline-offset: 2px; }
+.vega-bindings { font-family: var(--sans); font-size: 14.5px; margin-top: 10px; display: grid; gap: 8px; }
+.vega-bind label { display: flex; align-items: center; gap: 8px; }
+.vega-bind-name { font-weight: 600; min-width: 170px; }
+.vega-bind select { font-family: var(--sans); font-size: 14.5px; padding: 4px 6px; }
+.vega-bind input[type=range] { width: 260px; accent-color: var(--ink); }
+
+/* closing */
+.close-grid { display: grid; grid-template-columns: minmax(0, 34em) 1fr; gap: 56px; align-items: start; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; font-family: var(--sans); }
+.facts div { border-top: 2px solid var(--ink); padding-top: 8px; }
+.facts .big { font-family: var(--display); font-size: 36px; line-height: 1.1; display: block; }
+.facts span:last-child { font-size: 15px; color: var(--ink-soft); line-height: 1.4; display: block; margin-top: 4px; }
+
+/* footer metadata */
+footer { background: #e6ebe7; margin-top: 56px; padding: 40px 0 56px; font-family: var(--sans); font-size: 14.5px; line-height: 1.55; color: #33443e; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+footer h4 { font-size: 15px; font-weight: 700; margin: 0 0 8px; color: var(--ink); }
+footer ol, footer ul { margin: 0 0 18px; padding-left: 18px; }
+footer li { margin-bottom: 6px; }
+footer a { color: var(--records); }
+a { color: var(--records); text-underline-offset: 2px; }
+
+/* vega-embed action menu: keep it unobtrusive */
+.vega-embed .vega-actions a { font-family: var(--sans); }
+.vega-embed summary { opacity: 0.35; }
+.vega-embed:hover summary { opacity: 1; }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1100px) {
+  .hero-head, .spotlight, .hero-grid, .side, .side.flip, .wide-head, .intro-grid, .close-grid, .foot-grid { grid-template-columns: 1fr; }
+  .side.flip > figure { order: 2; }
+  .part-head { grid-template-columns: 1fr; gap: 4px; }
+  .chart { overflow-x: auto; }
+}

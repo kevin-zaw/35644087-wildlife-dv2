@@ -1,0 +1,255 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot map. Red dots mark every place (rounded to about 5 km) where FrogID listeners recorded the introduced cane toad in 2023; dot size shows the number of records. Pale green-grey squares show the 1-degree squares where anyone recorded any frog, so blank areas mean nobody was listening rather than no toads.",
+  "width": 640,
+  "height": 520,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceeea",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/grid_1deg.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#cfdcd6",
+        "stroke": "#eceeea",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/canetoad_points.csv",
+        "format": {
+          "parse": {
+            "lon": "number",
+            "lat": "number",
+            "n": "number"
+          }
+        }
+      },
+      "params": [
+        {
+          "name": "toadHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "n",
+          "type": "quantitative",
+          "title": "Cane toad records",
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              1,
+              30
+            ],
+            "range": [
+              16,
+              260
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 0,
+            "legendY": 400,
+            "values": [
+              1,
+              5,
+              20
+            ],
+            "symbolFillColor": "#c0262d",
+            "symbolStrokeColor": "#ffffff"
+          }
+        },
+        "color": {
+          "value": "#c0262d"
+        },
+        "opacity": {
+          "condition": {
+            "param": "toadHover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0.8
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State or territory"
+          },
+          {
+            "field": "n",
+            "title": "Cane toad records here"
+          },
+          {
+            "field": "lon",
+            "title": "Longitude",
+            "format": ".2f"
+          },
+          {
+            "field": "lat",
+            "title": "Latitude",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 123.67,
+            "lat": -17.4,
+            "lon2": 119.6,
+            "lat2": -14.6
+          },
+          {
+            "lon": 153.3,
+            "lat": -29.6,
+            "lon2": 156.0,
+            "lat2": -31.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#7a1a1e",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 113.4,
+            "lat": -12.6,
+            "t": [
+              "Western front: a record at",
+              "123.7°E in the West Kimberley,",
+              "WA, the westernmost of 2023"
+            ]
+          },
+          {
+            "lon": 151.6,
+            "lat": -32.2,
+            "t": [
+              "Southern edge: records down",
+              "to 29.6°S on the NSW north coast"
+            ]
+          },
+          {
+            "lon": 137.6,
+            "lat": -16.0,
+            "t": [
+              "71 records in the",
+              "Northern Territory"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "lineHeight": 15,
+        "fontStyle": "italic",
+        "fontWeight": 600,
+        "color": "#7a1a1e"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

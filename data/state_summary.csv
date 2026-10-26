@@ -1,0 +1,9 @@
+name,state,records,recordings,people,species,population,records_per_100k,people_per_100k,pop_share,record_share,label_lon,label_lat
+Northern Territory,NT,2380,1021,201,33,252000,944.4,79.8,0.9,1.7,133.4,-19.6
+New South Wales,NSW,58749,36089,5825,70,8339000,704.5,69.9,31.3,43.0,146.6,-32.4
+Victoria,Vic.,32383,19047,2859,28,6812000,475.4,42.0,25.6,23.7,144.0,-36.9
+Tasmania,Tas.,2562,1860,432,11,573000,447.1,75.4,2.2,1.9,149.6,-42.4
+Australian Capital Territory,ACT,2082,1535,316,12,467000,445.8,67.7,1.8,1.5,153.6,-36.6
+Queensland,Qld,23334,14874,2552,96,5459000,427.4,46.7,20.5,17.1,144.6,-23.0
+Western Australia,WA,10844,6604,897,52,2879000,376.7,31.2,10.8,7.9,122.4,-26.0
+South Australia,SA,4158,3222,518,20,1852000,224.5,28.0,7.0,3.0,135.2,-29.8

@@ -1,0 +1,612 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map of FrogID frog records per 100,000 residents in each state and territory (FrogID 2023 + ABS estimated resident population, 30 June 2023), linked to a dumbbell chart comparing each state's share of Australians with its share of frog records. Hovering a state highlights it in both views.",
+  "hconcat": [
+    {
+      "name": "choroMap",
+      "width": 580,
+      "height": 490,
+      "title": {
+        "text": "Frog records per 100,000 residents, 2023",
+        "subtitle": "Hover a state to compare its shares on the right"
+      },
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -132,
+          0
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/au_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#dfe5e1",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          }
+        },
+        {
+          "data": {
+            "url": "data/au_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "transform": [
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "data/state_summary.csv",
+                  "format": {
+                    "parse": {
+                      "records": "number",
+                      "recordings": "number",
+                      "people": "number",
+                      "species": "number",
+                      "population": "number",
+                      "records_per_100k": "number",
+                      "people_per_100k": "number",
+                      "pop_share": "number",
+                      "record_share": "number",
+                      "label_lon": "number",
+                      "label_lat": "number"
+                    }
+                  }
+                },
+                "key": "name",
+                "fields": [
+                  "state",
+                  "records_per_100k",
+                  "records",
+                  "people",
+                  "population",
+                  "species"
+                ]
+              }
+            },
+            {
+              "filter": "isValid(datum.state)"
+            },
+            {
+              "calculate": "datum.records_per_100k < 300 ? 'Fewer than 300' : datum.records_per_100k < 450 ? '300 to 449' : datum.records_per_100k < 600 ? '450 to 599' : datum.records_per_100k < 800 ? '600 to 799' : '800 or more'",
+              "as": "cls"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#ffffff",
+            "strokeWidth": 1,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "color": {
+              "field": "cls",
+              "type": "ordinal",
+              "title": "Records per 100,000 residents",
+              "scale": {
+                "domain": [
+                  "Fewer than 300",
+                  "300 to 449",
+                  "450 to 599",
+                  "600 to 799",
+                  "800 or more"
+                ],
+                "range": [
+                  "#d7efe9",
+                  "#9fd8cc",
+                  "#5bb5a6",
+                  "#1f8a80",
+                  "#0b5753"
+                ]
+              },
+              "legend": {
+                "orient": "none",
+                "legendX": 0,
+                "legendY": 345,
+                "direction": "vertical",
+                "symbolType": "square",
+                "symbolSize": 140
+              }
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.35
+            },
+            "tooltip": [
+              {
+                "field": "properties.name",
+                "title": "State or territory"
+              },
+              {
+                "field": "records_per_100k",
+                "title": "Records per 100,000 residents",
+                "format": ",.0f"
+              },
+              {
+                "field": "records",
+                "title": "Frog records",
+                "format": ","
+              },
+              {
+                "field": "people",
+                "title": "People who recorded",
+                "format": ","
+              },
+              {
+                "field": "population",
+                "title": "Residents (June 2023)",
+                "format": ","
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "st",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "state"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "url": "data/state_summary.csv",
+            "format": {
+              "parse": {
+                "records": "number",
+                "recordings": "number",
+                "people": "number",
+                "species": "number",
+                "population": "number",
+                "records_per_100k": "number",
+                "people_per_100k": "number",
+                "pop_share": "number",
+                "record_share": "number",
+                "label_lon": "number",
+                "label_lat": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "calculate": "[datum.state, format(datum.records_per_100k, ',.0f')]",
+              "as": "lbl"
+            },
+            {
+              "filter": "datum.records_per_100k >= 600 && datum.state != 'ACT' && datum.state != 'Tas.'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "lineHeight": 14,
+            "fontWeight": 600,
+            "color": "#ffffff"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "lbl"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_summary.csv",
+            "format": {
+              "parse": {
+                "records": "number",
+                "recordings": "number",
+                "people": "number",
+                "species": "number",
+                "population": "number",
+                "records_per_100k": "number",
+                "people_per_100k": "number",
+                "pop_share": "number",
+                "record_share": "number",
+                "label_lon": "number",
+                "label_lat": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "calculate": "[datum.state, format(datum.records_per_100k, ',.0f')]",
+              "as": "lbl"
+            },
+            {
+              "filter": "!(datum.records_per_100k >= 600 && datum.state != 'ACT' && datum.state != 'Tas.')"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "lineHeight": 14,
+            "fontWeight": 600,
+            "color": "#173a35"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "lbl"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 149.1,
+                "lat": -35.4,
+                "lon2": 152.6,
+                "lat2": -36.4
+              },
+              {
+                "lon": 147.6,
+                "lat": -42.1,
+                "lon2": 148.9,
+                "lat2": -42.3
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "stroke": "#5f706a",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon2"
+            },
+            "latitude2": {
+              "field": "lat2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 120.6,
+                "lat": -13.9,
+                "lon2": 131.5,
+                "lat2": -16.2
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "stroke": "#5f706a",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon2"
+            },
+            "latitude2": {
+              "field": "lat2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 112.6,
+                "lat": -12.4,
+                "t": [
+                  "Fewest residents,",
+                  "most records",
+                  "per person"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 11.5,
+            "lineHeight": 14,
+            "fontStyle": "italic",
+            "color": "#33443e"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "dumbbell",
+      "width": 300,
+      "height": 340,
+      "title": {
+        "text": "Share of people vs share of records",
+        "subtitle": [
+          "Hollow dot: residents. Filled dot: records."
+        ]
+      },
+      "data": {
+        "url": "data/state_summary.csv",
+        "format": {
+          "parse": {
+            "records": "number",
+            "recordings": "number",
+            "people": "number",
+            "species": "number",
+            "population": "number",
+            "records_per_100k": "number",
+            "people_per_100k": "number",
+            "pop_share": "number",
+            "record_share": "number",
+            "label_lon": "number",
+            "label_lat": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.record_share > datum.pop_share ? 'More records than its population share' : 'Fewer records than its population share'",
+          "as": "balance"
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "NSW",
+            "Vic.",
+            "Qld",
+            "WA",
+            "SA",
+            "Tas.",
+            "ACT",
+            "NT"
+          ],
+          "title": null,
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12.5,
+            "labelFontWeight": 600,
+            "labelPadding": 8
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 2.5
+          },
+          "encoding": {
+            "x": {
+              "field": "pop_share",
+              "type": "quantitative",
+              "title": "Per cent of the national total",
+              "scale": {
+                "domain": [
+                  0,
+                  45
+                ]
+              },
+              "axis": {
+                "values": [
+                  0,
+                  10,
+                  20,
+                  30,
+                  40
+                ],
+                "grid": true
+              }
+            },
+            "x2": {
+              "field": "record_share"
+            },
+            "color": {
+              "field": "balance",
+              "type": "nominal",
+              "scale": {
+                "range": [
+                  "#9aa7a2",
+                  "#127a74"
+                ],
+                "domain": [
+                  "Fewer records than its population share",
+                  "More records than its population share"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "vertical",
+                "title": null,
+                "symbolType": "stroke",
+                "symbolStrokeWidth": 3,
+                "labelLimit": 260
+              }
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.3
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "filled": false,
+            "size": 70,
+            "strokeWidth": 1.6,
+            "color": "#33443e"
+          },
+          "encoding": {
+            "x": {
+              "field": "pop_share",
+              "type": "quantitative"
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "title": "State or territory"
+              },
+              {
+                "field": "pop_share",
+                "title": "Share of Australians (%)"
+              },
+              {
+                "field": "record_share",
+                "title": "Share of frog records (%)"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "size": 80,
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "record_share",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "balance",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "title": "State or territory"
+              },
+              {
+                "field": "pop_share",
+                "title": "Share of Australians (%)"
+              },
+              {
+                "field": "record_share",
+                "title": "Share of frog records (%)"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.state == 'NSW'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": 4,
+            "dy": -14,
+            "fontSize": 11.5,
+            "fontStyle": "italic",
+            "color": "#0b5753"
+          },
+          "encoding": {
+            "x": {
+              "field": "record_share",
+              "type": "quantitative"
+            },
+            "text": {
+              "value": "31% of people, 43% of records"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 40,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    },
+    "legend": {
+      "color": "independent"
+    }
+  }
+}

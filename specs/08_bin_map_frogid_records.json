@@ -1,0 +1,381 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bin map. FrogID frog records made in 2023, counted in 1-degree by 1-degree squares and classified into five classes. Albers equal-area conic projection centred on Australia so every square is shown at its true relative size.",
+  "width": 640,
+  "height": 540,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e2e7e3",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/grid_1deg.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "params": [
+        {
+          "name": "cellHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "ordinal",
+          "title": "Frog records in each square",
+          "scale": {
+            "domain": [
+              "Fewer than 10",
+              "10 to 99",
+              "100 to 999",
+              "1,000 to 4,999",
+              "5,000 or more"
+            ],
+            "range": [
+              "#d7efe9",
+              "#9fd8cc",
+              "#4fae9f",
+              "#1a7f75",
+              "#0b4f4c"
+            ]
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 0,
+            "legendY": 420,
+            "direction": "vertical",
+            "symbolType": "square",
+            "symbolSize": 140,
+            "labelFontSize": 12,
+            "titleFontSize": 12.5,
+            "symbolStrokeColor": "#ffffff"
+          }
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "cellHover",
+            "empty": false,
+            "value": 2
+          },
+          "value": 0.5
+        },
+        "stroke": {
+          "condition": {
+            "param": "cellHover",
+            "empty": false,
+            "value": "#1b2b26"
+          },
+          "value": "#ffffff"
+        },
+        "tooltip": [
+          {
+            "field": "properties.cell",
+            "title": "Square"
+          },
+          {
+            "field": "properties.records",
+            "title": "Frog records",
+            "format": ","
+          },
+          {
+            "field": "properties.recordings",
+            "title": "Phone recordings",
+            "format": ","
+          },
+          {
+            "field": "properties.people",
+            "title": "People who recorded",
+            "format": ","
+          },
+          {
+            "field": "properties.species",
+            "title": "Species heard",
+            "format": ","
+          },
+          {
+            "field": "cls",
+            "title": "Class"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties.records < 10 ? 'Fewer than 10' : datum.properties.records < 100 ? '10 to 99' : datum.properties.records < 1000 ? '100 to 999' : datum.properties.records < 5000 ? '1,000 to 4,999' : '5,000 or more'",
+          "as": "cls"
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87,
+            "dx": 8,
+            "dy": 4,
+            "align": "left"
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "dx": -8,
+            "dy": 12,
+            "align": "right"
+          },
+          {
+            "city": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47,
+            "dx": 8,
+            "dy": 0,
+            "align": "left"
+          },
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "dx": -8,
+            "dy": 0,
+            "align": "right"
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "dx": -8,
+            "dy": 10,
+            "align": "right"
+          },
+          {
+            "city": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88,
+            "dx": 8,
+            "dy": 4,
+            "align": "left"
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "dx": 8,
+            "dy": -4,
+            "align": "left"
+          },
+          {
+            "city": "Canberra",
+            "lon": 149.13,
+            "lat": -35.28,
+            "dx": -8,
+            "dy": 6,
+            "align": "right"
+          },
+          {
+            "city": "Cairns",
+            "lon": 145.77,
+            "lat": -16.92,
+            "dx": 8,
+            "dy": 0,
+            "align": "left"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 16,
+            "fill": "#1b2b26",
+            "opacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.align == 'left'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 11.5,
+            "fill": "#1b2b26",
+            "fontWeight": 600,
+            "align": "left",
+            "dx": 7,
+            "dy": 4
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.align == 'right'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 11.5,
+            "fill": "#1b2b26",
+            "fontWeight": 600,
+            "align": "right",
+            "dx": -7,
+            "dy": 4
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 151.3,
+            "lat": -40.2,
+            "t": [
+              "Busiest square: Sydney",
+              "13,040 records from",
+              "1,607 people"
+            ]
+          },
+          {
+            "lon": 124.0,
+            "lat": -21.5,
+            "t": [
+              "Inland, most squares",
+              "are pale or empty: frogs",
+              "were recorded in 353 of the",
+              "roughly 770 squares",
+              "that cover Australia"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "lineHeight": 15,
+        "fill": "#33443e",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 151.6,
+            "lat": -34.3,
+            "lon2": 152.4,
+            "lat2": -39.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#5f706a",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    }
+  ]
+}
