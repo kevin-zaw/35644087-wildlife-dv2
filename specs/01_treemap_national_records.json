@@ -119,9 +119,9 @@
         "Fungi"
       ],
       "range": [
-        "#17736b",
-        "#4fae9f",
-        "#8fd0c3"
+        "#2f4f80",
+        "#8a9a2a",
+        "#b25d91"
       ]
     }
   ],
@@ -223,13 +223,13 @@
             "signal": "datum.x0 + 8"
           },
           "y": {
-            "signal": "datum.y0 + (datum.share > 30 ? 30 : 19)"
+            "signal": "datum.y0 + ((datum.y1 - datum.y0) <= 44 ? 14 : (datum.share > 30 ? 30 : 19))"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 26 ? datum.group : ''"
+            "signal": "(datum.x1 - datum.x0) > 46 && (datum.y1 - datum.y0) > 16 ? ((datum.group == 'Other animals' ? 'Others' : datum.group == 'Mushrooms and kin' ? 'Mushrooms' : datum.group == 'Conifers and cycads' ? 'Conifers' : datum.group == 'Spiders and kin' ? 'Spiders' : datum.group == 'Other plants' ? 'Others' : datum.group == 'Other fungi' ? 'Others' : datum.group) + ((datum.y1 - datum.y0) <= 44 && (datum.x1 - datum.x0) > 96 ? '  ' + format(datum.share, '.1f') + '%' : '')) : ''"
           },
           "fill": {
-            "signal": "datum.kingdom == 'Animals' ? '#ffffff' : '#0b2e2a'"
+            "signal": "datum.kingdom == 'Plants' ? '#1d2408' : '#ffffff'"
           },
           "font": {
             "value": "\"Source Sans 3\", Arial, sans-serif"
@@ -264,7 +264,7 @@
             "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 44 ? (datum.share > 30 ? format(datum.records / 1e6, '.1f') + ' million records, ' + format(datum.share, '.0f') + '% of everything' : format(datum.share, '.1f') + '%') : ''"
           },
           "fill": {
-            "signal": "datum.kingdom == 'Animals' ? '#ffffff' : '#0b2e2a'"
+            "signal": "datum.kingdom == 'Plants' ? '#1d2408' : '#ffffff'"
           },
           "font": {
             "value": "\"Source Sans 3\", Arial, sans-serif"

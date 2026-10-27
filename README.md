@@ -18,7 +18,7 @@ Designed for a 1280 × 800 browser window.
 | 1 | 01_treemap_national_records | Treemap (Vega) | GBIF 2026 |
 | 2 | 02_line_records_over_time | Step line chart (basic) | GBIF analytics |
 | 3 | 03_area_public_sightings | Stacked area chart (basic) | ALA download |
-| 4 | 04_butterfly_species_vs_records | Butterfly chart + lollipop | GBIF + Chapman |
+| 4 | 04_butterfly_species_vs_records | Butterfly chart + log-scale dot plot | GBIF + Chapman |
 | 5 | 05_waffle_record_sources | Waffle chart | GBIF 2026 |
 | 6 | 06_heatmap_sources_by_group | Heatmap + type strip | ALA download |
 | 7 | 07_waffle_frogid_contributors | Paired waffles | FrogID |
@@ -37,23 +37,19 @@ Designed for a 1280 × 800 browser window.
 
 1. `python scripts/download_wildlife_data.py`: downloads ALA counts into `data/ala/` (the files used are kept in `data/ala/raw_download/`).
 2. `python scripts/prepare_ala_data.py`: turns them into the chart files in `data/ala/`.
-3. `scripts/process.py` prepares the FrogID files.
+3. `scripts/process.py` prepares the FrogID files from `frogID_data.csv` and `frog_names.csv` (TidyTuesday 2025-09-02) placed in `data/raw/`.
 
 ## Data sources
 
 1. Atlas of Living Australia biocache record counts, downloaded 27 October 2026 (see data/ala/raw_download/manifest.json)
 2. GBIF analytics for Australia, occ.csv (generated 8 October 2026): https://analytics-files.gbif.org/country/AU/about/csv/
-2. GBIF activity report: Australia (January 2026): https://analytics-files.gbif.org/country/AU/GBIF_CountryReport_AU.pdf
-3. Chapman, A.D. (2009). *Numbers of Living Species in Australia and the World*, 2nd edition. Australian Biological Resources Study.
-4. FrogID dataset 6.0, Australian Museum, 2023 records (via TidyTuesday, 2 September 2025). Rowley & Callaghan (2020), *ZooKeys* 912: 139–151.
-5. Australian Bureau of Statistics, *National, state and territory population*, June 2023.
-6. Australian Society of Herpetologists species list; Natural Earth 1:50m boundaries.
+3. GBIF activity report: Australia (January 2026): https://analytics-files.gbif.org/country/AU/GBIF_CountryReport_AU.pdf
+4. Chapman, A.D. (2009). *Numbers of Living Species in Australia and the World*, 2nd edition. Australian Biological Resources Study.
+5. FrogID dataset 6.0, Australian Museum, 2023 records (via TidyTuesday, 2 September 2025). Rowley & Callaghan (2020), *ZooKeys* 912: 139–151. (FrogID Dataset 7.0, September 2026, is quoted in the text: https://australian.museum/blog/amri-news/frogid-dataset-7/)
+6. Australian Bureau of Statistics, *National, state and territory population*, June 2023.
+7. Australian Society of Herpetologists species list; Natural Earth 1:50m boundaries.
 
-Adapted examples: Vega-Lite example gallery (ridgeline, radial, waffle, annotations, choropleth lookup) and the Vega treemap example.
-
-## Step still to do: download the all-wildlife data
-
-Run `scripts/download_wildlife_data.py` in VS Code (see `HOW_TO_DOWNLOAD_DATA.md`). It downloads counts of all Australian wildlife records from the Atlas of Living Australia, by group, year, month, state, 1° square and data source, with a GBIF fallback. It writes the tables to `data/ala/` and bundles them as `results_for_claude.zip`.
+Adapted examples: Vega-Lite example gallery (ridgeline, waffle, stacked area, annotations, choropleth lookup) and the Vega treemap example.
 
 ## Run locally
 

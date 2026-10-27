@@ -346,7 +346,7 @@
     },
     {
       "name": "lollipop",
-      "width": 300,
+      "width": 260,
       "height": 300,
       "title": {
         "text": "Over- or under-represented?",
@@ -380,7 +380,7 @@
       ],
       "encoding": {
         "y": {
-          "field": "state",
+          "field": "name",
           "type": "nominal",
           "sort": {
             "field": "diff",
@@ -392,7 +392,8 @@
             "ticks": false,
             "labelFontSize": 12.5,
             "labelFontWeight": 600,
-            "labelPadding": 8
+            "labelPadding": 8,
+            "labelLimit": 220
           }
         }
       },
@@ -456,7 +457,7 @@
                 ],
                 "range": [
                   "#127a74",
-                  "#9aa7a2"
+                  "#9fd8cc"
                 ]
               },
               "legend": {

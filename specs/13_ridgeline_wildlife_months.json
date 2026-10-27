@@ -93,7 +93,7 @@
               ],
               "range": [
                 30,
-                -18
+                -40
               ]
             }
           },
@@ -128,6 +128,48 @@
         }
       },
       {
+        "transform": [
+          {
+            "filter": "datum.m == 1"
+          },
+          {
+            "calculate": "10",
+            "as": "ten"
+          }
+        ],
+        "mark": {
+          "type": "rule",
+          "color": "#9aa7a2",
+          "strokeDash": [
+            1,
+            2
+          ],
+          "strokeWidth": 0.8
+        },
+        "encoding": {
+          "x": {
+            "value": 0
+          },
+          "x2": {
+            "value": 860
+          },
+          "y": {
+            "field": "ten",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                21
+              ],
+              "range": [
+                30,
+                -40
+              ]
+            }
+          }
+        }
+      },
+      {
         "mark": {
           "type": "line",
           "interpolate": "monotone",
@@ -154,7 +196,7 @@
               ],
               "range": [
                 30,
-                -18
+                -40
               ]
             }
           }
@@ -164,6 +206,10 @@
         "transform": [
           {
             "filter": "datum.m == 1"
+          },
+          {
+            "calculate": "datum.group == 'Amphibians' ? 'Amphibians (frogs)' : datum.group",
+            "as": "glabel"
           }
         ],
         "mark": {
@@ -183,7 +229,7 @@
             "value": 30
           },
           "text": {
-            "field": "group"
+            "field": "glabel"
           }
         }
       },
@@ -215,13 +261,56 @@
               ],
               "range": [
                 30,
-                -18
+                -40
               ]
             }
           },
           "text": {
             "field": "share",
             "format": ".0f"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.m == 12 && datum.group == 'Fishes'"
+          },
+          {
+            "calculate": "10",
+            "as": "ten"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "bottom",
+          "dy": -2,
+          "fontSize": 12,
+          "fontStyle": "italic",
+          "color": "#4a5a54"
+        },
+        "encoding": {
+          "x": {
+            "field": "m",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "ten",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                21
+              ],
+              "range": [
+                30,
+                -40
+              ]
+            }
+          },
+          "text": {
+            "value": "dotted line = 10% of the year"
           }
         }
       }
@@ -235,8 +324,8 @@
   "title": {
     "text": "When each group is recorded (2016–2025)",
     "subtitle": [
-      "Teal: share of each group’s records by month, peak labelled (%).",
-      "Dashed line: all wildlife combined."
+      "Teal: share of each group’s records by month (%), peak labelled.",
+      "Dashed: all wildlife combined. Dotted: 10% of the year."
     ]
   },
   "transform": [

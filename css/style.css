@@ -230,3 +230,16 @@ footer { margin-top: 0; }
 /* readable section numbers and labels (large-text contrast at least 3:1) */
 .part-no { color: #6f817a; }
 .part-no.label { color: #5b6b65; }
+
+/* critique fixes: captions beside charts, readable caption tone, quieter section numerals */
+p.caption, figcaption { font-family: var(--sans); font-size: 15px; line-height: 1.5; color: #3e4d48; max-width: 21em; margin: 14px 0 0; }
+.notes .caption { margin-top: 16px; }
+.part-no { font-size: 48px; }
+.reader-guide { font-family: var(--sans); font-size: 15px; line-height: 1.5; background: #e6ede9; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px; }
+.reader-guide h4 { margin: 0 0 6px; font-size: 15px; }
+.reader-guide ul { margin: 0; padding-left: 18px; }
+.reader-guide li { max-width: 24em; margin-bottom: 4px; }
+.chart { overflow: hidden; }
+/* let grid and figure containers shrink so wide charts can be scaled to fit */
+.side > *, .wide > *, .wide-head > *, .intro-grid > *, .close-grid > *, .hero .wrap > *, figure { min-width: 0; }
+.chart { max-width: 100%; }

@@ -14,8 +14,10 @@ import json, math
 import numpy as np
 import pandas as pd
 
-RAW = "/home/claude/raw/"
-OUT = "/home/claude/site/data/"
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]
+RAW = str(ROOT / "data" / "raw") + "/"   # put frogID_data.csv and frog_names.csv here
+OUT = str(ROOT / "data") + "/"
 
 d = pd.read_csv(RAW + "frogID_data.csv")
 n = pd.read_csv(RAW + "frog_names.csv")

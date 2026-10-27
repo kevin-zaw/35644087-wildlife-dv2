@@ -10,7 +10,7 @@ R=6371.0088
 def area(lat): return R*R*math.radians(1)*abs(math.sin(math.radians(lat+0.5))-math.sin(math.radians(lat-0.5)))
 # 1 public sightings per year
 y=pd.read_csv(A+'year_by_group.csv'); h=y[(y.records_type=='human observations')&(y.group.isin(G10))&(y.year.between(1990,2024))].copy()
-h['layer']=h.group.where(h.group.isin(['Birds','Plants','Insects','Mammals','Fungi']),'Other animals')
+h['layer']=h.group.where(h.group.isin(['Birds','Plants','Insects','Fungi']),'Other animals')
 h.groupby(['layer','year']).records.sum().reset_index().to_csv(D+'public_sightings_by_year.csv',index=False)
 # 2 sources x groups
 r=pd.read_csv(A+'resource_by_group.csv'); g=pd.read_csv(A+'groups.csv').set_index('group')

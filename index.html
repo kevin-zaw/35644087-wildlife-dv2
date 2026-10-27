@@ -1,471 +1,448 @@
 <!DOCTYPE html>
+
 <html lang="en-AU">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Who’s watching? How Australians record their wildlife</title>
-  <meta name="description" content="A data visualisation of Australia’s 154 million wildlife records: which animals, plants and fungi get recorded, who supplies the records, and how public observers, followed through the FrogID project, shape what scientists know.">
-  <meta name="author" content="Kevin Kaung Myat Zaw">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Who’s watching? How Australians record their wildlife</title>
+<meta content="A data visualisation of Australia’s 154 million wildlife records: which animals, plants and fungi get recorded, who supplies the records, and how public observers, followed through the FrogID project, shape what scientists know." name="description"/>
+<meta content="Kevin Kaung Myat Zaw" name="author"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
 </head>
 <body>
-
 <header class="hero">
-  <div class="wrap">
-    <div class="hero-head">
-      <div>
-        <h1>Who’s watching?</h1>
-        <p class="dek">How Australians record their wildlife, and what the records leave out.</p>
-      </div>
-      <div class="hero-intro">
-        <p>Every time someone notes a bird in a backyard, photographs a fungus or records a frog call, they create a wildlife record: a species, a place and a time.</p>
-        <p>Australia now holds <span class="k k-rec">154 million records</span> of its animals, plants and fungi. Nearly half come from volunteer birdwatchers, and <span class="k k-rec">six in ten are birds</span>.</p>
-        <p class="byline"><span><strong>Kevin Kaung Myat Zaw</strong></span><span>FIT3179 Data Visualisation 2, Monash University</span><span>October 2026</span></p>
-      </div>
-    </div>
-    <figure>
-      <div id="c01" class="chart" role="img" aria-label="Treemap of 154 million Australian wildlife records by kingdom and group. Birds fill most of the area, followed by flowering plants."></div>
-      <figcaption>Treemap: each rectangle’s area is its number of records; hover for exact figures. Paler rectangles are records not assigned to a named group. Source: GBIF activity report for Australia, January 2026.</figcaption>
-    </figure>
-  </div>
+<div class="wrap">
+<div class="hero-head">
+<div>
+<h1>Who’s watching?</h1>
+<p class="dek">How Australians record their wildlife, and what the records leave out.</p>
+</div>
+<div class="hero-intro">
+<p>Every time someone notes a bird in a backyard, photographs a fungus or records a frog call, they create a wildlife record: a species, a place and a time.</p>
+<p>Australia now holds <span class="k k-rec">154 million records</span> of its animals, plants and fungi. Nearly half come from volunteer birdwatchers, and <span class="k k-rec">six in ten are birds</span>.</p>
+<p class="byline"><span><strong>Kevin Kaung Myat Zaw</strong></span><span>FIT3179 Data Visualisation 2, Monash University</span><span>October 2026</span></p>
+</div>
+</div>
+<figure>
+<div aria-label="Treemap of 154 million Australian wildlife records by kingdom and group. Birds fill most of the area, followed by flowering plants." class="chart" id="c01" role="img"></div>
+<figcaption>Treemap: each rectangle’s area is its number of records; hover for exact figures. Dimmed rectangles are records not assigned to a named group; colours show kingdoms. Source: GBIF activity report for Australia, January 2026.</figcaption>
+</figure>
+</div>
 </header>
-
 <main>
-
 <section class="part intro-part" id="intro">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no label">Intro</div>
-      <div>
-        <h2>Why wildlife records matter</h2>
-        <p>Scientists cannot be everywhere. To learn where a species lives and how it is changing, they rely on millions of records.</p>
-      </div>
-    </div>
-    <div class="intro-grid">
-      <div class="prose">
-        <p>A wildlife record is one species at one place and time. Records are pooled by the Atlas of Living Australia and shared worldwide through the Global Biodiversity Information Facility (GBIF).</p>
-        <p>They come from museums, herbaria and government surveys, and more and more from the public, through apps such as eBird, iNaturalist and FrogID.</p>
-        <h4 class="toc-title">How this story unfolds</h4>
-        <ol class="toc">
-          <li><a href="#what"><b>What gets recorded</b></a>: birds dominate the record</li>
-          <li><a href="#who"><b>Who records it</b></a>: volunteer apps and their specialities</li>
-          <li><a href="#how"><b>How volunteers record</b></a>: a FrogID spotlight</li>
-          <li><a href="#where"><b>Where people look</b></a>: cities, states and remote country</li>
-          <li><a href="#when"><b>When wildlife is recorded</b></a>: seasons, north and south</li>
-          <li><a href="#why"><b>Why every record counts</b></a>: rare species and invaders</li>
-          <li><a href="#conclusion"><b>Conclusion</b></a>: what you can record next</li>
-        </ol>
-      </div>
-      <div class="key">
-      <h4>Colours used on this page</h4>
-      <ul>
-        <li><span class="sw" style="background:var(--records)"></span><span><b>Records</b>: one species seen or heard at one place and time.</span></li>
-        <li><span class="sw" style="background:var(--species)"></span><span><b>Species</b>: the number of different kinds of plant, animal or fungus.</span></li>
-        <li><span class="sw" style="background:var(--people)"></span><span><b>People</b>: volunteers, their recordings and volunteer apps.</span></li>
-        <li><span class="sw" style="background:#6f7f88"></span><span><b>Government atlases</b>: state wildlife databases.</span></li>
-        <li><span class="sw" style="background:var(--toad)"></span><span><b>Cane toad</b>: an introduced pest (charcoal).</span></li>
-      </ul>
-      <p class="read" style="margin-top:14px">“Sightings” are records the Atlas classes as human observations: a person saw or heard the animal or plant, rather than collecting a museum specimen. They come from volunteers and from professional surveys.</p>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no label">Intro</div>
+<div>
+<h2>Why wildlife records matter</h2>
+<p>Scientists cannot be everywhere. To learn where a species lives and how it is changing, they rely on millions of records.</p>
+</div>
+</div>
+<div class="intro-grid">
+<div class="prose">
+<p>A wildlife record is one species at one place and time. Records are pooled by the Atlas of Living Australia and shared worldwide through the Global Biodiversity Information Facility (GBIF).</p>
+<p>They come from museums, herbaria and government surveys, and more and more from the public, through apps such as eBird, iNaturalist and FrogID.</p>
+<h4 class="toc-title">How this story unfolds</h4>
+<ol class="toc">
+<li><a href="#what"><b>What gets recorded</b></a>: birds dominate the record</li>
+<li><a href="#who"><b>Who records it</b></a>: volunteer apps and their specialities</li>
+<li><a href="#how"><b>How volunteers record</b></a>: a FrogID spotlight</li>
+<li><a href="#where"><b>Where people look</b></a>: cities, states and remote country</li>
+<li><a href="#when"><b>When wildlife is recorded</b></a>: seasons, north and south</li>
+<li><a href="#why"><b>Why every record counts</b></a>: rare species and invaders</li>
+<li><a href="#conclusion"><b>Conclusion</b></a>: what you can record next</li>
+</ol>
+</div>
+<div class="reader-guide">
+<h4>Reading from outside Australia?</h4>
+<ul>
+<li>Seasons are reversed: summer is December–February, winter June–August.</li>
+<li>The tropical north has a wet season (about November–April) and a dry season.</li>
+<li>States: NSW New South Wales, Vic. Victoria, Qld Queensland, WA Western Australia, SA South Australia, Tas. Tasmania, NT Northern Territory, ACT Australian Capital Territory.</li>
+</ul>
+</div>
+<div class="key">
+<h4>Colours used on this page</h4>
+<ul>
+<li><span class="sw" style="background:var(--records)"></span><span><b>Records</b>: one species seen or heard at one place and time.</span></li>
+<li><span class="sw" style="background:var(--species)"></span><span><b>Species</b>: the number of different kinds of plant, animal or fungus.</span></li>
+<li><span class="sw" style="background:var(--people)"></span><span><b>People</b>: volunteers, their recordings and volunteer apps.</span></li>
+<li><span class="sw" style="background:#3f5866"></span><span><b>Government atlases</b>: state wildlife databases.</span></li>
+<li><span class="sw" style="background:var(--toad)"></span><span><b>Cane toad</b>: an introduced pest (charcoal).</span></li>
+</ul>
+<p class="read" style="margin-top:14px">“Sightings” are records the Atlas classes as human observations: a person saw or heard the animal or plant, rather than collecting a museum specimen. They come from volunteers and from professional surveys.</p>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ======================= PART 1 ======================= -->
 <section class="part" id="what">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">1</div>
-      <div>
-        <h2>What gets recorded</h2>
-        <p>The national record has exploded in size, mostly through sightings logged in apps. But it is lopsided: some wildlife is easy to notice and name, and the rest is small, hidden or hard to identify.</p>
-      </div>
-    </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">1</div>
+<div>
+<h2>What gets recorded</h2>
+<p>The national record has exploded in size, mostly through sightings logged in apps. But it is lopsided: some wildlife is easy to notice and name, and the rest is small, hidden or hard to identify.</p>
+</div>
+</div>
+<div class="side">
+<div class="prose">
+<h3>The national record has grown a hundredfold</h3>
+<p>In December 2007, GBIF held <span class="k k-rec">2.6 million records</span> about Australia. By October 2026 it held <span class="k k-rec">259.5 million</span>.</p>
+<p>This total counts every kind of organism, including microbes from DNA samples. Elsewhere this page uses 154 million: animals, plants and fungi only (GBIF, January 2026).</p>
+<p class="read"><b>How to read the chart.</b> Each step is one quarterly GBIF snapshot of all records about Australia, including microbes. Hover anywhere for the exact count.</p>
+<p class="caption">Step line chart of quarterly snapshots. Source: GBIF analytics for Australia (occ.csv), generated 8 October 2026.</p></div>
+<figure>
+<div aria-label="Step line chart of records about Australia in GBIF, from 2.6 million in December 2007 to 259.5 million in October 2026." class="chart" id="c02" role="img"></div>
 
-    <div class="side">
-      <div class="prose">
-        <h3>The national record has grown a hundredfold</h3>
-        <p>In December 2007, GBIF held <span class="k k-rec">2.6 million records</span> about Australia. By October 2026 it held <span class="k k-rec">259.5 million</span>.</p>
-        <p>Recent jumps include large microbial DNA datasets, which is why the totals elsewhere on this page count only animals, plants and fungi.</p>
-        <p class="read"><b>How to read the chart.</b> Each step is one quarterly GBIF snapshot of all records about Australia, including microbes. Hover anywhere for the exact count.</p>
-      </div>
-      <figure>
-        <div id="c02" class="chart" role="img" aria-label="Step line chart of records about Australia in GBIF, from 2.6 million in December 2007 to 259.5 million in October 2026."></div>
-        <figcaption>Step line chart of quarterly snapshots. Source: GBIF analytics for Australia (occ.csv), generated 8 October 2026.</figcaption>
-      </figure>
-    </div>
+</figure>
+</div>
+<div class="side flip">
+<figure>
+<div aria-label="Stacked area chart of wildlife sightings per year in Australia, 1990 to 2024, by group. Totals rise from 0.55 million to 13.1 million, mostly birds." class="chart" id="c03" role="img"></div>
 
-    <div class="side flip">
-      <figure>
-        <div id="c03" class="chart" role="img" aria-label="Stacked area chart of wildlife sightings per year in Australia, 1990 to 2024, by group. Totals rise from 0.55 million to 13.1 million, mostly birds."></div>
-        <figcaption>Stacked area chart. Sightings (human observations) per year, 1990–2024. 2025 is left out because its records are still arriving: its bird count is 27% below 2024’s while every other group rose. Source: Atlas of Living Australia, downloaded 27 October 2026.</figcaption>
-      </figure>
-      <div class="prose">
-        <h3>Sightings rose 24‑fold since 1990</h3>
-        <p>In 1990 the Atlas holds <span class="k k-ppl">0.55 million</span> sightings. For 2024 it holds <span class="k k-ppl">13.1 million</span>. Of all records dated 2025, 99% are sightings rather than museum specimens. Three volunteer apps, eBird, iNaturalist and Birdata, supplied about 85% of the sightings from 2016 to 2025.</p>
-        <p>Birds fill most of every year. The fastest growth is elsewhere: insect sightings rose from 13,769 in 2010 to <span class="k k-rec">714,520</span> in 2024, and fungi from 6,782 to 152,087.</p>
-        <p class="read"><b>How to read the chart.</b> Each coloured band is one group, stacked so the top edge is the total for that year; read the height of a band, not its edges. Click a group in the legend to fade the others.</p>
-      </div>
-    </div>
+</figure>
+<div class="prose">
+<h3>Sightings rose 24‑fold since 1990</h3>
+<p>The Atlas holds <span class="k k-ppl">0.55 million</span> sightings from 1990, and <span class="k k-ppl">13.1 million</span> from 2024. Of all records dated 2025, 99% are sightings rather than museum specimens. Three volunteer apps, eBird, iNaturalist and Birdata, supplied about 85% of the sightings from 2016 to 2025.</p>
+<p>Birds fill most of every year. The fastest growth is elsewhere: insect sightings rose from 13,769 in 2010 to <span class="k k-rec">714,520</span> in 2024, and fungi from 6,782 to 152,087.</p>
+<p class="read"><b>How to read the chart.</b> Each coloured band is one group, stacked so the top edge is the total for that year; read the height of a band, not its edges. Click a group in the legend to fade the others.</p>
+<p class="caption">Stacked area chart. Sightings (human observations) per year, 1990–2024. 2025 is left out because its records are still arriving: its bird count is 27% below 2024’s while every other group rose. Source: Atlas of Living Australia, downloaded 27 October 2026.</p></div>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<h3>Birds get a thousand times more attention than insects</h3>
+<p>Birds make up fewer than 1 in 100 of the <span class="k k-sp">115,890 known species</span> in these groups, yet they supply <span class="k k-rec">63% of the records</span>.</p>
+<p>Insects are the opposite: more than half of all known species, only 4% of the records. Each bird species has about <span class="k k-rec">112,000 records</span>; each insect species has about 106.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the chart.</b> Each row is one group. Purple bars to the left show its share of known species; teal bars to the right show its share of records. The dots on the far right show records per known species on a log scale, where each gridline is ten times the one before. Hover a row to highlight it in all three panels.</p><p class="caption">Butterfly (back-to-back bar) chart with a log-scale dot plot. Records: GBIF activity report for Australia, January 2026. Known species: Chapman (2009), <i>Numbers of Living Species in Australia and the World</i>, Australian Biological Resources Study, the most recent national compilation. The fish and insect counts are approximate.</p></div>
+</div>
+<figure>
+<div aria-label="Butterfly chart comparing each wildlife group's share of known species with its share of records, plus records per species on a log scale." class="chart" id="c04" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <h3>Birds get a thousand times more attention than insects</h3>
-          <p>Birds make up fewer than 1 in 100 of the <span class="k k-sp">115,890 known species</span> in these groups, yet they supply <span class="k k-rec">63% of the records</span>.</p>
-          <p>Insects are the opposite: more than half of all known species, only 4% of the records. Each bird species has about <span class="k k-rec">112,000 records</span>; each insect species has about 106.</p>
-        </div>
-        <p class="read"><b>How to read the chart.</b> Each row is one group. Purple bars to the left show its share of known species; teal bars to the right show its share of records. The dots on the far right show records per known species on a log scale, where each gridline is ten times the one before. Hover a row to highlight it in all three panels.</p>
-      </div>
-      <figure>
-        <div id="c04" class="chart" role="img" aria-label="Butterfly chart comparing each wildlife group's share of known species with its share of records, plus records per species on a log scale."></div>
-        <figcaption>Butterfly (back-to-back bar) chart with a log-scale lollipop. Records: GBIF activity report for Australia, January 2026. Known species: Chapman (2009), <i>Numbers of Living Species in Australia and the World</i>, Australian Biological Resources Study, the most recent national compilation. The fish and insect counts are approximate.</figcaption>
-      </figure>
-    </div>
-  </div>
+</figure>
+</div>
+</div>
 </section>
-
 <!-- ======================= PART 2 ======================= -->
 <section class="part" id="who">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">2</div>
-      <div>
-        <h2>Who records Australia’s wildlife</h2>
-        <p>Museums and government surveys built the early record. Today, volunteers with binoculars and phones supply most of the new records, and each app has its own speciality.</p>
-      </div>
-    </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">2</div>
+<div>
+<h2>Who records Australia’s wildlife</h2>
+<p>Museums and government surveys built the early record. Today, volunteers with binoculars and phones supply most of the new records, and each app has its own speciality.</p>
+</div>
+</div>
+<div class="side">
+<div class="prose">
+<h3>Nearly half of all records come from volunteer birdwatchers</h3>
+<p>The single biggest source is eBird, where birdwatchers log what they see: <span class="k k-ppl">56.4 million records</span> about Australia. BirdLife Australia’s Birdata adds 11.6 million.</p>
+<p>Together these two volunteer programs supply <span class="k k-ppl">44 of every 100</span> wildlife records, including almost three-quarters of all bird records.</p>
+<p class="read"><b>How to read the waffle.</b> Each of the 100 squares is 1% of all 154 million records. Orange squares come from volunteer birdwatching apps, blue-grey from state government atlases, and pale grey from all other sources.</p>
+<p class="caption">Waffle (unit) chart. Source: GBIF activity report for Australia, January 2026.</p></div>
+<figure>
+<div aria-label="Waffle chart of 100 squares showing the sources of Australia's wildlife records. 44 squares come from two volunteer birdwatching programs." class="chart" id="c05" role="img"></div>
 
-    <div class="side">
-      <div class="prose">
-        <h3>Nearly half of all records come from volunteer birdwatchers</h3>
-        <p>The single biggest source is eBird, where birdwatchers log what they see: <span class="k k-ppl">56.4 million records</span> about Australia. BirdLife Australia’s Birdata adds 11.6 million.</p>
-        <p>Together these two volunteer programs supply <span class="k k-ppl">44 of every 100</span> wildlife records, including almost three-quarters of all bird records.</p>
-        <p class="read"><b>How to read the waffle.</b> Each of the 100 squares is 1% of all 154 million records. Orange squares come from volunteer bird programs, grey from state government atlases, and pale squares from hundreds of other sources.</p>
-      </div>
-      <figure>
-        <div id="c05" class="chart" role="img" aria-label="Waffle chart of 100 squares showing the sources of Australia's wildlife records. 44 squares come from two volunteer birdwatching programs."></div>
-        <figcaption>Waffle (unit) chart. Source: GBIF activity report for Australia, January 2026.</figcaption>
-      </figure>
-    </div>
+</figure>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<h3>Each app has its speciality, and iNaturalist covers the small things</h3>
+<p>From 2016 to 2025, eBird supplied <span class="k k-ppl">80%</span> of bird sightings. iNaturalist, where people photograph anything and the community identifies it, supplied <span class="k k-ppl">89%</span> of insect sightings and <span class="k k-ppl">93%</span> of fungus sightings.</p>
+<p>Mammals are the exception: <span class="k" style="color:#3f5866">65%</span> of their sightings come through the NSW government’s BioNet Atlas.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the heatmap.</b> Each column is a wildlife group and adds up to 100%. Darker teal means a bigger share of that group’s sightings came from the source in that row; shares of 25% or more are printed. The strip on the left marks volunteer apps (orange) and government atlases (blue-grey).</p><p class="caption">Heatmap, columns as percentages of each group’s sightings (human observations), 2016–2025. FrogID does not appear because the Atlas files its frog-call records under a different record type. Source: Atlas of Living Australia, downloaded 27 October 2026.</p></div>
+</div>
+<figure>
+<div aria-label="Heatmap of the share of each wildlife group's sightings by data source. eBird dominates birds; iNaturalist dominates insects, fungi, molluscs and crustaceans; NSW BioNet dominates mammals." class="chart" id="c06" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <h3>Each app has its speciality, and iNaturalist covers the small things</h3>
-          <p>From 2016 to 2025, eBird supplied <span class="k k-ppl">80%</span> of bird sightings. iNaturalist, where people photograph anything and the community identifies it, supplied <span class="k k-ppl">89%</span> of insect sightings and <span class="k k-ppl">93%</span> of fungus sightings.</p>
-          <p>Mammals are the exception: <span class="k" style="color:#4f5f68">65%</span> of their sightings come through the NSW government’s BioNet Atlas.</p>
-        </div>
-        <p class="read"><b>How to read the heatmap.</b> Each column is a wildlife group and adds up to 100%. Darker teal means a bigger share of that group’s sightings came from the source in that row; shares of 25% or more are printed. The strip on the left marks volunteer apps (orange) and government atlases (grey).</p>
-      </div>
-      <figure>
-        <div id="c06" class="chart" role="img" aria-label="Heatmap of the share of each wildlife group's sightings by data source. eBird dominates birds; iNaturalist dominates insects, fungi, molluscs and crustaceans; NSW BioNet dominates mammals."></div>
-        <figcaption>Heatmap, columns as percentages of each group’s sightings (human observations), 2016–2025. FrogID does not appear because the Atlas files its frog-call records under a different record type. Source: Atlas of Living Australia, downloaded 27 October 2026.</figcaption>
-      </figure>
-    </div>
-
-  </div>
+</figure>
+</div>
+</div>
 </section>
-
 <!-- ======================= PART 3 ======================= -->
 <section class="part" id="how">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">3</div>
-      <div>
-        <h2>How volunteers record</h2>
-        <p>National totals cannot show how people record. One open project, followed record by record, can.</p>
-      </div>
-    </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">3</div>
+<div>
+<h2>How volunteers record</h2>
+<p>National totals cannot show how people record. One open project, followed record by record, can.</p>
+</div>
+</div>
+<div class="spotlight">
+<div class="prose">
+<span class="tag">Spotlight</span>
+<h3>Following one public project, record by record</h3>
+<p>National counts show what volunteers record. To see <i>how</i> they do it (how much each person contributes and when they go out), the next charts follow the Australian Museum’s <b>FrogID</b>, whose records are published in full.</p>
+<p>In 2023, <span class="k k-ppl">12,434 people</span> sent <span class="k k-ppl">84,321 recordings</span> of frog calls, and experts identified <span class="k k-rec">136,621 frog records</span> of <span class="k k-sp">186 species</span> in them. FrogID Dataset 7.0 (September 2026) now holds over a million records from nearly 45,000 people.</p>
+</div>
+<ol class="steps">
+<li><span class="n">1</span><span><b>Hear a frog</b>Usually after dark, near water, in a garden, park or creek.</span></li>
+<li><span class="n">2</span><span><b>Record it in the app</b>The phone attaches the time and place to the sound.</span></li>
+<li><span class="n">3</span><span><b>Experts identify the callers</b>Museum frog-call experts name every species heard.</span></li>
+<li><span class="n">4</span><span><b>The record is shared</b>Checked records go to the Atlas of Living Australia and into research.</span></li>
+</ol>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>A small group of dedicated volunteers does much of the work</h3>
+<p>More than a third (36%) of FrogID contributors, <span class="k k-ppl">4,435 people</span>, sent a single recording, together only 5% of the year’s recordings. At the other end, <span class="k k-ppl">90 people</span> each sent more than 100, more than a quarter of the total.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the waffles.</b> On the left, one square is 1% of the people who recorded; on the right, 1% of the recordings. Darker orange means people who recorded more often. Hover a shade to find that group in both grids.</p><p class="caption">Waffle (unit) charts, percentages rounded to whole squares. Source: FrogID dataset 6.0, records dated 1 January to 10 November 2023.</p></div>
+</div>
+<figure>
+<div aria-label="Two waffle charts: share of FrogID contributors and share of recordings by how many recordings each person sent." class="chart" id="c07" role="img"></div>
 
-    <div class="spotlight">
-      <div class="prose">
-        <span class="tag">Spotlight</span>
-        <h3>Following one public project, record by record</h3>
-        <p>National counts show what volunteers record. To see <i>how</i> they do it (how much each person contributes and when they go out), the next charts follow the Australian Museum’s <b>FrogID</b>, whose records are published in full.</p>
-        <p>In 2023, <span class="k k-ppl">12,434 people</span> sent <span class="k k-ppl">84,321 recordings</span> of frog calls, and experts identified <span class="k k-rec">136,621 frog records</span> of <span class="k k-sp">186 species</span> in them.</p>
-      </div>
-      <ol class="steps">
-        <li><span class="n">1</span><span><b>Hear a frog</b>Usually after dark, near water, in a garden, park or creek.</span></li>
-        <li><span class="n">2</span><span><b>Record it in the app</b>The phone attaches the time and place to the sound.</span></li>
-        <li><span class="n">3</span><span><b>Experts identify the callers</b>Museum frog-call experts name every species heard.</span></li>
-        <li><span class="n">4</span><span><b>The record is shared</b>Checked records go to the Atlas of Living Australia and into research.</span></li>
-      </ol>
-    </div>
+</figure>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>A national count week brings out the crowds</h3>
+<p>On an ordinary day before November, people sent about <span class="k k-ppl">237 recordings</span>. FrogID Week ran from 3 to 12 November. The data end on 10 November, so only its first eight days are counted, yet they hold <span class="k k-ppl">11,721 recordings</span>: six‑fold the usual daily rate, and more than any full month of 2023.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the calendar.</b> Each small square is one day of 2023: columns are weeks and rows are days of the week. Darker orange means more recordings. The outlined days are FrogID Week; grey days fall after the dataset ends.</p><p class="caption">Calendar heatmap. Times stored in universal time (UTC) were converted to local time. Sources: FrogID dataset 6.0; Australian Museum, FrogID Week 2023.</p></div>
+</div>
+<figure>
+<div aria-label="Calendar heatmap of daily FrogID recordings in 2023, with a sharp peak during FrogID Week in early November." class="chart" id="c08" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <span class="tag">FrogID spotlight</span>
-          <h3>A small group of dedicated volunteers does much of the work</h3>
-          <p>A third of FrogID contributors, <span class="k k-ppl">4,435 people</span>, sent a single recording, together only 5% of the year’s recordings. At the other end, <span class="k k-ppl">90 people</span> each sent more than 100, more than a quarter of the total.</p>
-        </div>
-        <p class="read"><b>How to read the waffles.</b> On the left, one square is 1% of the people who recorded; on the right, 1% of the recordings. Darker orange means people who recorded more often. Hover a shade to find that group in both grids.</p>
-      </div>
-      <figure>
-        <div id="c07" class="chart" role="img" aria-label="Two waffle charts: share of FrogID contributors and share of recordings by how many recordings each person sent."></div>
-        <figcaption>Waffle (unit) charts, percentages rounded to whole squares. Source: FrogID dataset 6.0, records dated 1 January to 10 November 2023.</figcaption>
-      </figure>
-    </div>
+</figure>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>Volunteers go out when the animals are active</h3>
+<p>Most frogs call at night, so most recordings are made in the evening. The busiest hour shifts from <span class="k k-ppl">5 pm</span> in winter to <span class="k k-ppl">9 pm</span> in summer, following sunset and daylight saving (clocks in south-eastern states move one hour forward in summer). Every volunteer record reflects the observer’s habits as well as the animal’s.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the heatmap.</b> Each row is a season and each column an hour of the day, in local time. Darker orange means a larger share of that season’s recordings. The outlined cell is each season’s busiest hour, with its percentage.</p><p class="caption">Heatmap with aligned rows so seasons can be compared hour by hour. Local time. Source: FrogID dataset 6.0, 84,321 recordings in 2023.</p></div>
+</div>
+<figure>
+<div aria-label="Heatmap of the share of FrogID recordings in each hour for each season. The busiest hour moves from 5 pm in winter to 9 pm in summer." class="chart" id="c09" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <span class="tag">FrogID spotlight</span>
-          <h3>A national count week brings out the crowds</h3>
-          <p>On an ordinary day before November, people sent about <span class="k k-ppl">237 recordings</span>. During FrogID Week (3–12 November) the daily average jumped six‑fold: <span class="k k-ppl">11,721 recordings</span> in eight days, more than in any full month of 2023.</p>
-        </div>
-        <p class="read"><b>How to read the calendar.</b> Each small square is one day of 2023: columns are weeks and rows are days of the week. Darker orange means more recordings. The outlined days are FrogID Week; grey days fall after the dataset ends.</p>
-      </div>
-      <figure>
-        <div id="c08" class="chart" role="img" aria-label="Calendar heatmap of daily FrogID recordings in 2023, with a sharp peak during FrogID Week in early November."></div>
-        <figcaption>Calendar heatmap. Times stored in universal time (UTC) were converted to local time. Sources: FrogID dataset 6.0; Australian Museum, FrogID Week 2023.</figcaption>
-      </figure>
-    </div>
-
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <span class="tag">FrogID spotlight</span>
-          <h3>Volunteers go out when the animals are active</h3>
-          <p>Most frogs call at night, so most recordings are made in the evening. The busiest hour shifts from <span class="k k-ppl">5 pm</span> in winter to <span class="k k-ppl">9 pm</span> in summer, following sunset and daylight saving. Every volunteer record reflects the observer’s habits as well as the animal’s.</p>
-        </div>
-        <p class="read"><b>How to read the heatmap.</b> Each row is a season and each column an hour of the day, in local time. Darker orange means a larger share of that season’s recordings. The outlined cell is each season’s busiest hour, with its percentage.</p>
-      </div>
-      <figure>
-        <div id="c09" class="chart" role="img" aria-label="Heatmap of the share of FrogID recordings in each hour for each season. The busiest hour moves from 5 pm in winter to 9 pm in summer."></div>
-        <figcaption>Heatmap with aligned rows so seasons can be compared hour by hour. Local time. Source: FrogID dataset 6.0, 84,321 recordings in 2023.</figcaption>
-      </figure>
-    </div>
-  </div>
+</figure>
+</div>
+</div>
 </section>
-
-<!-- ======================= PART 3 ======================= -->
-<section class="part" id="where">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">4</div>
-      <div>
-        <h2>Where people look</h2>
-        <p>Records pile up where people live and travel. That shapes what we know about every kind of wildlife.</p>
-      </div>
-    </div>
-
-    <div class="side flip">
-      <figure>
-        <div id="c10" class="chart" role="img" aria-label="Bin map of wildlife records per 1,000 square kilometres in each one-degree square, 2016 to 2025, with a group selector. Records are densest around Melbourne, Sydney and Brisbane."></div>
-        <figcaption>Bin map of 1° squares coloured by records per 1,000 km² (count divided by each square’s true area), 2016–2025, in six classes that rise in steps of ten. Albers equal-area conic projection. Source: Atlas of Living Australia, downloaded 27 October 2026.</figcaption>
-      </figure>
-      <div class="prose">
-        <h3>Records crowd around the cities, for almost every group</h3>
-        <p>The densest square, centred on Melbourne, holds <span class="k k-rec">9.4 million records</span> from 2016 to 2025: about 960 for every square kilometre. The Sydney and Brisbane squares follow.</p>
-        <p>Switch the group and the cities still dominate: for most groups the densest squares sit around Melbourne, Sydney and Brisbane, while the inland stays pale.</p>
-        <p class="read"><b>How to read the map.</b> Pick a group from the list below the map. Each square’s colour shows its records per 1,000 km², and each class is ten times the one before. The classes stay fixed when you switch groups, so a rare group shows up paler overall. Hover a square for its exact numbers.</p>
-      </div>
-    </div>
-
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <h3>Per person, the Northern Territory records the most wildlife</h3>
-          <p>Raw totals favour the big states. Dividing by population is fairer: each year the Northern Territory logs about <span class="k k-rec">127,000 records</span> per 100,000 residents, five times Western Australia’s <span class="k k-rec">23,000</span>.</p>
-          <p>The small, nature-rich territories and Tasmania punch above their weight, likely helped by visitors. New South Wales has 31% of Australians but 29% of the records.</p>
-        </div>
-        <p class="read"><b>How to read the map.</b> Darker teal means more wildlife records each year for every 100,000 residents. Hover a state to highlight it on both charts. On the right, each lollipop shows a state’s share of records minus its share of residents, in percentage points; teal means more records than its population would suggest.</p>
-      </div>
-      <figure>
-        <div id="c11" class="chart" role="img" aria-label="Choropleth map of wildlife records per 100,000 residents per year by state, linked to a lollipop chart of each state's share of records minus its share of residents."></div>
-        <figcaption>Choropleth map with five classes, and a lollipop chart. Records 2016–2025 averaged per year (Atlas of Living Australia), divided by the estimated resident population at 30 June 2023 (Australian Bureau of Statistics). External territories are not mapped.</figcaption>
-      </figure>
-    </div>
-
-    <div class="side">
-      <div class="prose">
-        <span class="tag">FrogID spotlight</span>
-        <h3>The richest wildlife country has the fewest observers</h3>
-        <p>Frogs are most varied in the far north-east. Around Cairns, FrogID listeners found <span class="k k-sp">41 species</span> in just <span class="k k-rec">2,847 records</span>. Around Sydney it took <span class="k k-rec">23,645 records</span>, more than eight times as many, to reach the same 41.</p>
-        <p class="read"><b>How to read the map.</b> Each purple circle summarises a 2° square (about 200 km across); a bigger circle means more frog species were recorded there. Hover a circle for its records and most-recorded frog.</p>
-      </div>
-      <figure>
-        <div id="c12" class="chart" role="img" aria-label="Proportional symbol map of frog species recorded per two-degree square. The largest circles run along the east coast from Cairns to Sydney."></div>
-        <figcaption>Proportional symbol map; circle area is proportional to the species count. Source: FrogID dataset 6.0 (2023).</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
 <!-- ======================= PART 4 ======================= -->
-<section class="part" id="when">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">5</div>
-      <div>
-        <h2>When wildlife is recorded</h2>
-        <p>Records follow both the wildlife’s calendar and ours: breeding seasons, rain, holidays and count events.</p>
-      </div>
-    </div>
+<section class="part" id="where">
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">4</div>
+<div>
+<h2>Where people look</h2>
+<p>Records pile up where people live and travel. That shapes what we know about every kind of wildlife.</p>
+</div>
+</div>
+<div class="side flip">
+<figure>
+<div aria-label="Bin map of wildlife records per 1,000 square kilometres in each one-degree square, 2016 to 2025, with a group selector. Records are densest around Melbourne, Sydney and Brisbane." class="chart" id="c10" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <h3>Fungi in autumn, insects in summer, almost everything else in spring</h3>
-          <p>Fungus records peak in <span class="k k-rec">May</span>, when autumn rain brings out mushrooms: April to June holds almost half of the year’s fungus records. Insects peak in December and fall to about 3% a month in winter.</p>
-          <p>Birds, plants, reptiles and mammals all peak in <span class="k k-rec">October</span>, the height of spring flowering and breeding. October is also the month of BirdLife Australia’s Aussie Backyard Bird Count. Frogs peak in November.</p>
-        </div>
-        <p class="read"><b>How to read the ridgeline.</b> Each ridge is one group; its height shows the share of that group’s 2016–2025 records made in each month, and its peak is labelled. The dashed line shows all wildlife combined, so a ridge rising above it means that group is recorded more than usual that month.</p>
-      </div>
-      <figure>
-        <div id="c13" class="chart" role="img" aria-label="Ridgeline chart of the monthly share of records for ten wildlife groups, ordered by peak month: fishes in March, fungi in May, most groups in October, frogs in November, insects in December."></div>
-        <figcaption>Ridgeline plot, 2016–2025. Source: Atlas of Living Australia, downloaded 27 October 2026.</figcaption>
-      </figure>
-    </div>
+</figure>
+<div class="prose">
+<h3>Records crowd around the cities, for almost every group</h3>
+<p>The densest square, centred on Melbourne, holds <span class="k k-rec">9.4 million records</span> from 2016 to 2025: about 960 for every square kilometre. The Sydney and Brisbane squares follow.</p>
+<p>A typical inland square holds about 160 records per 1,000 km², around six thousand times fewer than Melbourne’s. Switch the group and the cities still lead.</p>
+<p class="read"><b>How to read the map.</b> Pick a group from the list below the map. Each square’s colour shows its records per 1,000 km², and each class is ten times the one before. The classes stay fixed when you switch groups, so a rare group shows up paler overall. Hover a square for its exact numbers.</p>
+<p class="caption">Bin map of 1° squares coloured by records per 1,000 km² (count divided by each square’s true area), 2016–2025, in six classes that rise in steps of ten. Squares offshore hold marine records. Albers equal-area conic projection. Source: Atlas of Living Australia, downloaded 27 October 2026.</p></div>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<h3>Per person, the Northern Territory records the most wildlife</h3>
+<p>Raw totals favour the big states. Dividing by population is fairer: each year the Northern Territory logs about <span class="k k-rec">127,000 records</span> per 100,000 residents, more than five times Western Australia’s <span class="k k-rec">23,000</span>.</p>
+<p>The two territories, Queensland and Tasmania make more records than their share of residents. New South Wales has 31% of Australians but 29% of the records.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the map.</b> Darker teal means more wildlife records each year for every 100,000 residents. Hover a state to highlight it on both charts. On the right, each lollipop shows a state’s share of records minus its share of residents, in percentage points; teal means more records than its population would suggest.</p><p class="caption">Choropleth map with five classes, and a lollipop chart. Records 2016–2025 averaged per year (Atlas of Living Australia), divided by the estimated resident population at 30 June 2023 (Australian Bureau of Statistics). External territories are not mapped.</p></div>
+</div>
+<figure>
+<div aria-label="Choropleth map of wildlife records per 100,000 residents per year by state, linked to a lollipop chart of each state's share of records minus its share of residents." class="chart" id="c11" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <h3>The tropical north is recorded in the dry season, the south in spring</h3>
-          <p>From 12°S to 16°S, July to October each hold up to <span class="k k-rec">16%</span> of the year’s records, while February to April hold as little as 3–5%. Travel is hardest in the wet season, and so is recording.</p>
-          <p>Further south, records climb from September and stay high through the summer holidays into January.</p>
-        </div>
-        <p class="read"><b>How to read the heatmap.</b> Each row is a band of latitude, with the north at the top, and adds up to 100%. A dark cell means a large share of that band’s records came in that month. The bars show how many records each band holds. <b>Click a month</b> to show it on the map below.</p>
-      </div>
-      <figure>
-        <div id="c14" class="chart" role="img" aria-label="Heatmap of the share of each latitude band's wildlife records by month. Northern bands are darkest from July to October; southern bands in October."></div>
-        <figcaption>Heatmap with each row as percentages of its total, 2016–2025. The thinly sampled Torres Strait band (north of 10°S) is left out. Source: Atlas of Living Australia.</figcaption>
-      </figure>
-    </div>
+</figure>
+</div>
+<div class="side">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>The richest wildlife country has the fewest observers</h3>
+<p>Frogs are most varied in the far north-east. Around Cairns, FrogID listeners found <span class="k k-sp">41 species</span> in just <span class="k k-rec">2,847 records</span>. Around Sydney it took <span class="k k-rec">23,645 records</span>, more than eight times as many, to reach the same 41.</p>
+<p class="read"><b>How to read the map.</b> Each circle summarises a 2° square (about 200 km across). Bigger circles hold more frog species; paler fills took fewer records. Big pale circles are rich but under-recorded.</p>
+<p class="caption">Proportional symbol map: circle area is proportional to the species count, and fill lightness shows the number of records. Source: FrogID dataset 6.0 (2023).</p></div>
+<figure>
+<div aria-label="Proportional symbol map of frog species recorded per two-degree square. The largest circles run along the east coast from Cairns to Sydney." class="chart" id="c12" role="img"></div>
 
-    <div class="side flip">
-      <figure>
-        <div class="controls"><button class="play" id="playBtn" type="button" aria-pressed="false">Play the year</button><span>or drag the month slider below the map</span></div>
-        <div id="c15" class="chart" role="img" aria-label="Bin map comparing each square's records in a chosen month with its typical month. In January the north is brown (quiet); in July it is teal (busy)."></div>
-        <figcaption>Bin map of 1° squares with at least 2,000 records, coloured by records in the chosen month divided by the square’s monthly average (2016–2025). The scale diverges around 1, a typical month. Source: Atlas of Living Australia.</figcaption>
-      </figure>
-      <div class="prose">
-        <h3>Watch the recording season move across the map</h3>
-        <p>In January, a typical northern square gets only <span class="k k-rec">a third</span> of its usual monthly records. By July the same squares run at <span class="k k-rec">1.5 times</span> usual, while the south is quiet.</p>
-        <p>In October the pattern flips: southern squares run at about 1.4 times their usual month.</p>
-        <p class="read"><b>How to use the map.</b> Drag the month slider, press <b>Play the year</b>, or click a month in the heatmap above. Teal squares are busier than their typical month, brown squares quieter, and pale squares about usual.</p>
-      </div>
-    </div>
-  </div>
+</figure>
+</div>
+</div>
 </section>
+<!-- ======================= PART 5 ======================= -->
+<section class="part" id="when">
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">5</div>
+<div>
+<h2>When wildlife is recorded</h2>
+<p>Records follow both the wildlife’s calendar and ours: breeding seasons, rain, holidays and count events.</p>
+</div>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<h3>Fungi in autumn, insects in summer, almost everything else in spring</h3>
+<p>Fungus records peak in <span class="k k-rec">May</span>, when autumn rain brings out mushrooms: April to June holds almost half of the year’s fungus records. Insects peak in December and fall to about 3% a month in winter.</p>
+<p>Birds, plants, reptiles and mammals all peak in <span class="k k-rec">October</span>, the height of spring flowering and breeding. October is also the month of BirdLife Australia’s Aussie Backyard Bird Count. Amphibians (frogs) peak in November.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the ridgeline.</b> Each ridge is one group; its height shows the share of that group’s 2016–2025 records made in each month, and its peak is labelled. The dashed line shows all wildlife combined, so a ridge rising above it means that group is recorded more than usual that month.</p><p class="caption">Ridgeline plot, 2016–2025. Source: Atlas of Living Australia, downloaded 27 October 2026.</p></div>
+</div>
+<figure>
+<div aria-label="Ridgeline chart of the monthly share of records for ten wildlife groups, ordered by peak month: fishes in March, fungi in May, most groups in October, frogs in November, insects in December." class="chart" id="c13" role="img"></div>
 
+</figure>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<h3>The tropical north is recorded in the dry season, the south in spring</h3>
+<p>From 12°S to 16°S, July to October each hold up to <span class="k k-rec">16%</span> of the year’s records, while February to April hold as little as 3–5%. The wet season, when travel is hardest, is the quietest time for records.</p>
+<p>Further south, records climb from September and stay high through the summer holidays into January.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the heatmap.</b> Each row is a band of latitude, with the north at the top, and adds up to 100%. A dark cell means a large share of that band’s records came in that month. The bars show how many records each band holds. <b>Click a month</b> to show it on the map below.</p><p class="caption">Heatmap with each row as percentages of its total, 2016–2025. The thinly sampled Torres Strait band (north of 10°S) is left out. Source: Atlas of Living Australia.</p></div>
+</div>
+<figure>
+<div aria-label="Heatmap of the share of each latitude band's wildlife records by month. Northern bands are darkest from July to October; southern bands in October." class="chart" id="c14" role="img"></div>
+
+</figure>
+</div>
+<div class="side flip">
+<figure>
+<div class="controls"><button aria-pressed="false" class="play" id="playBtn" type="button">Play the year</button><span>or drag the month slider below the map</span></div>
+<div aria-label="Bin map comparing each square's records in a chosen month with its typical month. In January the north is brown (quiet); in July it is teal (busy)." class="chart" id="c15" role="img"></div>
+
+</figure>
+<div class="prose">
+<h3>Watch the recording season move across the map</h3>
+<p>In January, a typical northern square gets only <span class="k k-rec">a third</span> of its usual monthly records. By July the same squares run at <span class="k k-rec">1.5 times</span> usual, while the south is quiet.</p>
+<p>In October the pattern flips: southern squares run at about 1.4 times their usual month.</p>
+<p class="read"><b>How to use the map.</b> Drag the month slider, press <b>Play the year</b>, or click a month in the heatmap above. Teal squares are busier than their typical month, brown squares quieter (brown here does not mean people), pale squares about usual, and grey squares have too few records.</p>
+<p class="caption">Bin map of 1° squares with at least 2,000 records, coloured by records in the chosen month divided by the square’s monthly average (2016–2025). The scale diverges around 1, a typical month. Source: Atlas of Living Australia.</p></div>
+</div>
+</div>
+</section>
 <!-- ======================= PART 6 ======================= -->
 <section class="part" id="why">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no">6</div>
-      <div>
-        <h2>Why every record counts</h2>
-        <p>A single record proves that a species was alive in a particular place on a particular day. For rare species and spreading pests, that proof is especially valuable.</p>
-      </div>
-    </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no">6</div>
+<div>
+<h2>Why every record counts</h2>
+<p>A single record proves that a species was alive in a particular place on a particular day. For rare species and spreading pests, that proof is especially valuable.</p>
+</div>
+</div>
+<div class="wide">
+<div class="wide-head">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>Most species are rare in the data</h3>
+<p>Even in a project as busy as FrogID, <span class="k k-sp">50 species</span> were recorded fewer than ten times in 2023, and 13 only once. Most live in Western Australia, Queensland or the Northern Territory, far from the big cities. A record from a place nobody else visits adds information that more suburban records cannot.</p>
+</div>
+<div class="notes"><p class="read"><b>How to read the dot plot.</b> Each dot is one frog species. Species further right have more records, and every labelled step is ten times the one before. Dots in the shaded area have fewer than ten records; the charcoal dot is the introduced cane toad.</p><p class="caption">Wilkinson dot plot on a log scale. Sources: FrogID dataset 6.0; Australian Museum, FrogID dataset 6.0 announcement (first FrogID record of the Waterfall Frog).</p></div>
+</div>
+<figure>
+<div aria-label="Dot plot with one dot per frog species, stacked by number of records on a log scale. Many species have fewer than ten records." class="chart" id="c16" role="img"></div>
 
-    <div class="wide">
-      <div class="wide-head">
-        <div class="prose">
-          <span class="tag">FrogID spotlight</span>
-          <h3>Most species are rare in the data</h3>
-          <p>Even in a project as busy as FrogID, <span class="k k-sp">50 species</span> were recorded fewer than ten times in 2023, and 13 only once. Most live in Western Australia, Queensland or the Northern Territory, far from the big cities. A single record from a remote place can be worth more than a thousand from a suburban pond.</p>
-        </div>
-        <p class="read"><b>How to read the dot plot.</b> Each dot is one frog species. Species further right have more records, and every labelled step is ten times the one before. Dots in the shaded area have fewer than ten records; the charcoal dot is the introduced cane toad.</p>
-      </div>
-      <figure>
-        <div id="c16" class="chart" role="img" aria-label="Dot plot with one dot per frog species, stacked by number of records on a log scale. Many species have fewer than ten records."></div>
-        <figcaption>Wilkinson dot plot on a log scale. Sources: FrogID dataset 6.0; Australian Museum, FrogID dataset 6.0 announcement (first FrogID record of the Waterfall Frog).</figcaption>
-      </figure>
-    </div>
+</figure>
+</div>
+<div class="side">
+<div class="prose">
+<span class="tag">FrogID spotlight</span>
+<h3>Volunteers are also tracking invaders</h3>
+<p>The cane toad was brought to Queensland in 1935 and is still spreading. In 2023, <span class="k k-ppl">420 people</span> made <span class="k k-toad">1,048 cane toad records</span> through FrogID, from the West Kimberley in Western Australia down to the New South Wales north coast. Records at the edges show how far the toad had reached, without anyone having to go looking for it.</p>
+<p class="read"><b>How to read the map.</b> Each charcoal dot is a 5 km square where a cane toad was recorded. Pale teal squares show where anyone recorded any frog: toads can only be found where someone is listening.</p>
+<p class="caption">Dot map of cane toad records, one dot per five-kilometre square, drawn over the squares where anyone recorded frogs. Source: FrogID dataset 6.0.</p></div>
+<figure>
+<div aria-label="Dot map of cane toad records in 2023, concentrated in Queensland, with outliers in the Northern Territory, the Kimberley and northern New South Wales." class="chart" id="c17" role="img"></div>
 
-    <div class="side">
-      <div class="prose">
-        <span class="tag">FrogID spotlight</span>
-        <h3>Volunteers are also tracking invaders</h3>
-        <p>The cane toad was brought to Queensland in 1935 and is still spreading. In 2023, <span class="k k-ppl">420 people</span> recorded <span class="k k-toad">1,048 cane toads</span> through FrogID, from the West Kimberley in Western Australia down to the New South Wales north coast. Records at the edges show how far the toad had reached, without anyone having to go looking for it.</p>
-        <p class="read"><b>How to read the map.</b> Each charcoal dot is a 5 km square where a cane toad was recorded. Pale teal squares show where anyone recorded any frog: toads can only be found where someone is listening.</p>
-      </div>
-      <figure>
-        <div id="c17" class="chart" role="img" aria-label="Dot map of cane toad records in 2023, concentrated in Queensland, with outliers in the Northern Territory, the Kimberley and northern New South Wales."></div>
-        <figcaption>Dot map of cane toad records, one dot per five-kilometre square, drawn over the squares where anyone recorded frogs. Source: FrogID dataset 6.0.</figcaption>
-      </figure>
-    </div>
-
-  </div>
+</figure>
+</div>
+</div>
 </section>
-
 <!-- ======================= CONCLUSION ======================= -->
 <section class="part conclusion" id="conclusion">
-  <div class="wrap">
-    <div class="part-head">
-      <div class="part-no label">End</div>
-      <div>
-        <h2>Look beyond the birds, and beyond the cities</h2>
-        <p>The record is huge, growing fast and lopsided. Here is what it adds up to.</p>
-      </div>
-    </div>
-    <div class="close-grid">
-      <div class="prose">
-        
-        <p>Australians now record their wildlife on a huge scale, and volunteer apps supply most of the new records. But the record is lopsided. It favours birds over insects, cities over the inland, spring over the wet season, and count weeks over ordinary days.</p>
-        <p>The most useful record you can make is of something no one else is recording: an insect, a fungus, a frog in the far north, a sighting in February. Apps such as iNaturalist, FrogID, eBird and Birdata send your sightings straight to the Atlas of Living Australia.</p>
-      </div>
-      <div class="facts">
-        <div><span class="big">180 million</span><span>records about Australia in the Atlas of Living Australia, October 2026</span></div>
-        <div><span class="big">24×</span><span>more sightings logged in 2024 than in 1990</span></div>
-        <div><span class="big">1,000×</span><span>more records per species for birds than for insects</span></div>
-        <div><span class="big">5×</span><span>more records per resident in the Northern Territory than in Western Australia</span></div>
-      </div>
-    </div>
-  </div>
-  </div>
+<div class="wrap">
+<div class="part-head">
+<div class="part-no label">End</div>
+<div>
+<h2>Look beyond the birds, and beyond the cities</h2>
+<p>The record is huge, growing fast and lopsided. Here is what it adds up to.</p>
+</div>
+</div>
+<div class="close-grid">
+<div class="prose">
+<p>Australians now record their wildlife on a huge scale, and volunteer apps supply most of the new records. But the record is lopsided. It favours birds over insects, cities over the inland, spring over the wet season, and count weeks over ordinary days.</p>
+<p>The most useful record you can make is of something no one else is recording: an insect, a fungus, a frog in the far north, a sighting in February. Apps such as iNaturalist, FrogID, eBird and Birdata send your sightings straight to the Atlas of Living Australia.</p>
+</div>
+<div class="facts">
+<div><span class="big">154 million</span><span>records of Australian animals, plants and fungi (GBIF, January 2026)</span></div>
+<div><span class="big">24×</span><span>more sightings logged in 2024 than in 1990</span></div>
+<div><span class="big">1,000×</span><span>more records per species for birds than for insects</span></div>
+<div><span class="big">5×</span><span>more records per resident in the Northern Territory than in Western Australia (5.5×)</span></div>
+</div>
+</div>
+</div>
+
 </section>
-
 </main>
-
 <footer>
-  <div class="wrap foot-grid">
-    <div>
-      <h4>Data sources</h4>
-      <ol>
-        <li>Atlas of Living Australia (2026). Occurrence record counts by group, year, month, state, 1° square and data source, downloaded 27 October 2026 from the biocache web service (biocache-ws.ala.org.au), filter countryCode:AU (180,093,799 records). Every query is listed in data/ala/manifest.json. <a href="https://www.ala.org.au">ala.org.au</a></li>
-        <li>GBIF (2026). Analytics for Australia: records per quarterly snapshot, 2007–2026 (occ.csv, generated 8 October 2026). <a href="https://analytics-files.gbif.org/country/AU/about/csv/">analytics-files.gbif.org/country/AU/about/csv</a></li>
-        <li>GBIF (2026). Activity report: Australia, generated January 2026 (records by taxonomic group and kingdom; top datasets about Australia). <a href="https://analytics-files.gbif.org/country/AU/GBIF_CountryReport_AU.pdf">analytics-files.gbif.org/country/AU</a></li>
-        <li>Chapman, A.D. (2009). <i>Numbers of Living Species in Australia and the World</i>, 2nd edition. Australian Biological Resources Study, Canberra (accepted described Australian species per group).</li>
-        <li>FrogID dataset 6.0, Australian Museum (records dated 1 January to 10 November 2023, 136,621 records), as curated for TidyTuesday, 2 September 2025. <a href="https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-09-02">github.com/rfordatascience/tidytuesday</a>. Rowley, J.J.L. &amp; Callaghan, C.T. (2020). The FrogID dataset. <i>ZooKeys</i> 912: 139–151.</li>
-        <li>Australian Bureau of Statistics (2023). National, state and territory population, June 2023. <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2023">abs.gov.au</a></li>
-        <li>Australian Society of Herpetologists, official list of Australian species (frog names and families); Natural Earth 1:50m boundaries (public domain).</li>
-        <li>Australian Museum: <a href="https://australian.museum/learn/news/blog/frogid-dataset-6/">FrogID dataset 6.0</a> and <a href="https://australian.museum/learn/news/blog/frogid-week-2023/">FrogID Week 2023</a>.</li>
-      </ol>
-      
-    </div>
-    <div>
-      <h4>Notes on method</h4>
-      <ul>
-        <li>Atlas counts use the Atlas’s own species groups and its default data-quality profile. “Sightings” are records classed as human observations (volunteers and professional surveys). Records 2016–2025 are the latest ten complete years.</li>
-        <li>National figures cover animals, plants and fungi only; microbial records (bacteria, archaea and others) are excluded. Group definitions follow GBIF; species counts follow Chapman (2009), whose fish and insect figures are approximate.</li>
-        <li>GBIF counts every record available about Australia, whoever published it; counts change as datasets are updated.</li>
-        <li>About 42% of FrogID records stored their time in universal time (UTC); these were converted to local time. Six species names were matched to the official list.</li>
-        <li>Records show where and when people looked as well as where wildlife lives. Empty areas mean no records, not no wildlife.</li>
-        <li>Colours were chosen to stay distinguishable with colour-vision deficiency: red and green are never paired, and every chart has a legend or direct labels.</li>
-      </ul>
-    </div>
-    <div>
-      <h4>About this page</h4>
-      <p>Author: Kevin Kaung Myat Zaw, Monash University, FIT3179 Data Visualisation, Data Visualisation 2. Published October 2026.</p>
-      <p>Charts built with <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> 5 and, for the treemap, <a href="https://vega.github.io/vega/">Vega</a> 5. Every chart specification is a readable JSON file in the <code>specs</code> folder of the GitHub repository.</p>
-      <p>Typefaces: Young Serif, Literata and Source Sans 3 (SIL Open Font Licence).</p>
-      <h4>Examples adapted</h4>
-      <p>Chart patterns were adapted from the <a href="https://vega.github.io/vega-lite/examples/">Vega-Lite example gallery</a> (ridgeline plot, waffle chart, stacked area, layered annotations, choropleth with lookup) and the <a href="https://vega.github.io/vega/examples/treemap/">Vega treemap example</a>. Maps draw TopoJSON boundaries in an Albers equal-area conic projection. Designed for a 1280 × 800 browser window.</p>
-      <h4>Use of generative AI</h4>
-      <p>Anthropic’s Claude was used to help write the data-preparation script, chart specifications, page code and drafts of the text. The author checked every number against the sources and edited the design and wording.</p>
-      <p>Text and charts © 2026 Kevin Kaung Myat Zaw, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Data remain under their original licences.</p>
-    </div>
-  </div>
+<div class="wrap foot-grid">
+<div>
+<h4>Data sources</h4>
+<ol>
+<li>Atlas of Living Australia (2026). Occurrence record counts by group, year, month, state, 1° square and data source, downloaded 27 October 2026 from the biocache web service (biocache-ws.ala.org.au), filter countryCode:AU (180,093,799 records). Every query is listed in data/ala/manifest.json. <a href="https://www.ala.org.au">ala.org.au</a></li>
+<li>GBIF (2026). Analytics for Australia: records per quarterly snapshot, 2007–2026 (occ.csv, generated 8 October 2026). <a href="https://analytics-files.gbif.org/country/AU/about/csv/">analytics-files.gbif.org/country/AU/about/csv</a></li>
+<li>GBIF (2026). Activity report: Australia, generated January 2026 (records by taxonomic group and kingdom; top datasets about Australia). <a href="https://analytics-files.gbif.org/country/AU/GBIF_CountryReport_AU.pdf">analytics-files.gbif.org/country/AU</a></li>
+<li>Chapman, A.D. (2009). <i>Numbers of Living Species in Australia and the World</i>, 2nd edition. Australian Biological Resources Study, Canberra (accepted described Australian species per group). <a href="https://www.vliz.be/imisdocs/publications/ocrd/234960.pdf">vliz.be (PDF)</a></li>
+<li>FrogID dataset 6.0, Australian Museum (records dated 1 January to 10 November 2023, 136,621 records), as curated for TidyTuesday, 2 September 2025. <a href="https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-09-02">github.com/rfordatascience/tidytuesday</a>. Rowley, J.J.L. &amp; Callaghan, C.T. (2020). The FrogID dataset. <i>ZooKeys</i> 912: 139–151.</li>
+<li>Australian Bureau of Statistics (2023). National, state and territory population, June 2023. <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/jun-2023">abs.gov.au</a></li>
+<li>Australian Society of Herpetologists, official list of Australian species (frog names and families), as supplied with the TidyTuesday FrogID data above. Natural Earth 1:50m admin-1 boundaries, public domain. <a href="https://www.naturalearthdata.com">naturalearthdata.com</a></li>
+<li>Australian Museum: <a href="https://australian.museum/blog/amri-news/frogid-dataset-7/">FrogID Dataset 7.0</a> (9 September 2026), <a href="https://australian.museum/learn/news/blog/frogid-dataset-6/">FrogID dataset 6.0</a> and <a href="https://australian.museum/learn/news/blog/frogid-week-2023/">FrogID Week 2023</a>.</li>
+</ol>
+</div>
+<div>
+<h4>Notes on method</h4>
+<ul>
+<li>Atlas counts use the Atlas’s own species groups and its default data-quality profile. “Sightings” are records classed as human observations (volunteers and professional surveys). Records 2016–2025 are the latest ten complete years.</li>
+<li>National figures cover animals, plants and fungi only; microbial records (bacteria, archaea and others) are excluded. Group definitions follow GBIF; species counts follow Chapman (2009), whose fish and insect figures are approximate.</li>
+<li>GBIF counts every record available about Australia, whoever published it; counts change as datasets are updated.</li>
+<li>The FrogID spotlight uses the cleaned 2023 records of FrogID Dataset 6.0 (TidyTuesday), one complete year at record level. Dataset 7.0, released 9 September 2026, extends the data to November 2024; its headline figures are quoted in the text.</li>
+<li>Rates per 100,000 residents use ABS population at 30 June 2023: the FrogID year, and a representative year for the 2016–2025 average.</li>
+<li>About 42% of FrogID records stored their time in universal time (UTC); these were converted to local time. Six species names were matched to the official list.</li>
+<li>Records show where and when people looked as well as where wildlife lives. Empty areas mean no records, not no wildlife.</li>
+<li>Colours were chosen to stay distinguishable with colour-vision deficiency: red and green are never paired, and every chart has a legend or direct labels.</li>
+</ul>
+</div>
+<div>
+<h4>About this page</h4>
+<p>Author: Kevin Kaung Myat Zaw, Monash University, FIT3179 Data Visualisation, Data Visualisation 2. Published October 2026.</p>
+<p>Charts built with <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> 5 and, for the treemap, <a href="https://vega.github.io/vega/">Vega</a> 5. Every chart specification is a readable JSON file in the <code>specs</code> folder of the GitHub repository.</p>
+<p>Typefaces: Young Serif, Literata and Source Sans 3 (SIL Open Font Licence), self-hosted from <a href="https://fontsource.org">fontsource.org</a>.</p>
+<h4>Examples adapted</h4>
+<p>Chart patterns were adapted from the <a href="https://vega.github.io/vega-lite/examples/">Vega-Lite example gallery</a> (ridgeline plot, waffle chart, stacked area, layered annotations, choropleth with lookup) and the <a href="https://vega.github.io/vega/examples/treemap/">Vega treemap example</a>. Maps draw TopoJSON boundaries in an Albers equal-area conic projection. Designed for a 1280 × 800 browser window.</p>
+<h4>Use of generative AI</h4>
+<p>Anthropic’s Claude was used to help write the data-preparation script, chart specifications, page code and drafts of the text. The author checked every number against the sources and edited the design and wording.</p>
+<p>Text and charts © 2026 Kevin Kaung Myat Zaw, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Data remain under their original licences.</p>
+</div>
+</div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>

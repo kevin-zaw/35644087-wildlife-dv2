@@ -20,7 +20,7 @@ What it produces (in data/ala/):
   species_by_group.csv    distinct species recorded per group (all years and recent decade)
   manifest.json           every query URL, the filters used, timestamps and row counts
   SUMMARY.txt             a short human-readable summary
-It also writes download_log.txt and results_for_claude.zip in the project folder.
+It also writes download_log.txt and download_results.zip in the project folder.
 
 Usage (from the project folder, in the VS Code terminal):
   python scripts/download_wildlife_data.py            full download (about 5-15 minutes)
@@ -54,7 +54,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "ala"
 RAW = OUT / "raw"
 LOG_PATH = ROOT / "download_log.txt"
-ZIP_PATH = ROOT / "results_for_claude.zip"
+ZIP_PATH = ROOT / "download_results.zip"
 
 ALA = "https://biocache-ws.ala.org.au/ws"
 GBIF = "https://api.gbif.org/v1"
@@ -455,7 +455,7 @@ def summarise(meta, files, args, started):
         if LOG_PATH.exists():
             z.write(LOG_PATH, arcname="download_log.txt")
     size_kb = ZIP_PATH.stat().st_size / 1024
-    log(f"Done. Upload this file to Claude: {ZIP_PATH}  ({size_kb:,.0f} KB)")
+    log(f"Done. All tables bundled in: {ZIP_PATH}  ({size_kb:,.0f} KB)")
 
 
 def connection_test(args):

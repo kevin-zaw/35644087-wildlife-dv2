@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Proportional symbol map. Each circle summarises one 2-degree by 2-degree square and is placed at the average position of that square's FrogID records. Circle area is proportional to the number of frog species recorded there in 2023. Hover a circle for the number of records behind it.",
+  "description": "Proportional symbol map. Each circle summarises one 2-degree square at the average position of its FrogID records (2023). Circle area is proportional to the number of frog species recorded; fill lightness shows how many records it took (recording effort). Large pale circles are species-rich but under-recorded.",
   "width": 640,
   "height": 540,
   "projection": {
@@ -59,12 +59,16 @@
         {
           "calculate": "abs(datum.hy + 2) + '–' + abs(datum.hy) + '°S, ' + datum.hx + '–' + (datum.hx + 2) + '°E'",
           "as": "square"
+        },
+        {
+          "calculate": "datum.records < 100 ? 'Under 100' : datum.records < 1000 ? '100–999' : datum.records < 5000 ? '1,000–4,999' : datum.records < 15000 ? '5,000–14,999' : '15,000 or more'",
+          "as": "recCls"
         }
       ],
       "mark": {
         "type": "circle",
-        "stroke": "#ffffff",
-        "strokeWidth": 0.9,
+        "stroke": "#3c2766",
+        "strokeWidth": 0.7,
         "cursor": "pointer"
       },
       "encoding": {
@@ -99,24 +103,22 @@
               20,
               40
             ],
-            "symbolFillColor": "#5a3d91",
+            "symbolFillColor": "#ffffff",
             "symbolOpacity": 0.75,
-            "symbolStrokeColor": "#ffffff",
+            "symbolStrokeColor": "#3c2766",
             "titleFontSize": 12.5,
             "direction": "horizontal",
-            "titleOrient": "left"
+            "titleOrient": "left",
+            "title": "Frog species recorded"
           }
-        },
-        "color": {
-          "value": "#5a3d91"
         },
         "opacity": {
           "condition": {
             "param": "symHover",
             "empty": false,
-            "value": 0.95
+            "value": 1
           },
-          "value": 0.68
+          "value": 0.9
         },
         "order": {
           "field": "species",
@@ -140,7 +142,38 @@
             "field": "top",
             "title": "Most-recorded species"
           }
-        ]
+        ],
+        "color": {
+          "field": "recCls",
+          "type": "ordinal",
+          "title": "Frog records in the square (effort)",
+          "scale": {
+            "domain": [
+              "Under 100",
+              "100–999",
+              "1,000–4,999",
+              "5,000–14,999",
+              "15,000 or more"
+            ],
+            "range": [
+              "#d7efe9",
+              "#9fd8cc",
+              "#4fae9f",
+              "#127a74",
+              "#0a4643"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "circle",
+            "symbolSize": 110,
+            "titleOrient": "left",
+            "titleLimit": 240,
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
+          }
+        }
       }
     },
     {
@@ -308,16 +341,15 @@
             "lat": -11.6,
             "t": [
               "Around Cairns: 41 species",
-              "from just 2,847 records"
+              "from 2,847 records"
             ]
           },
           {
             "lon": 152.5,
             "lat": -37.4,
             "t": [
-              "Around Sydney: 41 species,",
-              "but it took 23,645 records",
-              "to find them"
+              "Around Sydney: 41 species",
+              "from 23,645 records"
             ]
           }
         ]

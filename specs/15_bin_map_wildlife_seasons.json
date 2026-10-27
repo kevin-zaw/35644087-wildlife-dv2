@@ -38,7 +38,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#eceeeb",
+        "fill": "#c9cdcb",
         "stroke": "#ffffff",
         "strokeWidth": 1
       }
@@ -109,7 +109,7 @@
               "#ece6d6",
               "#5ab4ac",
               "#01665e",
-              "#eceeeb"
+              "#c9cdcb"
             ]
           },
           "legend": {

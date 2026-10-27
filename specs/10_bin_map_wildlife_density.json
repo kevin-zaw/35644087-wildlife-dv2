@@ -48,7 +48,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#eceeeb",
+        "fill": "#c9cdcb",
         "stroke": "#ffffff",
         "strokeWidth": 1
       }
@@ -113,7 +113,7 @@
               "10,000 or more"
             ],
             "range": [
-              "#eceeeb",
+              "#c9cdcb",
               "#cfe9e2",
               "#a6d9cd",
               "#6fbfb0",

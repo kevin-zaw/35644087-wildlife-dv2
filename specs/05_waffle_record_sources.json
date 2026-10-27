@@ -53,25 +53,19 @@
           "type": "nominal",
           "title": "Where the records come from",
           "sort": [
-            "eBird (Cornell Lab, volunteer birdwatchers)",
-            "BirdLife Australia Birdata (volunteer birdwatchers)",
-            "NSW BioNet Atlas (state government)",
-            "Victorian Biodiversity Atlas (state government)",
-            "Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)"
+            "Volunteer birdwatching apps (eBird, Birdata)",
+            "State government atlases (NSW, Victoria)",
+            "All other sources (museums, herbaria, surveys, apps)"
           ],
           "scale": {
             "domain": [
-              "eBird (Cornell Lab, volunteer birdwatchers)",
-              "BirdLife Australia Birdata (volunteer birdwatchers)",
-              "NSW BioNet Atlas (state government)",
-              "Victorian Biodiversity Atlas (state government)",
-              "Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)"
+              "Volunteer birdwatching apps (eBird, Birdata)",
+              "State government atlases (NSW, Victoria)",
+              "All other sources (museums, herbaria, surveys, apps)"
             ],
             "range": [
               "#b8610f",
-              "#e9a24e",
-              "#6f7f88",
-              "#a9b6bd",
+              "#3f5866",
               "#dde3df"
             ]
           },
@@ -80,10 +74,11 @@
             "direction": "vertical",
             "symbolType": "square",
             "symbolSize": 170,
-            "labelLimit": 520,
+            "labelLimit": 360,
             "labelFontSize": 12.5,
             "titleFontSize": 13,
-            "labelExpr": "datum.label == 'Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)' ? 'Other datasets: museums, herbaria, surveys, apps' : datum.label"
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
           }
         },
         "opacity": {
@@ -96,11 +91,7 @@
         "tooltip": [
           {
             "field": "source",
-            "title": "Source"
-          },
-          {
-            "field": "category",
-            "title": "Type"
+            "title": "Source type"
           },
           {
             "field": "records",
@@ -124,7 +115,7 @@
             "t": [
               "44 of every 100 records come",
               "from two volunteer birdwatching",
-              "programs: eBird and Birdata."
+              "apps: eBird (36.5) and Birdata (7.5)."
             ],
             "c": "#8a4a0b"
           },
@@ -139,11 +130,10 @@
           {
             "y": 142,
             "t": [
-              "State wildlife atlases add another",
-              "16%. They also take in sightings",
-              "from the public."
+              "State government atlases add",
+              "another 16 (NSW 9.5, Victoria 6.5)."
             ],
-            "c": "#4f5f68"
+            "c": "#3f5866"
           },
           {
             "y": 222,

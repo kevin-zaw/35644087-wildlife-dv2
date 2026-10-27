@@ -1,4 +1,4 @@
-// Who's calling? FIT3179 DV2 — embeds the Vega-Lite / Vega specifications in /specs.
+// Who’s watching? FIT3179 DV2: embeds the Vega-Lite / Vega specifications in /specs.
 
 const SANS = '"Source Sans 3", "Segoe UI", Arial, sans-serif';
 const theme = {
@@ -68,7 +68,24 @@ Promise.all(charts.map(([el, url]) =>
       document.querySelector(el).textContent = "This chart could not load: " + err.message;
       console.error(url, err);
     })
-)).then(linkViews);
+)).then(() => { linkViews(); fitAll(); });
+
+// Scale any chart wider than its column (small laptops), so the page never scrolls sideways.
+function fitAll() {
+  document.querySelectorAll('.chart').forEach(el => {
+    const svg = el.querySelector('svg');
+    if (!svg || !svg.getAttribute('viewBox')) return;
+    const natural = parseFloat(svg.getAttribute('viewBox').split(' ')[2]);
+    const avail = el.clientWidth;
+    if (natural > avail + 1) {          // scale down proportionally; layout height follows the viewBox
+      svg.style.width = avail + 'px';
+      svg.style.height = 'auto';
+    } else {
+      svg.style.width = ''; svg.style.height = '';
+    }
+  });
+}
+window.addEventListener('resize', () => { clearTimeout(window._fitT); window._fitT = setTimeout(fitAll, 150); });
 
 function linkViews() {
   const heat = views["#c14"];

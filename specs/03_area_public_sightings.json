@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Stacked area chart. Sightings (records the ALA classes as human observations) of Australian wildlife per year, 1990–2024, by group. 2025 is left out because its records are still being added. Source: Atlas of Living Australia, downloaded 27 October 2026.",
+  "description": "Stacked area chart. Sightings (records the ALA classes as human observations) of Australian wildlife per year, 1990–2024, by group (mammals, reptiles, frogs, fishes, molluscs and crustaceans are combined as 'Other animals'). 2025 is left out because its records are still being added. Source: Atlas of Living Australia, downloaded 27 October 2026.",
   "width": 620,
   "height": 360,
   "data": {
@@ -18,7 +18,7 @@
       "as": "millions"
     },
     {
-      "calculate": "indexof([\"Birds\", \"Plants\", \"Mammals\", \"Insects\", \"Fungi\", \"Other animals\"], datum.layer)",
+      "calculate": "indexof([\"Birds\", \"Plants\", \"Insects\", \"Fungi\", \"Other animals\"], datum.layer)",
       "as": "ord"
     }
   ],
@@ -95,7 +95,6 @@
           "sort": [
             "Birds",
             "Plants",
-            "Mammals",
             "Insects",
             "Fungi",
             "Other animals"
@@ -104,18 +103,16 @@
             "domain": [
               "Birds",
               "Plants",
-              "Mammals",
               "Insects",
               "Fungi",
               "Other animals"
             ],
             "range": [
-              "#23395d",
-              "#5f8f2f",
-              "#cc79a7",
-              "#c9a100",
-              "#8c6d31",
-              "#56b4e9"
+              "#2f4f80",
+              "#8a9a2a",
+              "#e8c547",
+              "#b25d91",
+              "#8ecae6"
             ]
           },
           "legend": {
@@ -123,7 +120,7 @@
             "direction": "horizontal",
             "symbolType": "square",
             "symbolSize": 150,
-            "columns": 6,
+            "columns": 5,
             "titleOrient": "top"
           }
         },
@@ -230,7 +227,7 @@
             "x": 2008,
             "y": 9.6,
             "t": [
-              "Birds (navy) are most of every year.",
+              "Birds (dark blue) are most of every year.",
               "Insects grew from 13,769 sightings",
               "in 2010 to 714,520 in 2024."
             ]

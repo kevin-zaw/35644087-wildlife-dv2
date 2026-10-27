@@ -1,5 +1,5 @@
 # download cache and hand-back files: not part of the published site
 data/ala/raw/
-results_for_claude.zip
+download_results.zip
 download_log.txt
 __pycache__/
