@@ -1,0 +1,568 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Choropleth map of wildlife records per 100,000 residents per year in each state and territory (Atlas of Living Australia records 2016–2025 averaged per year; ABS estimated resident population, 30 June 2023), linked to a lollipop chart of each state's share of records minus its share of residents. Hover a state to highlight it in both views.",
+  "hconcat": [
+    {
+      "name": "choroMap",
+      "width": 580,
+      "height": 490,
+      "title": {
+        "text": "Wildlife records per 100,000 residents, per year (2016–2025)",
+        "subtitle": "Hover a state to highlight it on the right"
+      },
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -132,
+          0
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/au_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#dfe5e1",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          }
+        },
+        {
+          "data": {
+            "url": "data/au_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "transform": [
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "data/ala/states_all_wildlife.csv"
+                },
+                "key": "name",
+                "fields": [
+                  "state_code",
+                  "per_100k_year",
+                  "records",
+                  "population"
+                ]
+              }
+            },
+            {
+              "filter": "isValid(datum.state_code)"
+            },
+            {
+              "calculate": "datum.state_code",
+              "as": "state"
+            },
+            {
+              "calculate": "datum.per_100k_year < 30000 ? 'Under 30,000' : datum.per_100k_year < 40000 ? '30,000–39,999' : datum.per_100k_year < 60000 ? '40,000–59,999' : datum.per_100k_year < 100000 ? '60,000–99,999' : '100,000 or more'",
+              "as": "cls"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#ffffff",
+            "strokeWidth": 1,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "color": {
+              "field": "cls",
+              "type": "ordinal",
+              "title": "Records per 100,000 residents per year",
+              "scale": {
+                "domain": [
+                  "Under 30,000",
+                  "30,000–39,999",
+                  "40,000–59,999",
+                  "60,000–99,999",
+                  "100,000 or more"
+                ],
+                "range": [
+                  "#d7efe9",
+                  "#9fd8cc",
+                  "#5bb5a6",
+                  "#1f8a80",
+                  "#0b5753"
+                ]
+              },
+              "legend": {
+                "orient": "none",
+                "legendX": 0,
+                "legendY": 330,
+                "symbolType": "square",
+                "symbolSize": 140,
+                "titleLimit": 260
+              }
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.35
+            },
+            "tooltip": [
+              {
+                "field": "properties.name",
+                "title": "State or territory"
+              },
+              {
+                "field": "per_100k_year",
+                "title": "Records per 100,000 residents per year",
+                "format": ","
+              },
+              {
+                "field": "records",
+                "title": "Records 2016–2025",
+                "format": ","
+              },
+              {
+                "field": "population",
+                "title": "Residents (June 2023)",
+                "format": ","
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "st",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "state"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "url": "data/ala/states_all_wildlife.csv",
+            "format": {
+              "parse": {
+                "per_100k_year": "number",
+                "label_lon": "number",
+                "label_lat": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "calculate": "[datum.state_code, format(datum.per_100k_year / 1000, ',.0f') + 'k']",
+              "as": "lbl"
+            },
+            {
+              "filter": "datum.per_100k_year >= 60000 && datum.state_code != 'ACT' && datum.state_code != 'Tas.'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "lineHeight": 14,
+            "fontWeight": 600,
+            "color": "#ffffff"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "lbl"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/ala/states_all_wildlife.csv",
+            "format": {
+              "parse": {
+                "per_100k_year": "number",
+                "label_lon": "number",
+                "label_lat": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "calculate": "[datum.state_code, format(datum.per_100k_year / 1000, ',.0f') + 'k']",
+              "as": "lbl"
+            },
+            {
+              "filter": "!(datum.per_100k_year >= 60000 && datum.state_code != 'ACT' && datum.state_code != 'Tas.')"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "lineHeight": 14,
+            "fontWeight": 600,
+            "color": "#173a35"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "label_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "lbl"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 149.1,
+                "lat": -35.4,
+                "lon2": 152.6,
+                "lat2": -36.4
+              },
+              {
+                "lon": 147.6,
+                "lat": -42.1,
+                "lon2": 148.9,
+                "lat2": -42.3
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "stroke": "#5f706a",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon2"
+            },
+            "latitude2": {
+              "field": "lat2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 120.6,
+                "lat": -13.9,
+                "lon2": 131.5,
+                "lat2": -16.2
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "stroke": "#5f706a",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon2"
+            },
+            "latitude2": {
+              "field": "lat2"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lon": 112.6,
+                "lat": -12.4,
+                "t": [
+                  "Fewest residents,",
+                  "most records",
+                  "per person"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 12,
+            "lineHeight": 14,
+            "fontStyle": "italic",
+            "color": "#33443e"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "lollipop",
+      "width": 300,
+      "height": 300,
+      "title": {
+        "text": "Over- or under-represented?",
+        "subtitle": [
+          "Share of wildlife records minus share of residents"
+        ]
+      },
+      "data": {
+        "url": "data/ala/states_all_wildlife.csv",
+        "format": {
+          "parse": {
+            "record_share": "number",
+            "pop_share": "number",
+            "diff": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.state_code",
+          "as": "state"
+        },
+        {
+          "calculate": "datum.diff > 0 ? 'More records than its population share' : 'Fewer records than its population share'",
+          "as": "balance"
+        },
+        {
+          "calculate": "0",
+          "as": "zero"
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "diff",
+            "order": "descending"
+          },
+          "title": null,
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12.5,
+            "labelFontWeight": 600,
+            "labelPadding": 8
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#1b2b26",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "zero",
+              "type": "quantitative"
+            },
+            "y": {
+              "value": 0
+            },
+            "y2": {
+              "value": 300
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 2.5
+          },
+          "encoding": {
+            "x": {
+              "field": "zero",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  -4,
+                  4
+                ]
+              },
+              "title": "Percentage points",
+              "axis": {
+                "values": [
+                  -4,
+                  -2,
+                  0,
+                  2,
+                  4
+                ],
+                "grid": true
+              }
+            },
+            "x2": {
+              "field": "diff"
+            },
+            "color": {
+              "field": "balance",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "More records than its population share",
+                  "Fewer records than its population share"
+                ],
+                "range": [
+                  "#127a74",
+                  "#9aa7a2"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "vertical",
+                "title": null,
+                "symbolType": "circle",
+                "labelLimit": 280
+              }
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.3
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "size": 110,
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "field": "diff",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "balance",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": {
+                "param": "st",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "title": "State or territory"
+              },
+              {
+                "field": "pop_share",
+                "title": "Share of residents (%)"
+              },
+              {
+                "field": "record_share",
+                "title": "Share of wildlife records (%)"
+              },
+              {
+                "field": "diff",
+                "title": "Difference (percentage points)",
+                "format": "+.1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Small territories",
+                  "and Tasmania: more",
+                  "records than their",
+                  "share of residents"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "color": "#0b5753",
+            "lineHeight": 15
+          },
+          "encoding": {
+            "x": {
+              "value": 162
+            },
+            "y": {
+              "value": 178
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 40,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    },
+    "legend": {
+      "color": "independent"
+    }
+  }
+}

@@ -1,0 +1,836 @@
+{
+ "source": "Atlas of Living Australia biocache web service",
+ "base_url": "https://biocache-ws.ala.org.au/ws",
+ "base_filters": [
+  "countryCode:AU"
+ ],
+ "fields": {
+  "group": "speciesGroup",
+  "state": "stateProvince",
+  "month": "month",
+  "year": "year",
+  "basis": "basisOfRecord",
+  "resource": "dataResourceName",
+  "grid": "point-1",
+  "species": "speciesID"
+ },
+ "total_records_unfiltered": 185780888,
+ "total_records_base_filter": 180093799,
+ "records_2016_2025": 89590096,
+ "groups": [
+  "Birds",
+  "Mammals",
+  "Reptiles",
+  "Amphibians",
+  "Fishes",
+  "Insects",
+  "Molluscs",
+  "Crustaceans",
+  "Plants",
+  "Fungi"
+ ],
+ "generated_at": "2026-10-27T05:54:46",
+ "years": [
+  2016,
+  2025
+ ],
+ "python": "3.13.2",
+ "files": {
+  "groups.csv": 22,
+  "basis_by_group.csv": 97,
+  "year_by_group.csv": 1645,
+  "month_by_group.csv": 143,
+  "state_by_group.csv": 155,
+  "state_by_month.csv": 104,
+  "grid1_by_group.csv": 10148,
+  "grid1_by_month.csv": 12062,
+  "resource_by_group.csv": 275,
+  "species_by_group.csv": 11
+ },
+ "failures": [],
+ "minutes": 9.3,
+ "queries": [
+  {
+   "source": "ALA",
+   "label": "total, no filter",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=false&flimit=-1",
+   "totalRecords": 185780888
+  },
+  {
+   "source": "ALA",
+   "label": "country test countryCode:AU",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=false&flimit=-1&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect group",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=speciesGroup&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect state",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=stateProvince&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect month",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=month&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect year",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=year&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect basis",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=basisOfRecord&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect resource",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=dataResourceName&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect grid",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=point-1&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "detect species",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=5&facets=speciesID&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "groups all years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=speciesGroup&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "groups recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=speciesGroup&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 89590096
+  },
+  {
+   "source": "ALA",
+   "label": "groups recent human",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=speciesGroup&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 84384590
+  },
+  {
+   "source": "ALA",
+   "label": "basis All wildlife",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU",
+   "totalRecords": 180093799
+  },
+  {
+   "source": "ALA",
+   "label": "basis Birds",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22",
+   "totalRecords": 112024236
+  },
+  {
+   "source": "ALA",
+   "label": "basis Mammals",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22",
+   "totalRecords": 6442611
+  },
+  {
+   "source": "ALA",
+   "label": "basis Reptiles",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22",
+   "totalRecords": 2324616
+  },
+  {
+   "source": "ALA",
+   "label": "basis Amphibians",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22",
+   "totalRecords": 2154596
+  },
+  {
+   "source": "ALA",
+   "label": "basis Fishes",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22",
+   "totalRecords": 6180535
+  },
+  {
+   "source": "ALA",
+   "label": "basis Insects",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22",
+   "totalRecords": 9160198
+  },
+  {
+   "source": "ALA",
+   "label": "basis Molluscs",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22",
+   "totalRecords": 1822416
+  },
+  {
+   "source": "ALA",
+   "label": "basis Crustaceans",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22",
+   "totalRecords": 752130
+  },
+  {
+   "source": "ALA",
+   "label": "basis Plants",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22",
+   "totalRecords": 31760421
+  },
+  {
+   "source": "ALA",
+   "label": "basis Fungi",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=basisOfRecord&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22",
+   "totalRecords": 1852737
+  },
+  {
+   "source": "ALA",
+   "label": "year All wildlife all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 167513574
+  },
+  {
+   "source": "ALA",
+   "label": "year All wildlife human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 139768574
+  },
+  {
+   "source": "ALA",
+   "label": "year Birds all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 107573563
+  },
+  {
+   "source": "ALA",
+   "label": "year Birds human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 101768620
+  },
+  {
+   "source": "ALA",
+   "label": "year Mammals all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 5982991
+  },
+  {
+   "source": "ALA",
+   "label": "year Mammals human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 4246730
+  },
+  {
+   "source": "ALA",
+   "label": "year Reptiles all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 1952842
+  },
+  {
+   "source": "ALA",
+   "label": "year Reptiles human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 1088464
+  },
+  {
+   "source": "ALA",
+   "label": "year Amphibians all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 2034939
+  },
+  {
+   "source": "ALA",
+   "label": "year Amphibians human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 488295
+  },
+  {
+   "source": "ALA",
+   "label": "year Fishes all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 5858196
+  },
+  {
+   "source": "ALA",
+   "label": "year Fishes human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 2742174
+  },
+  {
+   "source": "ALA",
+   "label": "year Insects all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 7557417
+  },
+  {
+   "source": "ALA",
+   "label": "year Insects human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 3793402
+  },
+  {
+   "source": "ALA",
+   "label": "year Molluscs all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 1404608
+  },
+  {
+   "source": "ALA",
+   "label": "year Molluscs human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 620408
+  },
+  {
+   "source": "ALA",
+   "label": "year Crustaceans all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 644244
+  },
+  {
+   "source": "ALA",
+   "label": "year Crustaceans human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 254172
+  },
+  {
+   "source": "ALA",
+   "label": "year Plants all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 28036343
+  },
+  {
+   "source": "ALA",
+   "label": "year Plants human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 21384998
+  },
+  {
+   "source": "ALA",
+   "label": "year Fungi all records",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B1950+TO+2025%5D",
+   "totalRecords": 1535448
+  },
+  {
+   "source": "ALA",
+   "label": "year Fungi human observations",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=year&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B1950+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 911244
+  },
+  {
+   "source": "ALA",
+   "label": "month All wildlife",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 89590096
+  },
+  {
+   "source": "ALA",
+   "label": "month Birds",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 66005878
+  },
+  {
+   "source": "ALA",
+   "label": "month Mammals",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 3332365
+  },
+  {
+   "source": "ALA",
+   "label": "month Reptiles",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 794403
+  },
+  {
+   "source": "ALA",
+   "label": "month Amphibians",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1502849
+  },
+  {
+   "source": "ALA",
+   "label": "month Fishes",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1228778
+  },
+  {
+   "source": "ALA",
+   "label": "month Insects",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 4112429
+  },
+  {
+   "source": "ALA",
+   "label": "month Molluscs",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 521887
+  },
+  {
+   "source": "ALA",
+   "label": "month Crustaceans",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 186389
+  },
+  {
+   "source": "ALA",
+   "label": "month Plants",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 9549375
+  },
+  {
+   "source": "ALA",
+   "label": "month Fungi",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 793841
+  },
+  {
+   "source": "ALA",
+   "label": "state All wildlife",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 89590096
+  },
+  {
+   "source": "ALA",
+   "label": "state Birds",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 66005878
+  },
+  {
+   "source": "ALA",
+   "label": "state Mammals",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 3332365
+  },
+  {
+   "source": "ALA",
+   "label": "state Reptiles",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 794403
+  },
+  {
+   "source": "ALA",
+   "label": "state Amphibians",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1502849
+  },
+  {
+   "source": "ALA",
+   "label": "state Fishes",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1228778
+  },
+  {
+   "source": "ALA",
+   "label": "state Insects",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 4112429
+  },
+  {
+   "source": "ALA",
+   "label": "state Molluscs",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 521887
+  },
+  {
+   "source": "ALA",
+   "label": "state Crustaceans",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 186389
+  },
+  {
+   "source": "ALA",
+   "label": "state Plants",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 9549375
+  },
+  {
+   "source": "ALA",
+   "label": "state Fungi",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=stateProvince&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 793841
+  },
+  {
+   "source": "ALA",
+   "label": "state-month New South Wales",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22New+South+Wales%22",
+   "totalRecords": 25848650
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Victoria",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Victoria%22",
+   "totalRecords": 21087588
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Queensland",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Queensland%22",
+   "totalRecords": 20127421
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Western Australia",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Western+Australia%22",
+   "totalRecords": 6689933
+  },
+  {
+   "source": "ALA",
+   "label": "state-month South Australia",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22South+Australia%22",
+   "totalRecords": 5109810
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Tasmania",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Tasmania%22",
+   "totalRecords": 3279873
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Northern Territory",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Northern+Territory%22",
+   "totalRecords": 3201100
+  },
+  {
+   "source": "ALA",
+   "label": "state-month Australian Capital Territory",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=stateProvince%3A%22Australian+Capital+Territory%22",
+   "totalRecords": 3497535
+  },
+  {
+   "source": "ALA",
+   "label": "grid All wildlife",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 89590096
+  },
+  {
+   "source": "ALA",
+   "label": "grid Birds",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 66005878
+  },
+  {
+   "source": "ALA",
+   "label": "grid Mammals",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 3332365
+  },
+  {
+   "source": "ALA",
+   "label": "grid Reptiles",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 794403
+  },
+  {
+   "source": "ALA",
+   "label": "grid Amphibians",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1502849
+  },
+  {
+   "source": "ALA",
+   "label": "grid Fishes",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 1228778
+  },
+  {
+   "source": "ALA",
+   "label": "grid Insects",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 4112429
+  },
+  {
+   "source": "ALA",
+   "label": "grid Molluscs",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 521887
+  },
+  {
+   "source": "ALA",
+   "label": "grid Crustaceans",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 186389
+  },
+  {
+   "source": "ALA",
+   "label": "grid Plants",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 9549375
+  },
+  {
+   "source": "ALA",
+   "label": "grid Fungi",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 793841
+  },
+  {
+   "source": "ALA",
+   "label": "months available",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=month&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D",
+   "totalRecords": 89590096
+  },
+  {
+   "source": "ALA",
+   "label": "grid month January",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%221%22",
+   "totalRecords": 8041598
+  },
+  {
+   "source": "ALA",
+   "label": "grid month February",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%222%22",
+   "totalRecords": 6282510
+  },
+  {
+   "source": "ALA",
+   "label": "grid month March",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%223%22",
+   "totalRecords": 6804520
+  },
+  {
+   "source": "ALA",
+   "label": "grid month April",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%224%22",
+   "totalRecords": 7112822
+  },
+  {
+   "source": "ALA",
+   "label": "grid month May",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%225%22",
+   "totalRecords": 6569447
+  },
+  {
+   "source": "ALA",
+   "label": "grid month June",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%226%22",
+   "totalRecords": 6162887
+  },
+  {
+   "source": "ALA",
+   "label": "grid month July",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%227%22",
+   "totalRecords": 6593598
+  },
+  {
+   "source": "ALA",
+   "label": "grid month August",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%228%22",
+   "totalRecords": 7400751
+  },
+  {
+   "source": "ALA",
+   "label": "grid month September",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%229%22",
+   "totalRecords": 8263499
+  },
+  {
+   "source": "ALA",
+   "label": "grid month October",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%2210%22",
+   "totalRecords": 10031452
+  },
+  {
+   "source": "ALA",
+   "label": "grid month November",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%2211%22",
+   "totalRecords": 8626625
+  },
+  {
+   "source": "ALA",
+   "label": "grid month December",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=month%3A%2212%22",
+   "totalRecords": 7137471
+  },
+  {
+   "source": "ALA",
+   "label": "grid month Not supplied",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=-1&facets=point-1&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=-month%3A%2A",
+   "totalRecords": 562916
+  },
+  {
+   "source": "ALA",
+   "label": "resource All wildlife",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 84384590
+  },
+  {
+   "source": "ALA",
+   "label": "resource Birds",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 65006058
+  },
+  {
+   "source": "ALA",
+   "label": "resource Mammals",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 2452227
+  },
+  {
+   "source": "ALA",
+   "label": "resource Reptiles",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 624991
+  },
+  {
+   "source": "ALA",
+   "label": "resource Amphibians",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 248770
+  },
+  {
+   "source": "ALA",
+   "label": "resource Fishes",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 800113
+  },
+  {
+   "source": "ALA",
+   "label": "resource Insects",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 3539521
+  },
+  {
+   "source": "ALA",
+   "label": "resource Molluscs",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 471395
+  },
+  {
+   "source": "ALA",
+   "label": "resource Crustaceans",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 126123
+  },
+  {
+   "source": "ALA",
+   "label": "resource Plants",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 9181177
+  },
+  {
+   "source": "ALA",
+   "label": "resource Fungi",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrences/search?q=%2A%3A%2A&pageSize=0&facet=true&flimit=25&facets=dataResourceName&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B2016+TO+2025%5D&fq=basisOfRecord%3AHUMAN_OBSERVATION",
+   "totalRecords": 743760
+  },
+  {
+   "source": "ALA",
+   "label": "species All wildlife all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU"
+  },
+  {
+   "source": "ALA",
+   "label": "species All wildlife recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Birds all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Birds recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Birds%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Mammals all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Mammals recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Mammals%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Reptiles all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Reptiles recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Reptiles%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Amphibians all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Amphibians recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Amphibians%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Fishes all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Fishes recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fishes%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Insects all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Insects recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Insects%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Molluscs all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Molluscs recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Molluscs%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Crustaceans all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Crustaceans recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Crustaceans%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Plants all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Plants recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Plants%22&fq=year%3A%5B2016+TO+2025%5D"
+  },
+  {
+   "source": "ALA",
+   "label": "species Fungi all_years",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22"
+  },
+  {
+   "source": "ALA",
+   "label": "species Fungi recent",
+   "url": "https://biocache-ws.ala.org.au/ws/occurrence/facets?q=%2A%3A%2A&facets=speciesID&flimit=0&fq=countryCode%3AAU&fq=speciesGroup%3A%22Fungi%22&fq=year%3A%5B2016+TO+2025%5D"
+  }
+ ]
+}

@@ -1,0 +1,276 @@
+group,data_resource,records
+All wildlife,eBird Australia,52341432
+All wildlife,iNaturalist Australia,11319491
+All wildlife,"BirdLife Australia, Birdata",8300522
+All wildlife,NSW BioNet Atlas,6503936
+All wildlife,Victorian Biodiversity Atlas,967312
+All wildlife,SA Fauna,774424
+All wildlife,NSW Biosecurity Information System - Weeds,482675
+All wildlife,Earth Guardians Weekly Feed,389238
+All wildlife,SA Flora,388289
+All wildlife,NatureMapr,343459
+All wildlife,Fauna Atlas N.T.,282277
+All wildlife,Garden Bird Surveys,273268
+All wildlife,Flora Atlas N.T.,233317
+All wildlife,"Four Decades of Seagrass Spatial Data from Torres Strait and Gulf of Carpentaria, Australia (1986-2022)",214864
+All wildlife,"Collation of spatial seagrass data (meadow extent polygons, species presence/absence points) from 1984 - 2018 for the Great Barrier Reef World Heritage Area (GBRWHA) (NESP TWQ Project 3.2.1 and 5.4, TropWATER, James Cook University)",152841
+All wildlife,AWC Ecological Monitoring Surveys,151794
+All wildlife,ACT Wildlife Atlas,124896
+All wildlife,ALA species sightings and OzAtlas,90871
+All wildlife,Reef Life Survey: Global reef fish dataset,88796
+All wildlife,"BRUVS data from Southwest Corner Marine Park, Western Australia (2020-2023)",43049
+All wildlife,"Benthic habitats of Yanyuwa Sea Country, Barni - Wardimantha Awara Indigenous Protected Area, Gulf of Carpentaria, Northern Territory, Australia (NESP MaC Project 1.12, JCU & CDU)",42224
+All wildlife,Butterflies Australia,40938
+All wildlife,"Catch composition and measurement records from trawling, RV Investigator voyage IN2017_V05, North West Shelf, Australia (2017)",40831
+All wildlife,"Observation.org, Nature data from around the World",36396
+All wildlife,Pl@ntNet automatically identified occurrences,34472
+Birds,eBird Australia,52215363
+Birds,"BirdLife Australia, Birdata",8300518
+Birds,NSW BioNet Atlas,1744221
+Birds,iNaturalist Australia,1643115
+Birds,SA Fauna,297583
+Birds,Garden Bird Surveys,273268
+Birds,Earth Guardians Weekly Feed,129672
+Birds,AWC Ecological Monitoring Surveys,92242
+Birds,Fauna Atlas N.T.,86584
+Birds,NatureMapr,55034
+Birds,"Observation.org, Nature data from around the World",33354
+Birds,ALA species sightings and OzAtlas,24744
+Birds,PAE Bird Monitoring Project,24610
+Birds,Wildlife Watch NSC,13493
+Birds,Xeno-canto - Bird sounds from around the world,9917
+Birds,Eyre Peninsula's Bird Monitoring Program,9523
+Birds,ACT Wildlife Atlas,8140
+Birds,WCPS Bird Survey Project,5854
+Birds,"RV Investigator Voyage IN2016_V01 Seabird Observations, Australia (2016)",5332
+Birds,Australian Waterbird Surveys (1983-2018),3544
+Birds,Birda - Global Observation Dataset,3475
+Birds,Superb Parrot Monitoring project,2607
+Birds,Entangled Wildlife Australia,2373
+Birds,"Breeding success of Red-tailed Tropicbirds (Phaethon rubricauda), Raine Island, Great Barrier Reef, Australia (2008-2021)",2369
+Birds,"NESP A12: Northern Australia threatened species, Australia (1905-2020)",2230
+Mammals,NSW BioNet Atlas,1600983
+Mammals,SA Fauna,340860
+Mammals,iNaturalist Australia,242907
+Mammals,Fauna Atlas N.T.,134767
+Mammals,AWC Ecological Monitoring Surveys,35300
+Mammals,NatureMapr,13843
+Mammals,Echidna-CSI,12626
+Mammals,Happywhale - Humpback whale in South Pacific Ocean,11793
+Mammals,Earth Guardians Weekly Feed,10443
+Mammals,City of Gold Coast Koala Sightings,8272
+Mammals,ALA species sightings and OzAtlas,5998
+Mammals,Redlands Coast Koala Watch,4203
+Mammals,ACT Wildlife Atlas,3905
+Mammals,cPlatypus,3280
+Mammals,Entangled Wildlife Australia,2264
+Mammals,Happywhale - Humpback whale in Indian Ocean,2232
+Mammals,Koala Count,1909
+Mammals,Tweed Koala Sightings,1746
+Mammals,"Koala Mapping Mackay, Whitsundays & Central Queensland Areas",1527
+Mammals,Great Koala Count 2,1507
+Mammals,"NESP A12: Northern Australia threatened species, Australia (1905-2020)",1345
+Mammals,Geelong Field Naturalists Club,1240
+Mammals,OWAD Environment detection dogs Koala records,1130
+Mammals,Wildlife Road Tolls,974
+Mammals,James Cook University - Dugong Aerial Survey,932
+Reptiles,iNaturalist Australia,257632
+Reptiles,NSW BioNet Atlas,190179
+Reptiles,SA Fauna,49681
+Reptiles,Fauna Atlas N.T.,42935
+Reptiles,TurtleSAT,29126
+Reptiles,AWC Ecological Monitoring Surveys,15549
+Reptiles,Earth Guardians Weekly Feed,15018
+Reptiles,NatureMapr,7556
+Reptiles,ACT Wildlife Atlas,5784
+Reptiles,ALA species sightings and OzAtlas,3667
+Reptiles,"Dugong (Dugong dugon) in the Kimberley - Aerial surveys, WAMSI Project 1.2.5, Australia (2009-2017)",2742
+Reptiles,Northern Territory WildWatch,903
+Reptiles,"NESP A12: Northern Australia threatened species, Australia (1905-2020)",748
+Reptiles,Team Turtle CQ,622
+Reptiles,Geelong Field Naturalists Club,584
+Reptiles,Entangled Wildlife Australia,569
+Reptiles,DCEG Agnes Water Turtle Monitoring,544
+Reptiles,Wildlife Watch NSC,302
+Reptiles,"Observation.org, Nature data from around the World",231
+Reptiles,SRF-West Project Fauna Record,177
+Reptiles,IMOS - Animal Tracking Facility - Acoustic Tracking - Quality Controlled Detections (2007 -2021),83
+Reptiles,Reef Life Survey: Global reef fish dataset,66
+Reptiles,NatureShare,62
+Reptiles,Wairambar Rainforest Species List,38
+Reptiles,"Catch composition and measurement records from trawling, RV Investigator voyage IN2017_V05, North West Shelf, Australia (2017)",36
+Amphibians,iNaturalist Australia,104174
+Amphibians,NSW BioNet Atlas,89336
+Amphibians,Fauna Atlas N.T.,16632
+Amphibians,FrogWatch SA,13291
+Amphibians,AWC Ecological Monitoring Surveys,8394
+Amphibians,Earth Guardians Weekly Feed,5542
+Amphibians,SA Fauna,5485
+Amphibians,NatureMapr,1957
+Amphibians,Sunshine Coast Annual Frog and Toad Field Survey,1208
+Amphibians,ALA species sightings and OzAtlas,931
+Amphibians,NSW Green and Golden Bell Frog Surveys,771
+Amphibians,Melbourne Water Frog Census,375
+Amphibians,Geelong Field Naturalists Club,250
+Amphibians,ACT Wildlife Atlas,153
+Amphibians,Wildlife Watch NSC,99
+Amphibians,"Observation.org, Nature data from around the World",40
+Amphibians,Northern Territory WildWatch,39
+Amphibians,NatureShare,27
+Amphibians,Sloane's Champions: helping a Thurgoona local,23
+Amphibians,Wairambar Rainforest Species List,12
+Amphibians,Greendale Creek and Curl Curl Lagoon Bird Survey 2017 to 2019,7
+Amphibians,Green and Golden Bell Frogs in the New South Wales Central Coast Region,5
+Amphibians,"BirdLife Australia, Birdata",4
+Amphibians,Logan City Council Species Sightings,4
+Amphibians,Advanced Ecological Knowledge and Observation System,3
+Fishes,iNaturalist Australia,401705
+Fishes,Reef Life Survey: Global reef fish dataset,88593
+Fishes,SA Fauna,61586
+Fishes,"BRUVS data from Southwest Corner Marine Park, Western Australia (2020-2023)",43046
+Fishes,"Catch composition and measurement records from trawling, RV Investigator voyage IN2017_V05, North West Shelf, Australia (2017)",39950
+Fishes,"Stereo-BRUVs and BOSS observations in the Ningaloo Marine Park, Western Australia (2021-2022)",20783
+Fishes,"BRUVS observations at Ningaloo Marine Park, Western Australia (2019)",20665
+Fishes,"Australian Institute of Marine Science (AIMS) Long-term Monitoring Program: Visual Census Fish Data (Great Barrier Reef), Australia (1992 to present)",18299
+Fishes,ReefWatch,14585
+Fishes,"Stereo BRUV sampling of Freycinet  Australian Marine Park and nearby Trap reef and Governor Island Marine Reserve, Tasmania, Australia (2016 and 2021)",14435
+Fishes,Reef Life Survey: Cryptic Fish,11464
+Fishes,"Fish monitoring of the shelf region of the Huon Australian Marine Park, Tasmania, Australia (2021)",9693
+Fishes,"Fish and invertebrate communities show greater day and night partitioning on tropical than temperate reefs from visual census surveys, Australia (2020-2023)",7486
+Fishes,NSW BioNet Atlas,7297
+Fishes,"South Coast Tasmania BRUVS data, Australia (2014, 2015 and 2021)",5311
+Fishes,"BRUVS data from Elizabeth and Middleton Reefs, Tasman Sea, Australia (2020)",4892
+Fishes,Earth Guardians Weekly Feed,4374
+Fishes,"BRUV data from the Beagle Australian Marine Park, Bass Strait, Australia (2018)",3999
+Fishes,"Hunter CMR - Cross shelf comparison BRUVS data, New South Wales, Australia (2014-2018)",3784
+Fishes,Ashmore Reef Marine Park Environmental Assessment 2019 - marine fauna survey,2984
+Fishes,"Hoplostethus atlanticus (Orange Roughy) length weight data, Australian waters (1987-2012)",2107
+Fishes,IMOS - Animal Tracking Facility - Acoustic Tracking - Quality Controlled Detections (2007 -2021),1774
+Fishes,Feral or in Peril,1328
+Fishes,"Stereo BRUVS survey of the Money Shoal and Pillar Bank, Arafura Marine Park, Australia (2020)",1138
+Fishes,Data from: Overwintering tropical herbivores accelerate detritus production on temperate reefs (2019),966
+Insects,iNaturalist Australia,3162019
+Insects,NatureMapr,119911
+Insects,Earth Guardians Weekly Feed,109432
+Insects,Butterflies Australia,40645
+Insects,NSW BioNet Atlas,26581
+Insects,SA Fauna,15649
+Insects,ALA species sightings and OzAtlas,12102
+Insects,North East Dung Beetle Project,7260
+Insects,Southern ACT Catchment - Upper Murrumbidgee Waterwatch,7150
+Insects,Molonglo Conservation Group - Upper Murrumbidgee Waterwatch,6182
+Insects,Cooma Region - Upper Murrumbidgee Waterwatch,5676
+Insects,Ginninderra Catchment - Upper Murrumbidgee Waterwatch,4059
+Insects,Sunshine Coast's Big Butterfly Count,3870
+Insects,Brisbane’s Big Butterfly Count,2851
+Insects,NatureShare,1988
+Insects,Geelong Field Naturalists Club,1734
+Insects,Wildlife Watch NSC,1703
+Insects,Charles Darwin University Dragonfly Observations,1331
+Insects,Yass Region - Upper Murrumbidgee Waterwatch,1331
+Insects,Waterbug Census,1111
+Insects,River Murray Phytoplankton Monitoring,1082
+Insects,ACT Wildlife Atlas,1070
+Insects,Zoos Victoria Moth Tracker,904
+Insects,"Gene Flow Between Populations With Highly Divergent Mitogenomes in the Australian Stingless Bee, Tetragonula hockingsi (Appendix S1)",798
+Insects,"Observation.org, Nature data from around the World",677
+Molluscs,iNaturalist Australia,357420
+Molluscs,Victorian Biodiversity Atlas,89818
+Molluscs,Earth Guardians Weekly Feed,6514
+Molluscs,Sea Slug Survey Gold Coast,3850
+Molluscs,NSW BioNet Atlas,2359
+Molluscs,Southern ACT Catchment - Upper Murrumbidgee Waterwatch,1300
+Molluscs,NatureMapr,1253
+Molluscs,Molonglo Conservation Group - Upper Murrumbidgee Waterwatch,1124
+Molluscs,IMOS National Reference Station (NRS) - Zooplankton Abundance,1101
+Molluscs,Cooma Region - Upper Murrumbidgee Waterwatch,1032
+Molluscs,"Catch composition and measurement records from trawling, RV Investigator voyage IN2017_V05, North West Shelf, Australia (2017)",819
+Molluscs,SA Fauna,786
+Molluscs,Ginninderra Catchment - Upper Murrumbidgee Waterwatch,738
+Molluscs,ALA species sightings and OzAtlas,682
+Molluscs,"Fish and invertebrate communities show greater day and night partitioning on tropical than temperate reefs from visual census surveys, Australia (2020-2023)",432
+Molluscs,Feral or in Peril,423
+Molluscs,Yass Region - Upper Murrumbidgee Waterwatch,242
+Molluscs,"Cephalopod specimens from RV Investigator voyage IN2017_v04, Tasman Sea, Australia (2017)",207
+Molluscs,Rocky Shore Citizen Science,168
+Molluscs,Fauna Atlas N.T.,133
+Molluscs,Reef Life Survey: Global reef fish dataset,124
+Molluscs,Waterbug Census,123
+Molluscs,Ashmore Reef Marine Park Environmental Assessment 2019 - marine fauna survey,91
+Molluscs,Wingecarribee Shire Council Macroinvertebrate Sampling,73
+Molluscs,"Fish monitoring of the shelf region of the Huon Australian Marine Park, Tasmania, Australia (2021)",66
+Crustaceans,iNaturalist Australia,84821
+Crustaceans,"Fine-scale variability in catch and growth rates of western rock lobsters (Panulirus cygnus), Western Australia (2017-2019)",13902
+Crustaceans,Southern ACT Catchment - Upper Murrumbidgee Waterwatch,4550
+Crustaceans,Molonglo Conservation Group - Upper Murrumbidgee Waterwatch,3934
+Crustaceans,Earth Guardians Weekly Feed,3710
+Crustaceans,Cooma Region - Upper Murrumbidgee Waterwatch,3612
+Crustaceans,Ginninderra Catchment - Upper Murrumbidgee Waterwatch,2583
+Crustaceans,NSW BioNet Atlas,2066
+Crustaceans,IMOS National Reference Station (NRS) - Zooplankton Abundance,1592
+Crustaceans,SA Fauna,1082
+Crustaceans,Yass Region - Upper Murrumbidgee Waterwatch,847
+Crustaceans,"Fish monitoring of the shelf region of the Huon Australian Marine Park, Tasmania, Australia (2021)",652
+Crustaceans,"South Coast Tasmania BRUVS data, Australia (2014, 2015 and 2021)",531
+Crustaceans,NatureMapr,403
+Crustaceans,"Fish and invertebrate communities show greater day and night partitioning on tropical than temperate reefs from visual census surveys, Australia (2020-2023)",301
+Crustaceans,"Krill along the 110E meridian: Oceanographic influences on assemblages in the eastern Indian Ocean, RV Investigator voyage IN2019_V03 (2019)",290
+Crustaceans,ALA species sightings and OzAtlas,269
+Crustaceans,"Stereo BRUV sampling of Freycinet  Australian Marine Park and nearby Trap reef and Governor Island Marine Reserve, Tasmania, Australia (2016 and 2021)",151
+Crustaceans,Feral or in Peril,142
+Crustaceans,"Great Australian Bight Research Program, Australia (2015-2017)",126
+Crustaceans,Waterbug Census,99
+Crustaceans,IBSA Surveys from Bennelongia Environmental Consultants,83
+Crustaceans,"Zooplankton samples from Heron net trawls along the 110E meridian, eastern Indian Ocean, RV Investigator voyage IN2019_V03 (2019)",70
+Crustaceans,Upper Murrumbidgee Waterwatch,58
+Crustaceans,Rocky Shore Citizen Science,54
+Plants,iNaturalist Australia,3631050
+Plants,NSW BioNet Atlas,2723417
+Plants,Victorian Biodiversity Atlas,864069
+Plants,NSW Biosecurity Information System - Weeds,473543
+Plants,SA Flora,388057
+Plants,Flora Atlas N.T.,232738
+Plants,"Four Decades of Seagrass Spatial Data from Torres Strait and Gulf of Carpentaria, Australia (1986-2022)",214864
+Plants,"Collation of spatial seagrass data (meadow extent polygons, species presence/absence points) from 1984 - 2018 for the Great Barrier Reef World Heritage Area (GBRWHA) (NESP TWQ Project 3.2.1 and 5.4, TropWATER, James Cook University)",152841
+Plants,NatureMapr,113891
+Plants,ACT Wildlife Atlas,105617
+Plants,"Benthic habitats of Yanyuwa Sea Country, Barni - Wardimantha Awara Indigenous Protected Area, Gulf of Carpentaria, Northern Territory, Australia (NESP MaC Project 1.12, JCU & CDU)",42224
+Plants,Earth Guardians Weekly Feed,41504
+Plants,Pl@ntNet automatically identified occurrences,34472
+Plants,ALA species sightings and OzAtlas,33075
+Plants,"Benthic habitats of Marra Sea Country - Gulf of Carpentaria, Australia (2021)",27025
+Plants,South-West Arum Lily Blitz,16813
+Plants,Northern Rivers Koala Habitat Restoration Project,15770
+Plants,Dandjoo,13991
+Plants,Myrtle Rust Surveys of Eastern Australia,6902
+Plants,NSW Flying-Fox Habitat Restoration Program,5475
+Plants,River Murray Phytoplankton Monitoring,5447
+Plants,Richmond River - Riparian Restoration,4419
+Plants,WeedScan,3709
+Plants,Northern Rivers 2022 Flood Assessments,3640
+Plants,NE NSW Grey-headed Flying-fox Habitat Restoration Project,3596
+Fungi,iNaturalist Australia,694137
+Fungi,Earth Guardians Weekly Feed,17126
+Fungi,NatureMapr,9296
+Fungi,Fungimap,8205
+Fungi,Myrtle Rust Surveys of Eastern Australia,5579
+Fungi,ALA species sightings and OzAtlas,3658
+Fungi,Victorian Biodiversity Atlas,2888
+Fungi,NSW BioNet Atlas,1979
+Fungi,NatureShare,240
+Fungi,Edith Cowan University - Robert Brown Herbarium,202
+Fungi,Lost fungi Australia,178
+Fungi,SA Flora,96
+Fungi,Macrofungi Hotspotting,39
+Fungi,Michael Barkla's Observations,30
+Fungi,City of Kalamunda Biodiversity Inventory,20
+Fungi,Bridal creeper biocontrol,17
+Fungi,"Observation.org, Nature data from around the World",11
+Fungi,IMOS National Reference Station (NRS) - Zooplankton Abundance,9
+Fungi,Wairambar Rainforest Species List,9
+Fungi,Wildlife Watch NSC,9
+Fungi,Blackberry biocontrol,6
+Fungi,Entangled Wildlife Australia,6
+Fungi,Nature of Eyre Peninsula BioBlitz,6
+Fungi,Biodiversity monitoring in Brunswick Valley Heritage Park Mullumbimby,4
+Fungi,Slender thistle biocontrol ,4

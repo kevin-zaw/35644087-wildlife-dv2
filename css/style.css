@@ -20,7 +20,7 @@
   --records: #127a74;    /* teal: frog records */
   --people: #b8610f;     /* orange: people and their recordings */
   --species: #5a3d91;    /* purple: species */
-  --toad: #c0262d;       /* red: the introduced cane toad */
+  --toad: #2a2a2a;    /* charcoal: the introduced cane toad (never red beside green) */
   /* type */
   --display: "Young Serif", "Georgia", serif;
   --body: "Literata", "Georgia", "Times New Roman", serif;
@@ -130,6 +130,9 @@ figcaption {
 .key li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: center; }
 .sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
 
+/* section tag for the FrogID spotlight */
+.tag { display: inline-block; font-family: var(--sans); font-size: 13px; font-weight: 700; color: #ffffff; background: var(--people); border-radius: 3px; padding: 2px 8px; margin-bottom: 8px; }
+
 /* controls */
 .controls { font-family: var(--sans); font-size: 15px; display: flex; gap: 12px; align-items: center; margin: 4px 0 10px; }
 button.play {
@@ -165,6 +168,28 @@ a { color: var(--records); text-underline-offset: 2px; }
 .vega-embed summary { opacity: 0.35; }
 .vega-embed:hover summary { opacity: 1; }
 
+
+/* ---------- line length: at most about 10 words per line (unit typography guidance) ---------- */
+body { font-size: 20px; line-height: 1.6; }
+.prose { max-width: 25em; }
+.hero p, .hero-intro p { max-width: 24em; }
+.hero .dek { font-size: 22px; max-width: 19em; }
+.part-head p { max-width: 25em; font-size: 20px; }
+.wide-head { grid-template-columns: minmax(0, 25em) minmax(300px, 400px); justify-content: space-between; gap: 48px; }
+.read { font-size: 16px; max-width: 26em; }
+figcaption { font-size: 14px; max-width: 30em; }
+.intro-grid { grid-template-columns: minmax(0, 25em) minmax(300px, 420px); justify-content: space-between; }
+.key { font-size: 16px; }
+.key li span { max-width: 24em; }
+.steps li { font-size: 16px; }
+.byline span { display: block; }
+.facts span:last-child { max-width: 16em; }
+.close-grid { grid-template-columns: minmax(0, 25em) minmax(320px, 460px); justify-content: space-between; }
+footer { font-size: 15px; }
+.foot-grid { grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+footer li, footer p { max-width: 24em; }
+.spotlight { grid-template-columns: minmax(0, 25em) minmax(280px, 400px); justify-content: space-between; }
+
 /* ---------- smaller screens ---------- */
 @media (max-width: 1100px) {
   .hero-head, .spotlight, .hero-grid, .side, .side.flip, .wide-head, .intro-grid, .close-grid, .foot-grid { grid-template-columns: 1fr; }
@@ -172,3 +197,36 @@ a { color: var(--records); text-underline-offset: 2px; }
   .part-head { grid-template-columns: 1fr; gap: 4px; }
   .chart { overflow-x: auto; }
 }
+
+/* ---------- line length, second pass ---------- */
+.prose { max-width: 23em; }
+.hero p, .hero-intro p { max-width: 22.5em; }
+.part-head p { max-width: 23em; }
+.read { max-width: 21em; }
+figcaption { max-width: 25em; }
+.key li span { max-width: 21em; }
+footer li, footer p { max-width: 21em; }
+.facts span:last-child { max-width: 14em; }
+.read { max-width: 19em; }
+figcaption { max-width: 22em; }
+
+/* part introductions: title on the left, introduction on the right (no empty band) */
+.part-head { grid-template-columns: 90px minmax(0, 1fr); }
+.part-head > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 23em); gap: 48px; align-items: start; }
+.part-head > div h2 { margin-top: 6px; }
+@media (max-width: 1100px) { .part-head > div { grid-template-columns: 1fr; gap: 8px; } }
+
+/* section labels for the introduction and conclusion, contents list */
+.part-no.label { font-size: 26px; padding-top: 10px; color: #9fb0a9; }
+.intro-part { border-top: none; padding-top: 48px; }
+.toc-title { font-family: var(--sans); font-size: 16px; font-weight: 700; margin: 26px 0 8px; }
+.toc { font-family: var(--sans); font-size: 16px; line-height: 1.5; margin: 0; padding-left: 22px; }
+.toc li { margin-bottom: 4px; }
+.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.toc a:hover { border-bottom-color: var(--records); }
+.conclusion { background: #e9efeb; border-top: 1px solid var(--rule); padding-bottom: 56px; margin-top: 24px; }
+footer { margin-top: 0; }
+
+/* readable section numbers and labels (large-text contrast at least 3:1) */
+.part-no { color: #6f817a; }
+.part-no.label { color: #5b6b65; }

@@ -1,0 +1,9 @@
+name,records,state_code,population,per_100k_year,record_share,pop_share,diff,label_lon,label_lat
+New South Wales,25848650,NSW,8339000,30997,29.1,31.3,-2.2,146.6,-32.4
+Victoria,21087588,Vic.,6812000,30957,23.7,25.6,-1.9,143.4,-36.9
+Queensland,20127421,Qld,5459000,36870,22.7,20.5,2.2,144.6,-23.0
+Western Australia,6689933,WA,2879000,23237,7.5,10.8,-3.3,122.4,-26.0
+South Australia,5109810,SA,1852000,27591,5.8,7.0,-1.2,135.2,-29.8
+Australian Capital Territory,3497535,ACT,467000,74894,3.9,1.8,2.1,153.6,-36.6
+Tasmania,3279873,Tas.,573000,57240,3.7,2.2,1.5,149.6,-42.4
+Northern Territory,3201100,NT,252000,127028,3.6,0.9,2.7,133.4,-19.6

@@ -1,0 +1,50 @@
+Wildlife data download for FIT3179 DV2, 2026-10-27T05:54:46
+Source: Atlas of Living Australia biocache web service
+Years for recent tables: 2016-2025
+Queries sent: 133  (answered from cache: 1)
+Failures: 0
+
+groups.csv                    22 rows
+basis_by_group.csv            97 rows
+year_by_group.csv           1645 rows
+month_by_group.csv           143 rows
+state_by_group.csv           155 rows
+state_by_month.csv           104 rows
+grid1_by_group.csv         10148 rows
+grid1_by_month.csv         12062 rows
+resource_by_group.csv        275 rows
+species_by_group.csv          11 rows
+
+--- first lines of groups.csv ---
+group,records_all_years,records_2016_2025,human_observations_2016_2025,fq
+Algae,1472761,112723,96257,"speciesGroup:""Algae"""
+Amphibians,2154596,1502849,248770,"speciesGroup:""Amphibians"""
+Animals,144196439,78868970,74186162,"speciesGroup:""Animals"""
+Arthropods,11619753,5045929,4255986,"speciesGroup:""Arthropods"""
+Bacteria,408038,11902,7783,"speciesGroup:""Bacteria"""
+Birds,112024236,66005878,65006058,"speciesGroup:""Birds"""
+Bryophytes,426646,91785,81440,"speciesGroup:""Bryophytes"""
+Chromista,937337,75289,62182,"speciesGroup:""Chromista"""
+"Conifers, Cycads",164220,47292,44940,"speciesGroup:""Conifers, Cycads"""
+Crustaceans,752130,186389,126123,"speciesGroup:""Crustaceans"""
+Dicots,20766400,6453299,6180065,"speciesGroup:""Dicots"""
+Ferns and allies,759976,221370,215119,"speciesGroup:""Ferns and allies"""
+Fishes,6180535,1228778,800113,"speciesGroup:""Fishes"""
+Flowering plants,29821587,9112900,8766987,"speciesGroup:""Flowering plants"""
+
+--- first lines of month_by_group.csv ---
+group,month,records
+All wildlife,January,8041598
+All wildlife,February,6282510
+All wildlife,March,6804520
+All wildlife,April,7112822
+All wildlife,May,6569447
+All wildlife,June,6162887
+All wildlife,July,6593598
+All wildlife,August,7400751
+All wildlife,September,8263499
+All wildlife,October,10031452
+All wildlife,November,8626625
+All wildlife,December,7137471
+All wildlife,Not supplied,562916
+Birds,January,6229027

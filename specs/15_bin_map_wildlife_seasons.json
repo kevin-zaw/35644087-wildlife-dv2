@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bin map with a month slider. For each 1-degree square with at least 2,000 records (2016–2025), colour compares the records made in the chosen month with the square's typical month (1 = an average month). Teal: busier than usual; brown: quieter. Albers equal-area conic projection. Source: Atlas of Living Australia.",
+  "width": 640,
+  "height": 540,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "params": [
+    {
+      "name": "mon",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "name": "Month (Jan = 1, Dec = 12)  "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceeeb",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/ala/season_cells.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties.cell + '|' + mon",
+          "as": "key"
+        },
+        {
+          "lookup": "key",
+          "from": {
+            "data": {
+              "url": "data/ala/cell_month_index.csv",
+              "format": {
+                "parse": {
+                  "index": "number",
+                  "records": "number",
+                  "m": "number"
+                }
+              }
+            },
+            "key": "key",
+            "fields": [
+              "index",
+              "records"
+            ]
+          }
+        },
+        {
+          "filter": "isValid(datum.index)"
+        },
+        {
+          "calculate": "datum.index < 0.5 ? 'Less than half a typical month' : datum.index < 0.8 ? 'Quieter (0.5–0.8×)' : datum.index < 1.25 ? 'About usual (0.8–1.25×)' : datum.index < 2 ? 'Busier (1.25–2×)' : 'More than twice a typical month'",
+          "as": "cls"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.4
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "ordinal",
+          "title": "Records this month vs the square’s typical month",
+          "scale": {
+            "domain": [
+              "Less than half a typical month",
+              "Quieter (0.5–0.8×)",
+              "About usual (0.8–1.25×)",
+              "Busier (1.25–2×)",
+              "More than twice a typical month",
+              "Too few records to show"
+            ],
+            "range": [
+              "#8c510a",
+              "#d8b365",
+              "#ece6d6",
+              "#5ab4ac",
+              "#01665e",
+              "#eceeeb"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 3,
+            "symbolType": "square",
+            "symbolSize": 150,
+            "titleOrient": "top",
+            "titleLimit": 400,
+            "labelLimit": 240,
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.name",
+            "title": "Square centred on"
+          },
+          {
+            "field": "index",
+            "title": "This month vs typical month",
+            "format": ".2f"
+          },
+          {
+            "field": "records",
+            "title": "Records in this month, 2016–2025",
+            "format": ","
+          },
+          {
+            "field": "properties.total",
+            "title": "Records in all months",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81
+          },
+          {
+            "city": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47
+          },
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93
+          },
+          {
+            "city": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46
+          },
+          {
+            "city": "Cairns",
+            "lon": 145.77,
+            "lat": -16.92
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 18,
+            "fill": "#1b2b26",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#ffffff",
+            "align": "left",
+            "dx": 6,
+            "dy": -6,
+            "stroke": "#ffffff",
+            "strokeWidth": 3.5,
+            "strokeOpacity": 0.95
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1b2b26",
+            "align": "left",
+            "dx": 6,
+            "dy": -6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": {
+      "expr": "['January','February','March','April','May','June','July','August','September','October','November','December'][mon - 1]"
+    },
+    "subtitle": {
+      "expr": "mon <= 3 ? 'Wet season: the tropical north is much quieter than usual.' : (mon >= 6 && mon <= 8) ? 'Dry season: the tropical north is busier than usual.' : (mon >= 10 && mon <= 11) ? 'Spring: the south is busier than usual.' : 'A transition month: most squares are close to usual.'"
+    },
+    "anchor": "start",
+    "fontSize": 17,
+    "subtitleFontSize": 13,
+    "subtitleFontStyle": "italic",
+    "subtitleColor": "#4a3a1a"
+  }
+}

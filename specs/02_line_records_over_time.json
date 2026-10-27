@@ -138,14 +138,6 @@
       }
     },
     {
-      "transform": [
-        {
-          "filter": {
-            "param": "snapHover",
-            "empty": false
-          }
-        }
-      ],
       "mark": {
         "type": "rule",
         "color": "#1b2b26",
@@ -158,6 +150,14 @@
         "x": {
           "field": "snapshot",
           "type": "temporal"
+        },
+        "opacity": {
+          "condition": {
+            "param": "snapHover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
         }
       }
     },
@@ -199,7 +199,7 @@
             "type": "text",
             "align": "left",
             "dx": 4,
-            "fontSize": 11.5,
+            "fontSize": 12,
             "fontStyle": "italic",
             "color": "#4a5a54"
           },
@@ -225,7 +225,7 @@
         "values": [
           {
             "d": "2007-12-19",
-            "v": 2.6,
+            "v": 24,
             "t": "Dec 2007: 2.6 million"
           }
         ]
@@ -236,7 +236,7 @@
         "fontWeight": 700,
         "color": "#0b4f4c",
         "align": "left",
-        "dy": -12,
+        "dy": 0,
         "dx": 0
       },
       "encoding": {
@@ -305,7 +305,7 @@
         "type": "text",
         "align": "right",
         "dx": -8,
-        "fontSize": 11,
+        "fontSize": 12,
         "fontStyle": "italic",
         "color": "#4a5a54",
         "lineHeight": 13

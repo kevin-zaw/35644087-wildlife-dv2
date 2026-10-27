@@ -1,0 +1,264 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked area chart. Sightings (records the ALA classes as human observations) of Australian wildlife per year, 1990–2024, by group. 2025 is left out because its records are still being added. Source: Atlas of Living Australia, downloaded 27 October 2026.",
+  "width": 620,
+  "height": 360,
+  "data": {
+    "url": "data/ala/public_sightings_by_year.csv",
+    "format": {
+      "parse": {
+        "year": "number",
+        "records": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.records/1e6",
+      "as": "millions"
+    },
+    {
+      "calculate": "indexof([\"Birds\", \"Plants\", \"Mammals\", \"Insects\", \"Fungi\", \"Other animals\"], datum.layer)",
+      "as": "ord"
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "layerPick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "layer"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              1990,
+              2024
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "d",
+            "values": [
+              1990,
+              1995,
+              2000,
+              2005,
+              2010,
+              2015,
+              2020,
+              2024
+            ],
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "millions",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "stack": "zero",
+          "title": "Sightings per year (millions)",
+          "axis": {
+            "values": [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14
+            ],
+            "grid": true
+          }
+        },
+        "color": {
+          "field": "layer",
+          "type": "nominal",
+          "title": "Group (click to isolate)",
+          "sort": [
+            "Birds",
+            "Plants",
+            "Mammals",
+            "Insects",
+            "Fungi",
+            "Other animals"
+          ],
+          "scale": {
+            "domain": [
+              "Birds",
+              "Plants",
+              "Mammals",
+              "Insects",
+              "Fungi",
+              "Other animals"
+            ],
+            "range": [
+              "#23395d",
+              "#5f8f2f",
+              "#cc79a7",
+              "#c9a100",
+              "#8c6d31",
+              "#56b4e9"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 150,
+            "columns": 6,
+            "titleOrient": "top"
+          }
+        },
+        "order": {
+          "field": "ord",
+          "type": "quantitative",
+          "sort": "ascending"
+        },
+        "opacity": {
+          "condition": {
+            "param": "layerPick",
+            "value": 1
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "layer",
+            "title": "Group"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "records",
+            "aggregate": "sum",
+            "title": "Sightings",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1990,
+            "y": 2.1,
+            "t": "1990: 0.55 million",
+            "a": "left"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": 0,
+        "dx": 2,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2024,
+            "y": 13.05,
+            "t": "2024: 13.1 million"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": -10,
+        "fontSize": 12.5,
+        "fontWeight": 700,
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2008,
+            "y": 9.6,
+            "t": [
+              "Birds (navy) are most of every year.",
+              "Insects grew from 13,769 sightings",
+              "in 2010 to 714,520 in 2024."
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#33443e",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

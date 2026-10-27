@@ -1,0 +1,300 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap. Each cell shows what share of a group's sightings (2016–2025) came from each data source; each column adds up to 100%. The strip on the left marks volunteer apps (orange) and state government atlases (grey). Source: Atlas of Living Australia, downloaded 27 October 2026.",
+  "data": {
+    "url": "data/ala/sources_by_group.csv",
+    "format": {
+      "parse": {
+        "records": "number",
+        "share": "number",
+        "group_total": "number"
+      }
+    }
+  },
+  "spacing": 6,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "hconcat": [
+    {
+      "width": 14,
+      "height": 330,
+      "mark": {
+        "type": "rect"
+      },
+      "encoding": {
+        "y": {
+          "field": "source",
+          "type": "nominal",
+          "sort": [
+            "eBird",
+            "iNaturalist",
+            "BirdLife Birdata",
+            "NatureMapr",
+            "NSW BioNet Atlas",
+            "Victorian Biodiversity Atlas",
+            "SA Fauna",
+            "NT Fauna Atlas",
+            "All other sources"
+          ],
+          "title": null,
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12.5,
+            "labelFontWeight": 600,
+            "labelPadding": 8
+          }
+        },
+        "color": {
+          "field": "type",
+          "type": "nominal",
+          "title": "Source type",
+          "scale": {
+            "domain": [
+              "Volunteer app",
+              "State government atlas",
+              "Other"
+            ],
+            "range": [
+              "#b8610f",
+              "#6f7f88",
+              "#dde3df"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "width": 760,
+      "height": 330,
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "Birds",
+            "Plants",
+            "Insects",
+            "Mammals",
+            "Fishes",
+            "Fungi",
+            "Reptiles",
+            "Molluscs",
+            "Amphibians",
+            "Crustaceans"
+          ],
+          "title": null,
+          "axis": {
+            "orient": "top",
+            "labelAngle": 0,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12.5,
+            "labelFontWeight": 600
+          }
+        },
+        "y": {
+          "field": "source",
+          "type": "nominal",
+          "sort": [
+            "eBird",
+            "iNaturalist",
+            "BirdLife Birdata",
+            "NatureMapr",
+            "NSW BioNet Atlas",
+            "Victorian Biodiversity Atlas",
+            "SA Fauna",
+            "NT Fauna Atlas",
+            "All other sources"
+          ],
+          "title": null,
+          "axis": null
+        }
+      },
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "srcCell",
+              "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ],
+          "transform": [
+            {
+              "calculate": "datum.share < 1 ? 'Under 1%' : datum.share < 10 ? '1–9%' : datum.share < 25 ? '10–24%' : datum.share < 50 ? '25–49%' : datum.share < 75 ? '50–74%' : '75% or more'",
+              "as": "cls"
+            }
+          ],
+          "mark": {
+            "type": "rect",
+            "stroke": "#ffffff",
+            "strokeWidth": 1.5,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "color": {
+              "field": "cls",
+              "type": "ordinal",
+              "title": "Share of the group’s sightings",
+              "scale": {
+                "domain": [
+                  "Under 1%",
+                  "1–9%",
+                  "10–24%",
+                  "25–49%",
+                  "50–74%",
+                  "75% or more"
+                ],
+                "range": [
+                  "#e4ece9",
+                  "#c3e6dd",
+                  "#86cbbd",
+                  "#3fa294",
+                  "#127a74",
+                  "#0a4643"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "symbolType": "square",
+                "symbolSize": 150,
+                "titleOrient": "left",
+                "titleLimit": 280,
+                "symbolStrokeColor": "#8c9a96",
+                "symbolStrokeWidth": 0.6
+              }
+            },
+            "stroke": {
+              "condition": {
+                "param": "srcCell",
+                "empty": false,
+                "value": "#1b2b26"
+              },
+              "value": "#ffffff"
+            },
+            "tooltip": [
+              {
+                "field": "source",
+                "title": "Source"
+              },
+              {
+                "field": "type",
+                "title": "Type"
+              },
+              {
+                "field": "group",
+                "title": "Group"
+              },
+              {
+                "field": "records",
+                "title": "Sightings 2016–2025",
+                "format": ","
+              },
+              {
+                "field": "share",
+                "title": "Share of the group (%)",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.share >= 25"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 700
+          },
+          "encoding": {
+            "text": {
+              "field": "share",
+              "format": ".0f"
+            },
+            "color": {
+              "condition": {
+                "test": "datum.share < 50",
+                "value": "#0b2e2a"
+              },
+              "value": "#ffffff"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "k": "Volunteer app",
+                "c": "#b8610f",
+                "x": 0
+              },
+              {
+                "k": "State government atlas",
+                "c": "#6f7f88",
+                "x": 130
+              }
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "square",
+                "size": 150
+              },
+              "encoding": {
+                "x": {
+                  "field": "x",
+                  "type": "quantitative",
+                  "scale": null
+                },
+                "y": {
+                  "value": 398
+                },
+                "color": {
+                  "field": "c",
+                  "type": "nominal",
+                  "scale": null
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "baseline": "middle",
+                "fontSize": 12,
+                "color": "#33443e",
+                "dx": 10
+              },
+              "encoding": {
+                "x": {
+                  "field": "x",
+                  "type": "quantitative",
+                  "scale": null
+                },
+                "y": {
+                  "value": 398
+                },
+                "text": {
+                  "field": "k"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

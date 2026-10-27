@@ -1,0 +1,98 @@
+group,basis_of_record,records
+All wildlife,Fossil specimen,17530
+All wildlife,Human observation,146917220
+All wildlife,Living specimen,134124
+All wildlife,Machine observation,4008768
+All wildlife,Material Citation,16878
+All wildlife,Material Sample,1606350
+All wildlife,Observation,4498321
+All wildlife,Occurrence,8522338
+All wildlife,Preserved specimen,14372270
+Birds,Fossil specimen,813
+Birds,Human observation,105452682
+Birds,Living specimen,19
+Birds,Machine observation,762688
+Birds,Material Citation,10212
+Birds,Material Sample,76465
+Birds,Observation,2699864
+Birds,Occurrence,2643351
+Birds,Preserved specimen,378142
+Mammals,Fossil specimen,6802
+Mammals,Human observation,4453333
+Mammals,Living specimen,43
+Mammals,Machine observation,484571
+Mammals,Material Citation,3412
+Mammals,Material Sample,95859
+Mammals,Observation,277725
+Mammals,Occurrence,869326
+Mammals,Preserved specimen,251540
+Reptiles,Fossil specimen,551
+Reptiles,Human observation,1173327
+Reptiles,Living specimen,128
+Reptiles,Machine observation,213444
+Reptiles,Material Citation,509
+Reptiles,Material Sample,98306
+Reptiles,Observation,27644
+Reptiles,Occurrence,316422
+Reptiles,Preserved specimen,494285
+Amphibians,Fossil specimen,274
+Amphibians,Human observation,521254
+Amphibians,Machine observation,20855
+Amphibians,Material Citation,631
+Amphibians,Material Sample,21519
+Amphibians,Observation,31715
+Amphibians,Occurrence,1360365
+Amphibians,Preserved specimen,197983
+Fishes,Fossil specimen,606
+Fishes,Human observation,2842671
+Fishes,Living specimen,19933
+Fishes,Machine observation,2142946
+Fishes,Material Citation,64
+Fishes,Material Sample,95093
+Fishes,Observation,211952
+Fishes,Occurrence,345087
+Fishes,Preserved specimen,522183
+Insects,Fossil specimen,22
+Insects,Human observation,4498295
+Insects,Living specimen,256
+Insects,Machine observation,164561
+Insects,Material Citation,49
+Insects,Material Sample,428509
+Insects,Observation,112065
+Insects,Occurrence,1453222
+Insects,Preserved specimen,2503219
+Molluscs,Fossil specimen,163
+Molluscs,Human observation,720564
+Molluscs,Living specimen,3254
+Molluscs,Machine observation,91300
+Molluscs,Material Citation,2
+Molluscs,Material Sample,24213
+Molluscs,Observation,6992
+Molluscs,Occurrence,11370
+Molluscs,Preserved specimen,964558
+Crustaceans,Fossil specimen,818
+Crustaceans,Human observation,280755
+Crustaceans,Living specimen,10235
+Crustaceans,Machine observation,13302
+Crustaceans,Material Citation,75
+Crustaceans,Material Sample,22527
+Crustaceans,Observation,10297
+Crustaceans,Occurrence,46627
+Crustaceans,Preserved specimen,367494
+Plants,Fossil specimen,181
+Plants,Human observation,23106327
+Plants,Living specimen,73750
+Plants,Machine observation,17293
+Plants,Material Sample,21731
+Plants,Observation,1019786
+Plants,Occurrence,1202623
+Plants,Preserved specimen,6318730
+Fungi,Fossil specimen,27
+Fungi,Human observation,1151229
+Fungi,Living specimen,9323
+Fungi,Machine observation,966
+Fungi,Material Citation,389
+Fungi,Material Sample,176221
+Fungi,Observation,41972
+Fungi,Occurrence,1978
+Fungi,Preserved specimen,470632

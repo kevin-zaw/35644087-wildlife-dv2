@@ -119,9 +119,9 @@
         "Fungi"
       ],
       "range": [
-        "#1f8a80",
-        "#3fa294",
-        "#6fc3b4"
+        "#17736b",
+        "#4fae9f",
+        "#8fd0c3"
       ]
     }
   ],
@@ -229,7 +229,7 @@
             "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 26 ? datum.group : ''"
           },
           "fill": {
-            "value": "#ffffff"
+            "signal": "datum.kingdom == 'Animals' ? '#ffffff' : '#0b2e2a'"
           },
           "font": {
             "value": "\"Source Sans 3\", Arial, sans-serif"
@@ -264,10 +264,7 @@
             "signal": "(datum.x1 - datum.x0) > 64 && (datum.y1 - datum.y0) > 44 ? (datum.share > 30 ? format(datum.records / 1e6, '.1f') + ' million records, ' + format(datum.share, '.0f') + '% of everything' : format(datum.share, '.1f') + '%') : ''"
           },
           "fill": {
-            "value": "#ffffff"
-          },
-          "fillOpacity": {
-            "value": 0.9
+            "signal": "datum.kingdom == 'Animals' ? '#ffffff' : '#0b2e2a'"
           },
           "font": {
             "value": "\"Source Sans 3\", Arial, sans-serif"

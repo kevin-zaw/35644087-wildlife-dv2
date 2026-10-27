@@ -1,0 +1,526 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Butterfly (back-to-back bar) chart for 14 groups of Australian wildlife. Left: each group's share of the 115,890 known species in these groups (Chapman 2009). Right: its share of the 147.8 million GBIF occurrence records for these groups (January 2026). Far right: records per known species on a logarithmic scale. Groups are ordered from the most-recorded per species to the least. Hover a group to highlight it in all three panels.",
+  "data": {
+    "url": "data/national_groups.csv",
+    "format": {
+      "parse": {
+        "records": "number",
+        "species": "number",
+        "per_species": "number",
+        "record_share": "number",
+        "species_share": "number"
+      }
+    }
+  },
+  "spacing": 6,
+  "hconcat": [
+    {
+      "name": "spPanel",
+      "width": 270,
+      "height": 420,
+      "title": {
+        "text": "Share of known species",
+        "anchor": "end",
+        "color": "#5a3d91"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "color": "#5a3d91",
+            "height": 20,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "y": {
+              "field": "group",
+              "type": "nominal",
+              "sort": [
+                "Birds",
+                "Mammals",
+                "Amphibians",
+                "Reptiles",
+                "Flowering plants",
+                "Ferns",
+                "Conifers and cycads",
+                "Bony fish",
+                "Mushrooms and kin",
+                "Sac fungi",
+                "Mosses",
+                "Molluscs",
+                "Spiders and kin",
+                "Insects"
+              ],
+              "title": null,
+              "axis": null
+            },
+            "x": {
+              "field": "species_share",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  65
+                ],
+                "reverse": true
+              },
+              "title": "% of known species",
+              "axis": {
+                "values": [
+                  0,
+                  20,
+                  40,
+                  60
+                ],
+                "grid": true
+              }
+            },
+            "opacity": {
+              "condition": {
+                "test": "(!length(data('hvSp_store')) || vlSelectionTest('hvSp_store', datum)) && (!length(data('hvRec_store')) || vlSelectionTest('hvRec_store', datum)) && (!length(data('hvPer_store')) || vlSelectionTest('hvPer_store', datum))",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "group",
+                "title": "Group"
+              },
+              {
+                "field": "species",
+                "title": "Known species (Chapman 2009)",
+                "format": ","
+              },
+              {
+                "field": "species_share",
+                "title": "Share of known species (%)",
+                "format": ".1f"
+              },
+              {
+                "field": "note",
+                "title": "Note"
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "hvSp",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "group"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Insects: more than half of",
+                  "all known species, yet only",
+                  "4% of the records"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "bottom",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "fontWeight": 600,
+            "color": "#3c2766",
+            "lineHeight": 15
+          },
+          "encoding": {
+            "x": {
+              "value": 4
+            },
+            "y": {
+              "value": 330
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "labels",
+      "width": 120,
+      "height": 420,
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#1b2b26"
+      },
+      "encoding": {
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "Birds",
+            "Mammals",
+            "Amphibians",
+            "Reptiles",
+            "Flowering plants",
+            "Ferns",
+            "Conifers and cycads",
+            "Bony fish",
+            "Mushrooms and kin",
+            "Sac fungi",
+            "Mosses",
+            "Molluscs",
+            "Spiders and kin",
+            "Insects"
+          ],
+          "title": null,
+          "axis": null
+        },
+        "text": {
+          "field": "group"
+        }
+      }
+    },
+    {
+      "name": "recPanel",
+      "width": 270,
+      "height": 420,
+      "title": {
+        "text": "Share of records",
+        "anchor": "start",
+        "color": "#127a74"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "color": "#127a74",
+            "height": 20,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "y": {
+              "field": "group",
+              "type": "nominal",
+              "sort": [
+                "Birds",
+                "Mammals",
+                "Amphibians",
+                "Reptiles",
+                "Flowering plants",
+                "Ferns",
+                "Conifers and cycads",
+                "Bony fish",
+                "Mushrooms and kin",
+                "Sac fungi",
+                "Mosses",
+                "Molluscs",
+                "Spiders and kin",
+                "Insects"
+              ],
+              "title": null,
+              "axis": null
+            },
+            "x": {
+              "field": "record_share",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  65
+                ]
+              },
+              "title": "% of records",
+              "axis": {
+                "values": [
+                  0,
+                  20,
+                  40,
+                  60
+                ],
+                "grid": true
+              }
+            },
+            "opacity": {
+              "condition": {
+                "test": "(!length(data('hvSp_store')) || vlSelectionTest('hvSp_store', datum)) && (!length(data('hvRec_store')) || vlSelectionTest('hvRec_store', datum)) && (!length(data('hvPer_store')) || vlSelectionTest('hvPer_store', datum))",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "group",
+                "title": "Group"
+              },
+              {
+                "field": "records",
+                "title": "GBIF records (Jan 2026)",
+                "format": ","
+              },
+              {
+                "field": "record_share",
+                "title": "Share of records (%)",
+                "format": ".1f"
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "hvRec",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "group"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ]
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "t": [
+                  "Birds: under 1% of",
+                  "known species, yet 63%",
+                  "of the records"
+                ]
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "fontWeight": 600,
+            "color": "#0b5753",
+            "lineHeight": 15
+          },
+          "encoding": {
+            "x": {
+              "value": 118
+            },
+            "y": {
+              "value": 40
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "perPanel",
+      "width": 230,
+      "height": 420,
+      "title": {
+        "text": "Records per known species",
+        "anchor": "start",
+        "color": "#1b2b26"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#9fd8cc",
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "y": {
+              "field": "group",
+              "type": "nominal",
+              "sort": [
+                "Birds",
+                "Mammals",
+                "Amphibians",
+                "Reptiles",
+                "Flowering plants",
+                "Ferns",
+                "Conifers and cycads",
+                "Bony fish",
+                "Mushrooms and kin",
+                "Sac fungi",
+                "Mosses",
+                "Molluscs",
+                "Spiders and kin",
+                "Insects"
+              ],
+              "title": null,
+              "axis": null
+            },
+            "x": {
+              "field": "base",
+              "type": "quantitative"
+            },
+            "x2": {
+              "field": "per_species"
+            },
+            "opacity": {
+              "condition": {
+                "test": "(!length(data('hvSp_store')) || vlSelectionTest('hvSp_store', datum)) && (!length(data('hvRec_store')) || vlSelectionTest('hvRec_store', datum)) && (!length(data('hvPer_store')) || vlSelectionTest('hvPer_store', datum))",
+                "value": 1
+              },
+              "value": 0.3
+            }
+          },
+          "transform": [
+            {
+              "calculate": "50",
+              "as": "base"
+            }
+          ]
+        },
+        {
+          "mark": {
+            "type": "circle",
+            "size": 110,
+            "color": "#127a74",
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "y": {
+              "field": "group",
+              "type": "nominal",
+              "sort": [
+                "Birds",
+                "Mammals",
+                "Amphibians",
+                "Reptiles",
+                "Flowering plants",
+                "Ferns",
+                "Conifers and cycads",
+                "Bony fish",
+                "Mushrooms and kin",
+                "Sac fungi",
+                "Mosses",
+                "Molluscs",
+                "Spiders and kin",
+                "Insects"
+              ],
+              "title": null,
+              "axis": null
+            },
+            "x": {
+              "field": "per_species",
+              "type": "quantitative",
+              "scale": {
+                "type": "log",
+                "domain": [
+                  50,
+                  300000
+                ]
+              },
+              "title": "Records per species (log scale)",
+              "axis": {
+                "values": [
+                  100,
+                  1000,
+                  10000,
+                  100000
+                ],
+                "format": "~s",
+                "grid": true
+              }
+            },
+            "opacity": {
+              "condition": {
+                "test": "(!length(data('hvSp_store')) || vlSelectionTest('hvSp_store', datum)) && (!length(data('hvRec_store')) || vlSelectionTest('hvRec_store', datum)) && (!length(data('hvPer_store')) || vlSelectionTest('hvPer_store', datum))",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "tooltip": [
+              {
+                "field": "group",
+                "title": "Group"
+              },
+              {
+                "field": "per_species",
+                "title": "Records per known species",
+                "format": ","
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "hvPer",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "group"
+                ],
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.group == 'Birds' || datum.group == 'Insects'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 9,
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#0b5753"
+          },
+          "encoding": {
+            "y": {
+              "field": "group",
+              "type": "nominal",
+              "sort": [
+                "Birds",
+                "Mammals",
+                "Amphibians",
+                "Reptiles",
+                "Flowering plants",
+                "Ferns",
+                "Conifers and cycads",
+                "Bony fish",
+                "Mushrooms and kin",
+                "Sac fungi",
+                "Mosses",
+                "Molluscs",
+                "Spiders and kin",
+                "Insects"
+              ],
+              "title": null,
+              "axis": null
+            },
+            "x": {
+              "field": "per_species",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "per_species",
+              "format": ","
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

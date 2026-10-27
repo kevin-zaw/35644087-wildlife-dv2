@@ -26,25 +26,27 @@ const theme = {
 const charts = [
   ["#c01", "specs/01_treemap_national_records.json"],
   ["#c02", "specs/02_line_records_over_time.json"],
-  ["#c03", "specs/03_butterfly_species_vs_records.json"],
-  ["#c04", "specs/04_waffle_record_sources.json"],
-  ["#c05", "specs/05_waffle_frogid_contributors.json"],
-  ["#c06", "specs/06_calendar_frogid_daily.json"],
-  ["#c07", "specs/07_radial_clock_frogid_hours.json"],
-  ["#c08", "specs/08_bin_map_frogid_records.json"],
-  ["#c09", "specs/09_choropleth_frogid_per_capita.json"],
-  ["#c10", "specs/10_symbol_map_frog_richness.json"],
-  ["#c11", "specs/11_heatmap_latitude_month.json"],
-  ["#c12", "specs/12_ridgeline_frog_seasons.json"],
-  ["#c13", "specs/13_dot_map_frog_species_month.json"],
-  ["#c14", "specs/14_dotplot_frog_rarity.json"],
-  ["#c15", "specs/15_dot_map_cane_toad.json"]
+  ["#c03", "specs/03_area_public_sightings.json"],
+  ["#c04", "specs/04_butterfly_species_vs_records.json"],
+  ["#c05", "specs/05_waffle_record_sources.json"],
+  ["#c06", "specs/06_heatmap_sources_by_group.json"],
+  ["#c07", "specs/07_waffle_frogid_contributors.json"],
+  ["#c08", "specs/08_calendar_frogid_daily.json"],
+  ["#c09", "specs/09_heatmap_frogid_season_hour.json"],
+  ["#c10", "specs/10_bin_map_wildlife_density.json"],
+  ["#c11", "specs/11_choropleth_wildlife_per_capita.json"],
+  ["#c12", "specs/12_symbol_map_frog_richness.json"],
+  ["#c13", "specs/13_ridgeline_wildlife_months.json"],
+  ["#c14", "specs/14_heatmap_wildlife_latitude_month.json"],
+  ["#c15", "specs/15_bin_map_wildlife_seasons.json"],
+  ["#c16", "specs/16_dotplot_frog_rarity.json"],
+  ["#c17", "specs/17_dot_map_cane_toad.json"]
 ];
 
 const views = {};
 const opts = {
   renderer: "svg",
-  actions: {export: true, source: true, compiled: false, editor: true},
+  actions: false,   // hides the "..." menu so charts align cleanly
   tooltip: {theme: "light"}
 };
 
@@ -69,19 +71,16 @@ Promise.all(charts.map(([el, url]) =>
 )).then(linkViews);
 
 function linkViews() {
-  const ridge = views["#c12"];
-  const map = views["#c13"];
-  if (!ridge || !map) return;
+  const heat = views["#c14"];
+  const map = views["#c15"];
+  if (!heat || !map) return;
 
-  // Clicking a ridge selects that species on the dot map (linked views).
-  ridge.addDataListener("ridgePick_store", (name, store) => {
-    if (store && store.length) {
-      const code = store[0].values[0];
-      map.signal("sp", code).runAsync();
-    }
+  // Clicking a month in the latitude heatmap shows that month on the seasonal map (linked views).
+  heat.addDataListener("monthPick_store", (name, store) => {
+    if (store && store.length) map.signal("mon", store[0].values[0]).runAsync();
   });
 
-  // "Play the year": steps the month slider from January to November.
+  // "Play the year": steps the month slider from January to December.
   const btn = document.getElementById("playBtn");
   let timer = null;
   const stop = () => {
@@ -91,12 +90,12 @@ function linkViews() {
   btn.addEventListener("click", () => {
     if (timer) { stop(); return; }
     let m = map.signal("mon");
-    if (m >= 11) m = 0;
+    if (m >= 12) m = 0;
     btn.textContent = "Pause"; btn.setAttribute("aria-pressed", "true");
     timer = setInterval(() => {
       m += 1;
       map.signal("mon", m).runAsync();
-      if (m >= 11) stop();
+      if (m >= 12) stop();
     }, 1100);
   });
 }

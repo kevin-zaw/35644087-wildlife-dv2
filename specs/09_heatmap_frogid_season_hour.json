@@ -1,0 +1,222 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap. Rows are seasons, columns are hours of the day (local time). Colour shows the share of that season's FrogID recordings made in each hour; the outlined cell is each season's busiest hour. Rows are aligned so seasons can be compared directly.",
+  "width": 860,
+  "height": 190,
+  "data": {
+    "url": "data/hour_season.csv",
+    "format": {
+      "parse": {
+        "hour": "number",
+        "recordings": "number",
+        "share": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "{'Summer':'Summer (Dec–Feb)','Autumn':'Autumn (Mar–May)','Winter':'Winter (Jun–Aug)','Spring':'Spring (Sep–Nov)'}[datum.season]",
+      "as": "seasonLabel"
+    },
+    {
+      "calculate": "{'Summer':1,'Autumn':2,'Winter':3,'Spring':4}[datum.season]",
+      "as": "so"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "share",
+          "as": "mx"
+        }
+      ],
+      "groupby": [
+        "season"
+      ]
+    },
+    {
+      "calculate": "datum.share == datum.mx",
+      "as": "isPeak"
+    },
+    {
+      "calculate": "datum.hour == 0 ? '12 am' : datum.hour < 12 ? datum.hour + ' am' : datum.hour == 12 ? '12 pm' : (datum.hour - 12) + ' pm'",
+      "as": "clock"
+    },
+    {
+      "calculate": "datum.share < 1 ? 'Under 1%' : datum.share < 2.5 ? '1–2.4%' : datum.share < 5 ? '2.5–4.9%' : datum.share < 10 ? '5–9.9%' : datum.share < 15 ? '10–14.9%' : '15% or more'",
+      "as": "cls"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "hour",
+      "type": "ordinal",
+      "title": "Hour of the day (local time)",
+      "scale": {
+        "paddingInner": 0.08
+      },
+      "axis": {
+        "labelExpr": "datum.value % 3 == 0 ? (datum.value == 0 ? '12 am' : datum.value < 12 ? datum.value + ' am' : datum.value == 12 ? '12 pm' : (datum.value - 12) + ' pm') : ''",
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 12
+      }
+    },
+    "y": {
+      "field": "seasonLabel",
+      "type": "ordinal",
+      "title": null,
+      "sort": {
+        "field": "so"
+      },
+      "scale": {
+        "paddingInner": 0.08
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 12.5,
+        "labelFontWeight": 600,
+        "labelPadding": 8
+      }
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "cellHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "ordinal",
+          "title": "Share of the season’s recordings",
+          "scale": {
+            "domain": [
+              "Under 1%",
+              "1–2.4%",
+              "2.5–4.9%",
+              "5–9.9%",
+              "10–14.9%",
+              "15% or more"
+            ],
+            "range": [
+              "#f7e7cf",
+              "#fbe2c0",
+              "#f4b46a",
+              "#e08a2e",
+              "#b8610f",
+              "#6f3906"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 150,
+            "titleOrient": "left",
+            "titleLimit": 260,
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
+          }
+        },
+        "stroke": {
+          "condition": {
+            "param": "cellHover",
+            "empty": false,
+            "value": "#1b2b26"
+          },
+          "value": null
+        },
+        "tooltip": [
+          {
+            "field": "seasonLabel",
+            "title": "Season"
+          },
+          {
+            "field": "clock",
+            "title": "Hour starting"
+          },
+          {
+            "field": "recordings",
+            "title": "Recordings",
+            "format": ","
+          },
+          {
+            "field": "share",
+            "title": "Share of the season (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.isPeak"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#1b2b26",
+        "strokeWidth": 2.2
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.isPeak"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "text": {
+          "field": "share",
+          "format": ".0f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.isPeak"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 0,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#6f3906"
+      },
+      "encoding": {
+        "x": {
+          "value": 868
+        },
+        "text": {
+          "field": "clock",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

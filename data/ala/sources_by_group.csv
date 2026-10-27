@@ -1,0 +1,91 @@
+source,type,group,records,share,group_total
+eBird,Volunteer app,Birds,52215363,80.3,65006058
+iNaturalist,Volunteer app,Birds,1643115,2.5,65006058
+BirdLife Birdata,Volunteer app,Birds,8300518,12.8,65006058
+NatureMapr,Volunteer app,Birds,55034,0.1,65006058
+NSW BioNet Atlas,State government atlas,Birds,1744221,2.7,65006058
+Victorian Biodiversity Atlas,State government atlas,Birds,0,0.0,65006058
+SA Fauna,State government atlas,Birds,297583,0.5,65006058
+NT Fauna Atlas,State government atlas,Birds,86584,0.1,65006058
+All other sources,Other,Birds,663640,1.0,65006058
+eBird,Volunteer app,Plants,0,0.0,9181177
+iNaturalist,Volunteer app,Plants,3631050,39.5,9181177
+BirdLife Birdata,Volunteer app,Plants,0,0.0,9181177
+NatureMapr,Volunteer app,Plants,113891,1.2,9181177
+NSW BioNet Atlas,State government atlas,Plants,2723417,29.7,9181177
+Victorian Biodiversity Atlas,State government atlas,Plants,864069,9.4,9181177
+SA Fauna,State government atlas,Plants,0,0.0,9181177
+NT Fauna Atlas,State government atlas,Plants,0,0.0,9181177
+All other sources,Other,Plants,1848750,20.1,9181177
+eBird,Volunteer app,Insects,0,0.0,3539521
+iNaturalist,Volunteer app,Insects,3162019,89.3,3539521
+BirdLife Birdata,Volunteer app,Insects,0,0.0,3539521
+NatureMapr,Volunteer app,Insects,119911,3.4,3539521
+NSW BioNet Atlas,State government atlas,Insects,26581,0.8,3539521
+Victorian Biodiversity Atlas,State government atlas,Insects,0,0.0,3539521
+SA Fauna,State government atlas,Insects,15649,0.4,3539521
+NT Fauna Atlas,State government atlas,Insects,0,0.0,3539521
+All other sources,Other,Insects,215361,6.1,3539521
+eBird,Volunteer app,Mammals,0,0.0,2452227
+iNaturalist,Volunteer app,Mammals,242907,9.9,2452227
+BirdLife Birdata,Volunteer app,Mammals,0,0.0,2452227
+NatureMapr,Volunteer app,Mammals,13843,0.6,2452227
+NSW BioNet Atlas,State government atlas,Mammals,1600983,65.3,2452227
+Victorian Biodiversity Atlas,State government atlas,Mammals,0,0.0,2452227
+SA Fauna,State government atlas,Mammals,340860,13.9,2452227
+NT Fauna Atlas,State government atlas,Mammals,134767,5.5,2452227
+All other sources,Other,Mammals,118867,4.8,2452227
+eBird,Volunteer app,Fungi,0,0.0,743760
+iNaturalist,Volunteer app,Fungi,694137,93.3,743760
+BirdLife Birdata,Volunteer app,Fungi,0,0.0,743760
+NatureMapr,Volunteer app,Fungi,9296,1.2,743760
+NSW BioNet Atlas,State government atlas,Fungi,1979,0.3,743760
+Victorian Biodiversity Atlas,State government atlas,Fungi,2888,0.4,743760
+SA Fauna,State government atlas,Fungi,0,0.0,743760
+NT Fauna Atlas,State government atlas,Fungi,0,0.0,743760
+All other sources,Other,Fungi,35460,4.8,743760
+eBird,Volunteer app,Reptiles,0,0.0,624991
+iNaturalist,Volunteer app,Reptiles,257632,41.2,624991
+BirdLife Birdata,Volunteer app,Reptiles,0,0.0,624991
+NatureMapr,Volunteer app,Reptiles,7556,1.2,624991
+NSW BioNet Atlas,State government atlas,Reptiles,190179,30.4,624991
+Victorian Biodiversity Atlas,State government atlas,Reptiles,0,0.0,624991
+SA Fauna,State government atlas,Reptiles,49681,7.9,624991
+NT Fauna Atlas,State government atlas,Reptiles,42935,6.9,624991
+All other sources,Other,Reptiles,77008,12.3,624991
+eBird,Volunteer app,Amphibians,0,0.0,248770
+iNaturalist,Volunteer app,Amphibians,104174,41.9,248770
+BirdLife Birdata,Volunteer app,Amphibians,4,0.0,248770
+NatureMapr,Volunteer app,Amphibians,1957,0.8,248770
+NSW BioNet Atlas,State government atlas,Amphibians,89336,35.9,248770
+Victorian Biodiversity Atlas,State government atlas,Amphibians,0,0.0,248770
+SA Fauna,State government atlas,Amphibians,5485,2.2,248770
+NT Fauna Atlas,State government atlas,Amphibians,16632,6.7,248770
+All other sources,Other,Amphibians,31182,12.5,248770
+eBird,Volunteer app,Fishes,0,0.0,800113
+iNaturalist,Volunteer app,Fishes,401705,50.2,800113
+BirdLife Birdata,Volunteer app,Fishes,0,0.0,800113
+NatureMapr,Volunteer app,Fishes,0,0.0,800113
+NSW BioNet Atlas,State government atlas,Fishes,7297,0.9,800113
+Victorian Biodiversity Atlas,State government atlas,Fishes,0,0.0,800113
+SA Fauna,State government atlas,Fishes,61586,7.7,800113
+NT Fauna Atlas,State government atlas,Fishes,0,0.0,800113
+All other sources,Other,Fishes,329525,41.2,800113
+eBird,Volunteer app,Molluscs,0,0.0,471395
+iNaturalist,Volunteer app,Molluscs,357420,75.8,471395
+BirdLife Birdata,Volunteer app,Molluscs,0,0.0,471395
+NatureMapr,Volunteer app,Molluscs,1253,0.3,471395
+NSW BioNet Atlas,State government atlas,Molluscs,2359,0.5,471395
+Victorian Biodiversity Atlas,State government atlas,Molluscs,89818,19.1,471395
+SA Fauna,State government atlas,Molluscs,786,0.2,471395
+NT Fauna Atlas,State government atlas,Molluscs,133,0.0,471395
+All other sources,Other,Molluscs,19626,4.2,471395
+eBird,Volunteer app,Crustaceans,0,0.0,126123
+iNaturalist,Volunteer app,Crustaceans,84821,67.3,126123
+BirdLife Birdata,Volunteer app,Crustaceans,0,0.0,126123
+NatureMapr,Volunteer app,Crustaceans,403,0.3,126123
+NSW BioNet Atlas,State government atlas,Crustaceans,2066,1.6,126123
+Victorian Biodiversity Atlas,State government atlas,Crustaceans,0,0.0,126123
+SA Fauna,State government atlas,Crustaceans,1082,0.9,126123
+NT Fauna Atlas,State government atlas,Crustaceans,0,0.0,126123
+All other sources,Other,Crustaceans,37751,29.9,126123

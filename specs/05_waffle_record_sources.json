@@ -1,0 +1,198 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Waffle (unit) chart. Each square is 1% of the 154.4 million records of animals, plants and fungi available for Australia through GBIF (January 2026), coloured by the dataset that supplied it. The four largest single datasets are shown separately. Hover a colour to highlight that source.",
+  "data": {
+    "url": "data/national_sources_units.csv",
+    "format": {
+      "parse": {
+        "unit": "number",
+        "col": "number",
+        "row": "number",
+        "records": "number",
+        "pct": "number",
+        "order": "number"
+      }
+    }
+  },
+  "hconcat": [
+    {
+      "width": 300,
+      "height": 300,
+      "params": [
+        {
+          "name": "srcHover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "source"
+            ],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "size": 620,
+        "cornerRadius": 2,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "source",
+          "type": "nominal",
+          "title": "Where the records come from",
+          "sort": [
+            "eBird (Cornell Lab, volunteer birdwatchers)",
+            "BirdLife Australia Birdata (volunteer birdwatchers)",
+            "NSW BioNet Atlas (state government)",
+            "Victorian Biodiversity Atlas (state government)",
+            "Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)"
+          ],
+          "scale": {
+            "domain": [
+              "eBird (Cornell Lab, volunteer birdwatchers)",
+              "BirdLife Australia Birdata (volunteer birdwatchers)",
+              "NSW BioNet Atlas (state government)",
+              "Victorian Biodiversity Atlas (state government)",
+              "Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)"
+            ],
+            "range": [
+              "#b8610f",
+              "#e9a24e",
+              "#6f7f88",
+              "#a9b6bd",
+              "#dde3df"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "vertical",
+            "symbolType": "square",
+            "symbolSize": 170,
+            "labelLimit": 520,
+            "labelFontSize": 12.5,
+            "titleFontSize": 13,
+            "labelExpr": "datum.label == 'Hundreds of other datasets (museums, herbaria, surveys, iNaturalist, FrogID and more)' ? 'Other datasets: museums, herbaria, surveys, apps' : datum.label"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "srcHover",
+            "value": 1
+          },
+          "value": 0.3
+        },
+        "tooltip": [
+          {
+            "field": "source",
+            "title": "Source"
+          },
+          {
+            "field": "category",
+            "title": "Type"
+          },
+          {
+            "field": "records",
+            "title": "Records about Australia",
+            "format": ","
+          },
+          {
+            "field": "pct",
+            "title": "Share of all records (%)"
+          }
+        ]
+      }
+    },
+    {
+      "width": 260,
+      "height": 300,
+      "data": {
+        "values": [
+          {
+            "y": 0,
+            "t": [
+              "44 of every 100 records come",
+              "from two volunteer birdwatching",
+              "programs: eBird and Birdata."
+            ],
+            "c": "#8a4a0b"
+          },
+          {
+            "y": 78,
+            "t": [
+              "Together they hold 68 million",
+              "records, 73% of all bird records."
+            ],
+            "c": "#8a4a0b"
+          },
+          {
+            "y": 142,
+            "t": [
+              "State wildlife atlases add another",
+              "16%. They also take in sightings",
+              "from the public."
+            ],
+            "c": "#4f5f68"
+          },
+          {
+            "y": 222,
+            "t": [
+              "The remaining 40% comes from",
+              "hundreds of museums, herbaria,",
+              "surveys and apps."
+            ],
+            "c": "#33443e"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 13,
+        "lineHeight": 17,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              300
+            ],
+            "range": [
+              0,
+              300
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t"
+        },
+        "color": {
+          "field": "c",
+          "type": "nominal",
+          "scale": null
+        }
+      }
+    }
+  ],
+  "spacing": 40
+}

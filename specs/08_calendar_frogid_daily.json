@@ -1,0 +1,269 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Calendar heatmap. Each square is one day of 2023 (columns are weeks, rows are weekdays), shaded by the number of FrogID recordings submitted that day. Days of FrogID Week are outlined. The published dataset ends on 10 November 2023.",
+  "width": 1010,
+  "height": 180,
+  "data": {
+    "url": "data/daily.csv",
+    "format": {
+      "parse": {
+        "date": "date:'%Y-%m-%d'",
+        "recordings": "number",
+        "people": "number",
+        "records": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(timeFormat(datum.date, '%W'))",
+      "as": "week"
+    },
+    {
+      "calculate": "(day(datum.date) + 6) % 7",
+      "as": "dow"
+    },
+    {
+      "calculate": "datum.date >= datetime(2023, 10, 3) && datum.date <= datetime(2023, 10, 12)",
+      "as": "frogWeek"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "week",
+      "type": "ordinal",
+      "axis": null,
+      "scale": {
+        "paddingInner": 0.12
+      }
+    },
+    "y": {
+      "field": "dow",
+      "type": "ordinal",
+      "title": null,
+      "scale": {
+        "paddingInner": 0.12
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelExpr": "['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][datum.value]",
+        "labelFontSize": 12,
+        "labelPadding": 6
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "fill": "#e4e9e5"
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.recordings > 0"
+        },
+        {
+          "calculate": "datum.recordings < 150 ? 'Under 150' : datum.recordings < 250 ? '150 to 249' : datum.recordings < 400 ? '250 to 399' : datum.recordings < 1000 ? '400 to 999' : '1,000 or more'",
+          "as": "cls"
+        }
+      ],
+      "params": [
+        {
+          "name": "dayHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "ordinal",
+          "title": "Recordings per day",
+          "scale": {
+            "domain": [
+              "Under 150",
+              "150 to 249",
+              "250 to 399",
+              "400 to 999",
+              "1,000 or more"
+            ],
+            "range": [
+              "#fbe2c0",
+              "#f4b46a",
+              "#e08a2e",
+              "#b8610f",
+              "#6f3906"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 140,
+            "titleOrient": "left",
+            "offset": 78,
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
+          }
+        },
+        "stroke": {
+          "condition": {
+            "param": "dayHover",
+            "empty": false,
+            "value": "#1b2b26"
+          },
+          "value": null
+        },
+        "tooltip": [
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Day",
+            "format": "%A %e %B %Y"
+          },
+          {
+            "field": "recordings",
+            "title": "Recordings",
+            "format": ","
+          },
+          {
+            "field": "people",
+            "title": "People who recorded",
+            "format": ","
+          },
+          {
+            "field": "records",
+            "title": "Frog records",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.frogWeek"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#1b2b26",
+        "strokeWidth": 1.6
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "date(datum.date) == 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dy": -4,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#4a5a54"
+      },
+      "encoding": {
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "date",
+          "type": "temporal",
+          "timeUnit": "month",
+          "format": "%b"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "timeFormat(datum.date, '%Y-%m-%d') == '2023-11-06'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "dx": 10,
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#6f3906",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "y": {
+          "value": 204
+        },
+        "text": {
+          "value": [
+            "Outlined: FrogID Week, 3–12 November.",
+            "1,465 recordings a day, six times the earlier average of 237.",
+            "Busiest day: Monday 6 November, 2,177 recordings."
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "timeFormat(datum.date, '%Y-%m-%d') == '2023-05-08'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#5b6b65"
+      },
+      "encoding": {
+        "y": {
+          "value": 186
+        },
+        "text": {
+          "value": "Quietest day: 8 May, 48 recordings"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "timeFormat(datum.date, '%Y-%m-%d') == '2023-12-10'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#4a5a54",
+        "dy": 0
+      },
+      "encoding": {
+        "y": {
+          "value": 186
+        },
+        "text": {
+          "value": "Grey: no data (dataset ends 10 Nov)"
+        }
+      }
+    }
+  ]
+}

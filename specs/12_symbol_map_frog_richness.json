@@ -1,0 +1,349 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map. Each circle summarises one 2-degree by 2-degree square and is placed at the average position of that square's FrogID records. Circle area is proportional to the number of frog species recorded there in 2023. Hover a circle for the number of records behind it.",
+  "width": 640,
+  "height": 540,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e2e7e3",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/richness_2deg.csv",
+        "format": {
+          "parse": {
+            "hx": "number",
+            "hy": "number",
+            "species": "number",
+            "records": "number",
+            "lon": "number",
+            "lat": "number",
+            "species_per_100_records": "number"
+          }
+        }
+      },
+      "params": [
+        {
+          "name": "symHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "transform": [
+        {
+          "calculate": "abs(datum.hy + 2) + '–' + abs(datum.hy) + '°S, ' + datum.hx + '–' + (datum.hx + 2) + '°E'",
+          "as": "square"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.9,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "species",
+          "type": "quantitative",
+          "title": "Species recorded",
+          "scale": {
+            "type": "linear",
+            "zero": true,
+            "domain": [
+              0,
+              45
+            ],
+            "range": [
+              0,
+              900
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "values": [
+              5,
+              20,
+              40
+            ],
+            "symbolFillColor": "#5a3d91",
+            "symbolOpacity": 0.75,
+            "symbolStrokeColor": "#ffffff",
+            "titleFontSize": 12.5,
+            "direction": "horizontal",
+            "titleOrient": "left"
+          }
+        },
+        "color": {
+          "value": "#5a3d91"
+        },
+        "opacity": {
+          "condition": {
+            "param": "symHover",
+            "empty": false,
+            "value": 0.95
+          },
+          "value": 0.68
+        },
+        "order": {
+          "field": "species",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "square",
+            "title": "Square"
+          },
+          {
+            "field": "species",
+            "title": "Species recorded"
+          },
+          {
+            "field": "records",
+            "title": "Frog records",
+            "format": ","
+          },
+          {
+            "field": "top",
+            "title": "Most-recorded species"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81
+          },
+          {
+            "city": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47
+          },
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93
+          },
+          {
+            "city": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46
+          },
+          {
+            "city": "Cairns",
+            "lon": 145.77,
+            "lat": -16.92
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 18,
+            "fill": "#3c2766",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#ffffff",
+            "align": "left",
+            "dx": 6,
+            "dy": -6,
+            "stroke": "#ffffff",
+            "strokeWidth": 3.5,
+            "strokeOpacity": 0.95
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1b2b26",
+            "align": "left",
+            "dx": 6,
+            "dy": -6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 145.6,
+            "lat": -16.9,
+            "lon2": 150.5,
+            "lat2": -13.3
+          },
+          {
+            "lon": 151.1,
+            "lat": -33.4,
+            "lon2": 155.6,
+            "lat2": -36.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3c2766",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 150.8,
+            "lat": -11.6,
+            "t": [
+              "Around Cairns: 41 species",
+              "from just 2,847 records"
+            ]
+          },
+          {
+            "lon": 152.5,
+            "lat": -37.4,
+            "t": [
+              "Around Sydney: 41 species,",
+              "but it took 23,645 records",
+              "to find them"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "lineHeight": 15,
+        "fontStyle": "italic",
+        "color": "#3c2766",
+        "fontWeight": 600
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    }
+  ]
+}

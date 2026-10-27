@@ -1,0 +1,327 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bin map with a group selector. Records of the chosen group per 1,000 km² in each 1-degree square, 2016–2025 (count divided by the square's true area). Six classes, each ten times the one before, are fixed across groups so groups can be compared. Albers equal-area conic projection. Source: Atlas of Living Australia.",
+  "width": 640,
+  "height": 540,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "params": [
+    {
+      "name": "grp",
+      "value": "All wildlife",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All wildlife",
+          "Birds",
+          "Plants",
+          "Insects",
+          "Mammals",
+          "Fishes",
+          "Fungi",
+          "Reptiles",
+          "Molluscs",
+          "Amphibians",
+          "Crustaceans"
+        ],
+        "name": "Wildlife group  "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceeeb",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/ala/grid1_density.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.properties[grp]",
+          "as": "density"
+        },
+        {
+          "calculate": "datum.properties['n_' + grp]",
+          "as": "records"
+        },
+        {
+          "filter": "isValid(datum.density)"
+        },
+        {
+          "calculate": "datum.density < 1 ? 'Under 1' : datum.density < 10 ? '1–9' : datum.density < 100 ? '10–99' : datum.density < 1000 ? '100–999' : datum.density < 10000 ? '1,000–9,999' : '10,000 or more'",
+          "as": "cls"
+        }
+      ],
+      "params": [
+        {
+          "name": "cellHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.4,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "ordinal",
+          "title": [
+            "Records per 1,000 km²",
+            "(2016–2025)"
+          ],
+          "scale": {
+            "domain": [
+              "No records",
+              "Under 1",
+              "1–9",
+              "10–99",
+              "100–999",
+              "1,000–9,999",
+              "10,000 or more"
+            ],
+            "range": [
+              "#eceeeb",
+              "#cfe9e2",
+              "#a6d9cd",
+              "#6fbfb0",
+              "#2f968a",
+              "#127a74",
+              "#0a4643"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4,
+            "symbolType": "square",
+            "symbolSize": 150,
+            "titleOrient": "top",
+            "titleLimit": 400,
+            "labelLimit": 240,
+            "symbolStrokeColor": "#8c9a96",
+            "symbolStrokeWidth": 0.6
+          }
+        },
+        "stroke": {
+          "condition": {
+            "param": "cellHover",
+            "empty": false,
+            "value": "#1b2b26"
+          },
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "cellHover",
+            "empty": false,
+            "value": 2
+          },
+          "value": 0.4
+        },
+        "tooltip": [
+          {
+            "field": "properties.cell",
+            "title": "Square centred on"
+          },
+          {
+            "field": "cls",
+            "title": "Density class"
+          },
+          {
+            "field": "density",
+            "title": "Records per 1,000 km²",
+            "format": ",.1f"
+          },
+          {
+            "field": "records",
+            "title": "Records 2016–2025",
+            "format": ","
+          },
+          {
+            "field": "properties.area",
+            "title": "Square’s area (km²)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81
+          },
+          {
+            "city": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47
+          },
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93
+          },
+          {
+            "city": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46
+          },
+          {
+            "city": "Cairns",
+            "lon": 145.77,
+            "lat": -16.92
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 18,
+            "fill": "#1b2b26",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#ffffff",
+            "align": "left",
+            "dx": 6,
+            "dy": -6,
+            "stroke": "#ffffff",
+            "strokeWidth": 3.5,
+            "strokeOpacity": 0.95
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1b2b26",
+            "align": "left",
+            "dx": 6,
+            "dy": -6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "title": {
+    "text": {
+      "expr": "grp + ': records per 1,000 km², 2016–2025'"
+    },
+    "subtitle": {
+      "expr": "grp == 'All wildlife' ? 'Darkest squares: Melbourne, Sydney and Brisbane. Grey land: no records.' : 'Grey land: no records of this group.'"
+    },
+    "anchor": "start",
+    "fontSize": 15,
+    "subtitleFontSize": 13,
+    "subtitleFontStyle": "italic"
+  }
+}

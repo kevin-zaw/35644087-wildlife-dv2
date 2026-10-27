@@ -1,0 +1,256 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ridgeline plot. One ridge per wildlife group: the share of its 2016–2025 records made in each month. The dashed line repeats the same measure for all wildlife combined, a guide to overall recording effort. Ridges are ordered by peak month. Source: Atlas of Living Australia.",
+  "data": {
+    "url": "data/ala/months_by_group.csv",
+    "format": {
+      "parse": {
+        "m": "number",
+        "share": "number",
+        "all_share": "number",
+        "peak": "number",
+        "records": "number"
+      }
+    }
+  },
+  "facet": {
+    "row": {
+      "field": "group",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "peak",
+        "op": "min"
+      },
+      "header": {
+        "labels": false,
+        "title": null
+      }
+    }
+  },
+  "spacing": 0,
+  "spec": {
+    "width": 860,
+    "height": 30,
+    "view": {
+      "stroke": null,
+      "fill": null
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "fillOpacity": 0.85,
+          "stroke": "#ffffff",
+          "strokeWidth": 1.2,
+          "cursor": "pointer"
+        },
+        "encoding": {
+          "x": {
+            "field": "m",
+            "type": "quantitative",
+            "title": null,
+            "scale": {
+              "domain": [
+                1,
+                12
+              ],
+              "nice": false
+            },
+            "axis": {
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+              "grid": true,
+              "gridColor": "#e3e8e4",
+              "domain": false,
+              "ticks": false,
+              "labelFontSize": 12
+            }
+          },
+          "y": {
+            "field": "share",
+            "type": "quantitative",
+            "title": null,
+            "axis": null,
+            "scale": {
+              "domain": [
+                0,
+                21
+              ],
+              "range": [
+                30,
+                -18
+              ]
+            }
+          },
+          "color": {
+            "value": "#127a74"
+          },
+          "tooltip": [
+            {
+              "field": "group",
+              "title": "Group"
+            },
+            {
+              "field": "month",
+              "title": "Month"
+            },
+            {
+              "field": "records",
+              "title": "Records 2016–2025",
+              "format": ","
+            },
+            {
+              "field": "share",
+              "title": "Share of the group’s year (%)",
+              "format": ".1f"
+            },
+            {
+              "field": "all_share",
+              "title": "All wildlife, same month (%)",
+              "format": ".1f"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "interpolate": "monotone",
+          "color": "#1b2b26",
+          "strokeWidth": 1,
+          "strokeDash": [
+            3,
+            2
+          ],
+          "opacity": 0.75
+        },
+        "encoding": {
+          "x": {
+            "field": "m",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "all_share",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                21
+              ],
+              "range": [
+                30,
+                -18
+              ]
+            }
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.m == 1"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "bottom",
+          "dx": -12,
+          "fontSize": 12.5,
+          "fontWeight": 600,
+          "color": "#1b2b26"
+        },
+        "encoding": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 30
+          },
+          "text": {
+            "field": "group"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.share == datum.peak_share"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "fontSize": 12,
+          "fontWeight": 700,
+          "color": "#0a4643",
+          "dy": -8
+        },
+        "encoding": {
+          "x": {
+            "field": "m",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "share",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                21
+              ],
+              "range": [
+                30,
+                -18
+              ]
+            }
+          },
+          "text": {
+            "field": "share",
+            "format": ".0f"
+          }
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  },
+  "title": {
+    "text": "When each group is recorded (2016–2025)",
+    "subtitle": [
+      "Teal: share of each group’s records by month, peak labelled (%).",
+      "Dashed line: all wildlife combined."
+    ]
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "share",
+          "as": "peak_share"
+        }
+      ],
+      "groupby": [
+        "group"
+      ]
+    }
+  ]
+}

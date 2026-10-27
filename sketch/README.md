@@ -17,6 +17,8 @@ Draw this by hand. The rubric scores any sketch made with digital tools as 0. Us
 
 ## Part 1: What gets recorded
 
+- **Stacked area:** sightings rising from 0.55 million (1990) to 13.1 million (2024), with birds as the widest band and a y-axis in millions.
+
 - **Growth chart:** a step line rising from “2.6 million (2007)” to “259.5 million (2026)”, with dashed lines labelled “ALA launches 2010” and “FrogID launches 2017”.
 
 - **Text:** a paragraph box plus a “how to read” note.
@@ -29,35 +31,39 @@ Draw this by hand. The rubric scores any sketch made with digital tools as 0. Us
 
 ## Part 2: Who records
 
-- **Sources waffle:** a 10×10 grid beside a paragraph.
-  - Shade 44 squares orange and label them “eBird and Birdata, volunteers”.
-  - Shade 16 squares grey and label them “state atlases”.
-  - Leave 40 squares pale and label them “other”.
-- **Spotlight box:** a box with a thick orange left edge, labelled “Spotlight: FrogID”, containing four numbered steps: hear, record, expert ID, shared.
-- **Contributor waffles:** two 10×10 grids, labelled “people” and “recordings”.
-- **Calendar:** a 7 × 53 grid. Box early November and label it “FrogID Week ×6”.
-- **Clocks:** four circular 24-hour clocks, one per season. Note “9 pm summer … 5 pm winter”.
+- **Sources waffle:** a 10×10 grid. Shade 44 squares orange (eBird and Birdata), 16 grey (state atlases) and 40 pale (others).
+- **Sources heatmap:** a grid with 9 source rows and 10 group columns. Make the eBird–Birds cell (80) and the iNaturalist–Insects and iNaturalist–Fungi cells (89, 93) dark. Add an orange/grey strip on the left to mark volunteer apps and government atlases.
+- **Spotlight box:** a box with an orange left edge, tagged “FrogID spotlight”, containing 4 numbered steps.
+- **FrogID charts:**
+  - two 10×10 waffles (people vs recordings);
+  - a calendar grid with FrogID Week boxed;
+  - a season × hour heatmap with the busiest hours outlined.
 
 ## Part 3: Where people look
 
-- **Map of Australia (grid squares):** squares dark around the cities. Note “Sydney 13,040”.
-- **Choropleth:** a state map labelled “records per 100,000 residents” with the notes “NT 944” and “SA 224”.
-  - Beside it, a dumbbell chart with one row per state.
-  - Draw an arrow labelled “hover links both”.
-- **Circle map:** circles of different sizes along the east coast. Note “Cairns 41 species / 2,847 records” and “Sydney 41 / 23,645”.
+- **Bin map:** a map of Australia covered in 1° squares, darkest around Melbourne, Sydney and Brisbane. Draw a dropdown labelled “Wildlife group” and a legend of 6 classes rising ×10.
+- **Choropleth:** a state map labelled “records per 100,000 residents per year”, with the notes “NT 127k” and “WA 23k”.
+- **Lollipop chart:** beside the choropleth, one row per state from a zero line, with NT, Qld, ACT and Tas on the right and WA on the left.
+- **FrogID circle map:** circles along the east coast, annotated “Cairns 41 species / 2,847 records”.
 
 ## Part 4: When wildlife is recorded
 
-- **Heatmap:** latitude rows × months. Shade the north dark in Jan–Feb and the south dark in Aug–Oct.
-- **Ridgeline:** 14 wavy ridges, each with a dashed line.
-- **Dot map with controls:** draw a species dropdown, a month slider and a Play button. Draw an arrow from the ridgeline labelled “click a ridge”.
+- **Ridgeline:** 10 ridges (Fishes, Fungi, Birds … Insects), each with its peak value labelled and a dashed line.
+- **Latitude × month heatmap:** the north dark from July to October, the south dark in October. Add a bar of records per band on the right, and draw an arrow labelled “click a month”.
+- **Seasonal bin map:** brown and teal squares, with a month slider and a Play button.
 
 ## Part 5: Why every record counts
 
 - **Dot plot:** stacked dots on a log axis. Shade the area for “50 species with fewer than 10 records”.
-- **Cane toad map:** red dots in Queensland. Note “West Kimberley” and “NSW north coast”.
+- **Cane toad map:** small same-size charcoal dots in Queensland over pale squares. Note “West Kimberley” and “NSW north coast”.
 - **Closing:** a paragraph box plus four big-number boxes: 154 million, 44%, 1,000×, 974,700.
 - **Footer box:** sources, method notes, author, AI use, licence.
+
+## Layout details to draw
+
+- **Part headings:** draw each part number and title on the left, with the short introduction to its right.
+- **Body text:** keep paragraphs narrow, about 10 words per line, with “How to read” notes in the right column.
+- **Maps:** show grey land, labelled “no data” or “no records” in each map legend.
 
 ## Finishing
 

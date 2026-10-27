@@ -1,0 +1,280 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Heatmap. Rows are 2-degree latitude bands (north at top), columns are months. Each cell shows the share of that band's 2016–2025 wildlife records made in that month (each row adds to 100%). The bar shows records per band. Click a month to show it on the map below. Source: Atlas of Living Australia.",
+  "data": {
+    "url": "data/ala/latitude_month.csv",
+    "format": {
+      "parse": {
+        "band": "number",
+        "m": "number",
+        "records": "number",
+        "share": "number",
+        "band_total": "number"
+      }
+    }
+  },
+  "hconcat": [
+    {
+      "width": 560,
+      "height": 380,
+      "layer": [
+        {
+          "params": [
+            {
+              "name": "cellPick",
+              "select": {
+                "type": "point",
+                "on": "mouseover",
+                "clear": "mouseout"
+              }
+            },
+            {
+              "name": "monthPick",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "m"
+                ],
+                "on": "click"
+              }
+            }
+          ],
+          "mark": {
+            "type": "rect",
+            "stroke": "#f3f5f0",
+            "strokeWidth": 1.2,
+            "cursor": "pointer"
+          },
+          "encoding": {
+            "x": {
+              "field": "m",
+              "type": "ordinal",
+              "title": null,
+              "axis": {
+                "orient": "top",
+                "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+                "domain": false,
+                "ticks": false,
+                "labelFontSize": 12,
+                "labelAngle": 0
+              }
+            },
+            "y": {
+              "field": "label",
+              "type": "ordinal",
+              "title": "Latitude band",
+              "sort": {
+                "field": "band",
+                "order": "descending"
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labelFontSize": 12
+              }
+            },
+            "color": {
+              "field": "cls",
+              "type": "ordinal",
+              "title": "Share of the band’s yearly records",
+              "scale": {
+                "domain": [
+                  "Under 5%",
+                  "5–6.9%",
+                  "7–8.9%",
+                  "9–10.9%",
+                  "11–12.9%",
+                  "13% or more"
+                ],
+                "range": [
+                  "#e4ece9",
+                  "#c3e6dd",
+                  "#86cbbd",
+                  "#3fa294",
+                  "#127a74",
+                  "#0a4643"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "symbolType": "square",
+                "symbolSize": 150,
+                "titleOrient": "left",
+                "titleLimit": 260,
+                "symbolStrokeColor": "#8c9a96",
+                "symbolStrokeWidth": 0.6
+              }
+            },
+            "strokeWidth": {
+              "condition": {
+                "param": "cellPick",
+                "empty": false,
+                "value": 2.5
+              },
+              "value": 1.2
+            },
+            "stroke": {
+              "condition": {
+                "param": "cellPick",
+                "empty": false,
+                "value": "#1b2b26"
+              },
+              "value": "#f3f5f0"
+            },
+            "tooltip": [
+              {
+                "field": "label",
+                "title": "Latitude band"
+              },
+              {
+                "field": "monthName",
+                "title": "Month"
+              },
+              {
+                "field": "records",
+                "title": "Records 2016–2025",
+                "format": ","
+              },
+              {
+                "field": "share",
+                "title": "Share of the band’s year (%)",
+                "format": ".1f"
+              }
+            ]
+          },
+          "transform": [
+            {
+              "calculate": "datum.share < 5 ? 'Under 5%' : datum.share < 7 ? '5–6.9%' : datum.share < 9 ? '7–8.9%' : datum.share < 11 ? '9–10.9%' : datum.share < 13 ? '11–12.9%' : '13% or more'",
+              "as": "cls"
+            },
+            {
+              "calculate": "['January','February','March','April','May','June','July','August','September','October','November','December'][datum.m - 1]",
+              "as": "monthName"
+            }
+          ]
+        }
+      ],
+      "title": {
+        "text": "Share of each latitude band’s wildlife records, by month",
+        "subtitle": [
+          "North at the top; each row adds up to 100%.",
+          "Click a month to show it on the map below."
+        ]
+      }
+    },
+    {
+      "width": 185,
+      "height": 380,
+      "data": {
+        "values": [
+          {
+            "band": -14,
+            "label": "12–14°S",
+            "t": [
+              "◀ Tropical north: busiest in",
+              "the dry season, July–October"
+            ]
+          },
+          {
+            "band": -42,
+            "label": "40–42°S",
+            "t": [
+              "◀ South: busiest from",
+              "September into January"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "fontWeight": 600,
+        "color": "#0a4643",
+        "lineHeight": 15
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": {
+            "field": "band",
+            "order": "descending"
+          },
+          "axis": null
+        },
+        "x": {
+          "value": 4
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "width": 130,
+      "height": 380,
+      "mark": {
+        "type": "bar",
+        "color": "#127a74",
+        "height": 14
+      },
+      "encoding": {
+        "y": {
+          "field": "label",
+          "type": "ordinal",
+          "sort": {
+            "field": "band",
+            "order": "descending"
+          },
+          "axis": null
+        },
+        "x": {
+          "field": "records",
+          "aggregate": "sum",
+          "type": "quantitative",
+          "title": "Records in the band",
+          "axis": {
+            "values": [
+              0,
+              10000000,
+              20000000
+            ],
+            "format": "~s",
+            "grid": true
+          }
+        },
+        "tooltip": [
+          {
+            "field": "label",
+            "title": "Latitude band"
+          },
+          {
+            "field": "records",
+            "aggregate": "sum",
+            "title": "Frog records",
+            "format": ","
+          }
+        ]
+      },
+      "title": {
+        "text": "Records per band",
+        "subtitle": "How much each row is based on"
+      }
+    }
+  ],
+  "spacing": 14,
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.band <= -12"
+    }
+  ]
+}

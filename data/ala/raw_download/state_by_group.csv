@@ -1,0 +1,156 @@
+group,state,records
+All wildlife,New South Wales,25848650
+All wildlife,Victoria,21087588
+All wildlife,Queensland,20127421
+All wildlife,Western Australia,6689933
+All wildlife,South Australia,5109810
+All wildlife,Australian Capital Territory,3497535
+All wildlife,Tasmania,3279873
+All wildlife,Northern Territory,3201100
+All wildlife,Heard Island,12974
+All wildlife,Norfolk Island,4382
+All wildlife,Ashmore and Cartier Islands,3604
+All wildlife,Cocos Keeling Islands,2610
+All wildlife,Coral Sea Islands,2263
+All wildlife,Christmas Island,709
+All wildlife,External Territories,456
+All wildlife,Indian Ocean,14
+All wildlife,Macquarie Island,7
+All wildlife,Territory of Ashmore and Cartier Islands,5
+All wildlife,The Northern Territory,4
+All wildlife,Territory of Cocos (Keeling) Islands,2
+All wildlife,Australian Antarctic Territory,1
+All wildlife,Lord Howe Island,1
+All wildlife,Not supplied,721154
+Birds,New South Wales,17003982
+Birds,Victoria,16477616
+Birds,Queensland,16431552
+Birds,Western Australia,5101672
+Birds,South Australia,3150744
+Birds,Australian Capital Territory,2968008
+Birds,Tasmania,2441057
+Birds,Northern Territory,2357449
+Birds,Norfolk Island,225
+Birds,Coral Sea Islands,143
+Birds,Ashmore and Cartier Islands,133
+Birds,Indian Ocean,14
+Birds,Not supplied,73283
+Mammals,New South Wales,1762284
+Mammals,Victoria,516764
+Mammals,South Australia,391109
+Mammals,Western Australia,245186
+Mammals,Northern Territory,197332
+Mammals,Queensland,158704
+Mammals,Australian Capital Territory,24370
+Mammals,Tasmania,23214
+Mammals,Norfolk Island,4
+Mammals,Ashmore and Cartier Islands,2
+Mammals,Territory of Cocos (Keeling) Islands,2
+Mammals,Not supplied,13394
+Reptiles,New South Wales,277113
+Reptiles,Western Australia,136388
+Reptiles,Queensland,127498
+Reptiles,Northern Territory,82668
+Reptiles,South Australia,81345
+Reptiles,Victoria,60825
+Reptiles,Australian Capital Territory,18025
+Reptiles,Tasmania,5005
+Reptiles,Christmas Island,80
+Reptiles,Norfolk Island,45
+Reptiles,Coral Sea Islands,34
+Reptiles,Ashmore and Cartier Islands,15
+Reptiles,Territory of Ashmore and Cartier Islands,5
+Reptiles,Not supplied,5357
+Amphibians,New South Wales,655970
+Amphibians,Queensland,310283
+Amphibians,Victoria,260564
+Amphibians,Western Australia,119432
+Amphibians,Northern Territory,65263
+Amphibians,South Australia,48457
+Amphibians,Australian Capital Territory,22989
+Amphibians,Tasmania,19802
+Amphibians,Norfolk Island,2
+Amphibians,Not supplied,87
+Fishes,New South Wales,270687
+Fishes,Queensland,187222
+Fishes,Western Australia,165911
+Fishes,South Australia,165302
+Fishes,Victoria,153835
+Fishes,Heard Island,12974
+Fishes,Tasmania,12810
+Fishes,Australian Capital Territory,6288
+Fishes,Northern Territory,4725
+Fishes,Ashmore and Cartier Islands,3053
+Fishes,Cocos Keeling Islands,2004
+Fishes,Coral Sea Islands,1366
+Fishes,Norfolk Island,521
+Fishes,Christmas Island,29
+Fishes,Macquarie Island,7
+Fishes,Not supplied,242044
+Insects,Queensland,1173639
+Insects,Victoria,930293
+Insects,New South Wales,905424
+Insects,Tasmania,444616
+Insects,South Australia,233318
+Insects,Western Australia,187460
+Insects,Australian Capital Territory,165626
+Insects,Northern Territory,65314
+Insects,Norfolk Island,489
+Insects,Christmas Island,142
+Insects,Ashmore and Cartier Islands,6
+Insects,Coral Sea Islands,6
+Insects,Not supplied,6096
+Molluscs,New South Wales,169005
+Molluscs,Victoria,149289
+Molluscs,Queensland,63198
+Molluscs,South Australia,56425
+Molluscs,Western Australia,40106
+Molluscs,Tasmania,18306
+Molluscs,Northern Territory,7471
+Molluscs,Australian Capital Territory,4260
+Molluscs,Norfolk Island,2100
+Molluscs,Coral Sea Islands,157
+Molluscs,Cocos Keeling Islands,139
+Molluscs,Ashmore and Cartier Islands,105
+Molluscs,Not supplied,11326
+Crustaceans,New South Wales,30485
+Crustaceans,Victoria,24747
+Crustaceans,Western Australia,24087
+Crustaceans,Queensland,23583
+Crustaceans,South Australia,22573
+Crustaceans,Australian Capital Territory,9722
+Crustaceans,Tasmania,6120
+Crustaceans,Northern Territory,3255
+Crustaceans,Cocos Keeling Islands,343
+Crustaceans,Norfolk Island,103
+Crustaceans,Coral Sea Islands,45
+Crustaceans,Ashmore and Cartier Islands,4
+Crustaceans,Not supplied,41322
+Plants,New South Wales,4207781
+Plants,Victoria,1926192
+Plants,Queensland,1238188
+Plants,South Australia,813771
+Plants,Western Australia,541134
+Plants,Northern Territory,397328
+Plants,Australian Capital Territory,221925
+Plants,Tasmania,175737
+Plants,External Territories,456
+Plants,Norfolk Island,373
+Plants,Coral Sea Islands,267
+Plants,Christmas Island,47
+Plants,Cocos Keeling Islands,17
+Plants,Ashmore and Cartier Islands,13
+Plants,The Northern Territory,4
+Plants,Lord Howe Island,1
+Plants,Not supplied,26141
+Fungi,Victoria,346637
+Fungi,New South Wales,184719
+Fungi,Queensland,107930
+Fungi,South Australia,46383
+Fungi,Tasmania,45947
+Fungi,Western Australia,39100
+Fungi,Australian Capital Territory,13341
+Fungi,Northern Territory,3497
+Fungi,Christmas Island,3
+Fungi,Norfolk Island,2
+Fungi,Not supplied,6282

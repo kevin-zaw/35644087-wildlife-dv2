@@ -1,0 +1,510 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dot map. Each charcoal dot is a 5 km square where FrogID volunteers recorded the introduced cane toad in 2023 (all dots the same size). Pale teal squares show the 1-degree squares where anyone recorded any frog, so blank areas mean no listeners rather than no toads.",
+  "width": 640,
+  "height": 520,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eceeea",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/grid_1deg.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d3ebe6",
+        "stroke": "#eceeea",
+        "strokeWidth": 0.4
+      }
+    },
+    {
+      "data": {
+        "url": "data/au_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "data/canetoad_points.csv",
+        "format": {
+          "parse": {
+            "lon": "number",
+            "lat": "number",
+            "n": "number"
+          }
+        }
+      },
+      "params": [
+        {
+          "name": "toadHover",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.6,
+        "cursor": "pointer",
+        "size": 26
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#2a2a2a"
+        },
+        "opacity": {
+          "condition": {
+            "param": "toadHover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0.8
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State or territory"
+          },
+          {
+            "field": "n",
+            "title": "Cane toad records in this 5 km square"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "city": "Sydney",
+            "lon": 151.21,
+            "lat": -33.87
+          },
+          {
+            "city": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81
+          },
+          {
+            "city": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47
+          },
+          {
+            "city": "Perth",
+            "lon": 115.86,
+            "lat": -31.95
+          },
+          {
+            "city": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93
+          },
+          {
+            "city": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88
+          },
+          {
+            "city": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46
+          },
+          {
+            "city": "Cairns",
+            "lon": 145.77,
+            "lat": -16.92
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 18,
+            "fill": "#4a5a54",
+            "stroke": "#ffffff",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#ffffff",
+            "align": "left",
+            "dx": 6,
+            "dy": -6,
+            "stroke": "#ffffff",
+            "strokeWidth": 3.5,
+            "strokeOpacity": 0.95
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#1b2b26",
+            "align": "left",
+            "dx": 6,
+            "dy": -6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 123.67,
+            "lat": -17.4,
+            "lon2": 119.6,
+            "lat2": -14.6
+          },
+          {
+            "lon": 153.3,
+            "lat": -29.6,
+            "lon2": 146.4,
+            "lat2": -31.6
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#2a2a2a",
+        "strokeWidth": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 113.4,
+            "lat": -12.6,
+            "t": [
+              "Western front: a record at",
+              "123.7°E in the West Kimberley,",
+              "WA, the westernmost of 2023"
+            ]
+          },
+          {
+            "lon": 135.6,
+            "lat": -31.4,
+            "t": [
+              "Southern edge: records down to",
+              "29.6°S on the NSW north coast"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "lineHeight": 15,
+        "fontStyle": "italic",
+        "fontWeight": 600,
+        "color": "#2a2a2a"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "k": "sq",
+            "t": "Square where anyone recorded a frog (listening effort)",
+            "y": 448
+          },
+          {
+            "k": "dot",
+            "t": "Cane toad recorded (5 km square)",
+            "y": 470
+          },
+          {
+            "k": "none",
+            "t": "No frog records (grey)",
+            "y": 492
+          }
+        ]
+      },
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": "datum.k=='sq'"
+            }
+          ],
+          "mark": {
+            "type": "square",
+            "size": 150,
+            "color": "#d3ebe6",
+            "stroke": "#9fcfc5",
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "value": 8
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "scale": null
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.k=='dot'"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 40,
+            "color": "#2a2a2a"
+          },
+          "encoding": {
+            "x": {
+              "value": 8
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "scale": null
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.k=='none'"
+            }
+          ],
+          "mark": {
+            "type": "square",
+            "size": 150,
+            "color": "#eceeea",
+            "stroke": "#9aa7a2",
+            "opacity": 1
+          },
+          "encoding": {
+            "x": {
+              "value": 8
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "scale": null
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontSize": 12,
+            "color": "#33443e"
+          },
+          "encoding": {
+            "x": {
+              "value": 20
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "scale": null
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 130.6,
+            "lat": -16.2,
+            "t": [
+              "71 records in the",
+              "Northern Territory"
+            ]
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "fontWeight": 600,
+            "lineHeight": 15,
+            "color": "#ffffff",
+            "stroke": "#ffffff",
+            "strokeWidth": 3.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "fontSize": 12,
+            "fontStyle": "italic",
+            "fontWeight": 600,
+            "lineHeight": 15,
+            "color": "#2a2a2a"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
