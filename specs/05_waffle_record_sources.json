@@ -16,8 +16,8 @@
   },
   "hconcat": [
     {
-      "width": 300,
-      "height": 300,
+      "width": 330,
+      "height": 330,
       "params": [
         {
           "name": "srcHover",
@@ -33,7 +33,7 @@
       ],
       "mark": {
         "type": "square",
-        "size": 620,
+        "size": 760,
         "cornerRadius": 2,
         "cursor": "pointer"
       },
@@ -107,7 +107,7 @@
     },
     {
       "width": 260,
-      "height": 300,
+      "height": 330,
       "data": {
         "values": [
           {
@@ -120,7 +120,7 @@
             "c": "#8a4a0b"
           },
           {
-            "y": 78,
+            "y": 86,
             "t": [
               "Together they hold 68 million",
               "records, 73% of all bird records."
@@ -128,7 +128,7 @@
             "c": "#8a4a0b"
           },
           {
-            "y": 142,
+            "y": 156,
             "t": [
               "State government atlases add",
               "another 16 (NSW 9.5, Victoria 6.5)."
@@ -136,7 +136,7 @@
             "c": "#3f5866"
           },
           {
-            "y": 222,
+            "y": 244,
             "t": [
               "The remaining 40% comes from",
               "hundreds of museums, herbaria,",
@@ -164,11 +164,11 @@
           "scale": {
             "domain": [
               0,
-              300
+              330
             ],
             "range": [
               0,
-              300
+              330
             ]
           },
           "axis": null

@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Stacked area chart. Sightings (records the ALA classes as human observations) of Australian wildlife per year, 1990–2024, by group (mammals, reptiles, frogs, fishes, molluscs and crustaceans are combined as 'Other animals'). 2025 is left out because its records are still being added. Source: Atlas of Living Australia, downloaded 27 October 2026.",
   "width": 620,
-  "height": 360,
+  "height": 560,
   "data": {
     "url": "data/ala/public_sightings_by_year.csv",
     "format": {

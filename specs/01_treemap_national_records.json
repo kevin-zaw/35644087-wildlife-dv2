@@ -226,7 +226,7 @@
             "signal": "datum.y0 + ((datum.y1 - datum.y0) <= 44 ? 14 : (datum.share > 30 ? 30 : 19))"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 46 && (datum.y1 - datum.y0) > 16 ? ((datum.group == 'Other animals' ? 'Others' : datum.group == 'Mushrooms and kin' ? 'Mushrooms' : datum.group == 'Conifers and cycads' ? 'Conifers' : datum.group == 'Spiders and kin' ? 'Spiders' : datum.group == 'Other plants' ? 'Others' : datum.group == 'Other fungi' ? 'Others' : datum.group) + ((datum.y1 - datum.y0) <= 44 && (datum.x1 - datum.x0) > 96 ? '  ' + format(datum.share, '.1f') + '%' : '')) : ''"
+            "signal": "(datum.x1 - datum.x0) > 84 && (datum.y1 - datum.y0) > 16 ? ((datum.group == 'Other animals' ? 'Others' : datum.group == 'Mushrooms and kin' ? 'Mushrooms' : datum.group == 'Conifers and cycads' ? 'Conifers' : datum.group == 'Spiders and kin' ? 'Spiders' : datum.group == 'Other plants' ? 'Others' : datum.group == 'Other fungi' ? 'Others' : datum.group) + ((datum.y1 - datum.y0) <= 44 && (datum.x1 - datum.x0) > 96 ? '  ' + format(datum.share, '.1f') + '%' : '')) : ((datum.x1 - datum.x0) > 34 && (datum.y1 - datum.y0) > 16 ? format(datum.share, '.1f') + '%' : '')"
           },
           "fill": {
             "signal": "datum.kingdom == 'Plants' ? '#1d2408' : '#ffffff'"

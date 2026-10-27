@@ -243,3 +243,26 @@ p.caption, figcaption { font-family: var(--sans); font-size: 15px; line-height: 
 /* let grid and figure containers shrink so wide charts can be scaled to fit */
 .side > *, .wide > *, .wide-head > *, .intro-grid > *, .close-grid > *, .hero .wrap > *, figure { min-width: 0; }
 .chart { max-width: 100%; }
+
+/* ---------- white-space pass ---------- */
+.intro-grid { grid-template-columns: minmax(0, 25em) minmax(320px, 440px); }
+.intro-side > * + * { margin-top: 18px; }
+/* chart headers: story | how to read | caption, filling the full width */
+.wide-head { grid-template-columns: minmax(0, 24em) minmax(0, 1fr); justify-content: stretch; gap: 40px; }
+.wide-head .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.wide-head .notes .read, .wide-head .notes .caption { max-width: none; margin-top: 0; }
+/* side-by-side rows: share any leftover height above and below the shorter column */
+.side, .side.flip { align-items: center; }
+.close-grid { grid-template-columns: minmax(0, 25em) minmax(0, 1fr); gap: 56px; align-items: center; }
+.facts { gap: 22px 36px; }
+/* slightly tighter vertical rhythm */
+.part { padding-top: 52px; }
+.wide, .side { margin-bottom: 52px; }
+.part-head { margin-bottom: 22px; }
+
+/* chart headline spans the full width above story | notes */
+.wide-title { grid-column: 1 / -1; margin-bottom: -18px; }
+.wide-title h3 { margin-bottom: 0; max-width: 32em; }
+.wide-title .tag { margin-bottom: 6px; }
+.spotlight { grid-template-columns: minmax(0, 25em) minmax(0, 1fr); gap: 48px; }
+.wide-title h3 { max-width: 21em; }

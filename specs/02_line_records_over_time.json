@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Annotated line chart. Total occurrence records about Australia available through GBIF at each quarterly snapshot, December 2007 to October 2026 (all organisms, including microbes). Source: GBIF analytics, country/AU/about/csv/occ.csv, generated 8 October 2026.",
   "width": 620,
-  "height": 340,
+  "height": 470,
   "data": {
     "url": "data/gbif_records_over_time.csv",
     "format": {

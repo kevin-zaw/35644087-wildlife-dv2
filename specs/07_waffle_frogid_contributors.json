@@ -31,12 +31,12 @@
       ]
     }
   ],
-  "spacing": 56,
+  "spacing": 72,
   "hconcat": [
     {
       "name": "peopleWaffle",
-      "width": 250,
-      "height": 250,
+      "width": 300,
+      "height": 300,
       "title": {
         "text": "12,434 people",
         "subtitle": [
@@ -51,7 +51,7 @@
       ],
       "mark": {
         "type": "square",
-        "size": 370,
+        "size": 540,
         "cornerRadius": 2,
         "cursor": "pointer"
       },
@@ -130,8 +130,8 @@
     },
     {
       "name": "recWaffle",
-      "width": 250,
-      "height": 250,
+      "width": 300,
+      "height": 300,
       "title": {
         "text": "84,321 recordings",
         "subtitle": [
@@ -146,7 +146,7 @@
       ],
       "mark": {
         "type": "square",
-        "size": 370,
+        "size": 540,
         "cornerRadius": 2,
         "cursor": "pointer"
       },
@@ -197,12 +197,12 @@
       }
     },
     {
-      "width": 200,
-      "height": 250,
+      "width": 250,
+      "height": 300,
       "data": {
         "values": [
           {
-            "y": 10,
+            "y": 12,
             "t": [
               "36% of people sent a",
               "single recording. Together",
@@ -211,7 +211,7 @@
             "c": "#9a5a12"
           },
           {
-            "y": 120,
+            "y": 144,
             "t": [
               "90 people (0.7%) sent more",
               "than 100 each: 22,166",
@@ -220,7 +220,7 @@
             "c": "#6f3906"
           },
           {
-            "y": 215,
+            "y": 258,
             "t": [
               "The busiest person sent",
               "1,306 recordings in 2023."
@@ -247,11 +247,11 @@
           "scale": {
             "domain": [
               0,
-              250
+              300
             ],
             "range": [
               0,
-              250
+              300
             ]
           },
           "axis": null

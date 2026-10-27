@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dot map. Each charcoal dot is a 5 km square where FrogID volunteers recorded the introduced cane toad in 2023 (all dots the same size). Pale teal squares show the 1-degree squares where anyone recorded any frog, so blank areas mean no listeners rather than no toads.",
   "width": 640,
-  "height": 520,
+  "height": 600,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
@@ -329,17 +329,17 @@
           {
             "k": "sq",
             "t": "Square where anyone recorded a frog (listening effort)",
-            "y": 448
+            "y": 518
           },
           {
             "k": "dot",
             "t": "Cane toad recorded (5 km square)",
-            "y": 470
+            "y": 540
           },
           {
             "k": "none",
             "t": "No frog records (grey)",
-            "y": 492
+            "y": 562
           }
         ]
       },

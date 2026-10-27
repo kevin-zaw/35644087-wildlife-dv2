@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Proportional symbol map. Each circle summarises one 2-degree square at the average position of its FrogID records (2023). Circle area is proportional to the number of frog species recorded; fill lightness shows how many records it took (recording effort). Large pale circles are species-rich but under-recorded.",
-  "width": 640,
-  "height": 540,
+  "width": 600,
+  "height": 560,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
